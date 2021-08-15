@@ -1,0 +1,8 @@
+API endponints
+ []-financial statements
+ []-earnings esitimate
+ []-insider trading
+ []-realtime price
+ []-1 minute technical indicator
+ []-All Majors Indexes (at home screen)
+ []-Most Active/Gainer/Loser Stock Companies
