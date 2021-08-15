@@ -1,0 +1,15 @@
+.chart-dates-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-dates-ul {
+  display: flex;
+}
+.chart-dates {
+  list-style-type: none;
+  margin: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
