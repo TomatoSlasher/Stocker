@@ -2,16 +2,15 @@ import React from "react";
 import { createChart } from "lightweight-charts";
 
 import classes from "./ChartDate.module.css";
-const ChartDate: React.FC<{ items: string }> = (props) => {
+const ChartDate: React.FC<{ ticker: string }> = (props) => {
   const fetchDataHandler = async (date: number) => {
     const fetchData = await fetch(
-      "https://api.twelvedata.com/time_series?symbol=AMZN&interval=1day&outputsize=2000&apikey=a24970c9566c49739e8009cdb3a639f0"
+      `https://api.twelvedata.com/time_series?symbol=${props.ticker}&interval=1day&outputsize=2000&apikey=a24970c9566c49739e8009cdb3a639f0`
     );
 
     const data = await fetchData.json();
 
     const dataSixMonths = data.values.slice(0, date);
-    console.log(dataSixMonths);
 
     const transformToGraphData = dataSixMonths.map(
       (val: {
@@ -31,8 +30,8 @@ const ChartDate: React.FC<{ items: string }> = (props) => {
     }
 
     const chart: any = createChart(chartCanvas1, {
-      width: 600,
-      height: 400,
+      width: 500,
+      height: 300,
     });
     chart.applyOptions({
       handleScroll: false,
@@ -50,12 +49,20 @@ const ChartDate: React.FC<{ items: string }> = (props) => {
           visible: false,
         },
       },
+      layout: {
+        fontSize: 16,
+        fontFamily: "sans-serif",
+      },
     });
 
     chart.timeScale().fitContent();
     const areaSeries = chart.addAreaSeries();
     areaSeries.setData(transformToGraphData);
+    areaSeries.applyOptions({
+      priceLineWidth: 0,
 
+      priceLineStyle: 2,
+    });
     const dataLastEl = dataSixMonths.length - 1;
 
     if (+dataSixMonths[0].close > +dataSixMonths[dataLastEl].close) {
@@ -75,6 +82,7 @@ const ChartDate: React.FC<{ items: string }> = (props) => {
       });
     }
   };
+  fetchDataHandler(21);
 
   return (
     <div className={classes["chart-dates-container"]}>
