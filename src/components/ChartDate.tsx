@@ -30,8 +30,8 @@ const ChartDate: React.FC<{ ticker: string }> = (props) => {
     }
 
     const chart: any = createChart(chartCanvas1, {
-      width: 500,
-      height: 300,
+      width: 570,
+      height: 250,
     });
     chart.applyOptions({
       handleScroll: false,
@@ -51,7 +51,7 @@ const ChartDate: React.FC<{ ticker: string }> = (props) => {
       },
       layout: {
         fontSize: 16,
-        fontFamily: "sans-serif",
+        fontFamily: "Arial",
       },
     });
 
@@ -123,9 +123,9 @@ const ChartDate: React.FC<{ ticker: string }> = (props) => {
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => fetchDataHandler(21 * 12 * 5)}
+            onClick={() => fetchDataHandler(21 * 12 * 4)}
           >
-            5Y
+            4Y
           </li>
         </ul>
       </div>
