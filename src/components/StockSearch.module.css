@@ -1,3 +1,47 @@
+.search-input-container {
+  width: 100%;
+  border: 1px solid black;
+}
+input {
+  all: unset;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
 .search-input {
-  text-transform: uppercase;
+  width: 80%;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.75rem 0.5rem;
+}
+.search-btn {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #0062cf;
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+}
+.search-li {
+  list-style-type: none;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(129, 129, 129);
+  cursor: pointer;
+}
+.search-li:hover {
+  background-color: rgb(240, 240, 240);
+}
+.ticker-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+.exchange-container {
+  margin: 0.2rem 0rem;
+  display: flex;
+  color: rgb(129, 129, 129);
+}
+.exchange-container:last-child {
+  color: black;
 }

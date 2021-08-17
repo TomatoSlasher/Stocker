@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import classes from "./StockHeader.module.css";
+import { useSelector } from "react-redux";
 
-const StockHeader: React.FC<{ ticker: string }> = (props) => {
+const StockHeader: React.FC = () => {
+  const ticker = useSelector((state: { ticker: string }) => {
+    return state.ticker;
+  });
+
   const [CompanyLogoURL, setCompanyLogoURL] = useState("");
   const [CompanyName, setCompanyName] = useState("");
   const [CompanyTicker, setCompanyTicker] = useState("");
@@ -23,8 +28,8 @@ const StockHeader: React.FC<{ ticker: string }> = (props) => {
         setCompanyPrice(`${data[0].price.toFixed(2)}`);
       }
     };
-    fetchDataHandler(props.ticker);
-  }, []);
+    fetchDataHandler(ticker);
+  }, [ticker]);
 
   return (
     <div className={classes["stock-header-container"]}>

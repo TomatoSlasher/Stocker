@@ -9,12 +9,13 @@ const HomePage = () => {
   const ticker = useSelector((state: { ticker: string }) => {
     return state.ticker;
   });
+
   return (
     <Fragment>
-      <StockSearch />
       <StockCard>
-        <StockHeader ticker={ticker} />
-        <ChartDate ticker={ticker} />
+        <StockSearch />
+        <StockHeader />
+        <ChartDate />
       </StockCard>
     </Fragment>
   );
