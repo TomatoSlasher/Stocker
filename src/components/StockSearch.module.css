@@ -1,4 +1,4 @@
-.ticker-search{
+.ticker-search {
   position: relative;
   z-index: 10;
 }
@@ -28,18 +28,19 @@ ul {
   padding: 0.75rem 1.5rem;
   border-radius: 20px;
 }
-.search-dropdown{
+.search-dropdown {
   position: absolute;
   background-color: white;
   width: 100%;
-
+  max-height: 15rem;
+  overflow-y: auto;
+  border: 1px solid black;
 }
 .search-li {
   list-style-type: none;
   padding: 0.5rem;
   border-bottom: 1px solid rgb(129, 129, 129);
   cursor: pointer;
-
 }
 .search-li:hover {
   background-color: rgb(240, 240, 240);
