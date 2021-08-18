@@ -7,12 +7,19 @@ import { tickerActions } from "../store/index";
 const StockSearch = () => {
   const dispatch = useDispatch();
   const tickerChangeRef = useRef<HTMLInputElement>(null);
+  const queryLi: any = useRef([]);
   const [tickerData, setTickerData]: any = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  console.log(queryLi)
+  let timer: any
+  const tickerChangeHandler = () => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      const inputText = tickerChangeRef.current!.value
+      setSearchQuery(inputText)
+    }, 500);
 
-  const tickerChangeHandler = (e: React.FormEvent) => {
-    e.preventDefault();
-    const inputText = tickerChangeRef.current!.value.toUpperCase();
-    dispatch(tickerActions.getTicker(inputText));
+
   };
 
   useEffect(() => {
@@ -23,12 +30,22 @@ const StockSearch = () => {
       const data = await tickerFetch.json();
       setTickerData(data);
     };
-    fetchSearch("aa");
-  }, []);
-  console.log(tickerData);
+    if (searchQuery) {
+
+      fetchSearch(searchQuery);
+    }
+
+  }, [searchQuery]);
+
+  const queryClickHandler = () => {
+    console.log (queryLi)
+        // dispatch(tickerActions.getTicker(inputText));
+
+  }
+
   return (
-    <div className="ticker-search">
-      <form className={classes["search-form"]} onSubmit={tickerChangeHandler}>
+    <div className={classes["ticker-search"]}>
+      <form className={classes["search-form"]} onChange={tickerChangeHandler}>
         <div className={classes["search-input-container"]}>
           <button className={classes["search-btn"]} typeof="submit">
             Search
@@ -38,19 +55,20 @@ const StockSearch = () => {
             type="text"
             placeholder="search company"
             ref={tickerChangeRef}
+
           />
         </div>
       </form>
-      <div className="search-dropdown">
+      {searchQuery ?  <div className={classes["search-dropdown"]}>
         <ul>
           {tickerData.map(
             (data: {
               name: string;
               exchangeShortName: string;
               symbol: string;
-            }) => {
+            }, idx: number) => {
               return (
-                <li className={classes["search-li"]}>
+                <li key={idx} value={data.symbol} ref={(ref) => queryLi.current.push(ref)} onClick={queryClickHandler}  className={classes["search-li"]}>
                   <p className={classes["ticker-name"]}>{data.name}</p>
 
                   <div className={classes["exchange-container"]}>
@@ -62,7 +80,8 @@ const StockSearch = () => {
             }
           )}
         </ul>
-      </div>
+      </div> : '' }
+
     </div>
   );
 };
