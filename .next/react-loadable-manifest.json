@@ -4,5 +4,11 @@
     "files": [
       "static/chunks/node_modules_next_dist_client_dev_noop_js.js"
     ]
+  },
+  "index.tsx -> ../components/ChartDate": {
+    "id": "./src/components/ChartDate.tsx",
+    "files": [
+      "static/chunks/src_components_ChartDate_tsx.js"
+    ]
   }
 }

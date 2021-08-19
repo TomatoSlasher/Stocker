@@ -46,7 +46,7 @@
 .exchange-container {
   margin: 0.2rem 0rem;
   display: flex;
-  color: rgb(129, 129, 129);
+  color: rgb(129, 129, 129) !important;
 }
 .exchange-container:last-child {
   color: black;
