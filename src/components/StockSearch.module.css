@@ -6,13 +6,7 @@
   width: 100%;
   border: 1px solid black;
 }
-input {
-  all: unset;
-}
-ul {
-  margin: 0;
-  padding: 0;
-}
+
 .search-input {
   width: 80%;
   font-weight: bold;

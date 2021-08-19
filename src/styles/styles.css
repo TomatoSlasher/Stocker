@@ -1,0 +1,15 @@
+* {
+  font-family: "Montserrat", sans-serif !important;
+}
+h2,
+h1,
+p {
+  margin: 0;
+}
+input {
+  all: unset;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
