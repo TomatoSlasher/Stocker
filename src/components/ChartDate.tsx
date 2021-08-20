@@ -7,7 +7,7 @@ const ChartDate: React.FC = () => {
   const ticker = useSelector((state: { ticker: string }) => {
     return state.ticker;
   });
-  console.log(ticker);
+
 
   const [dateChange, setDateChange] = useState(21);
 

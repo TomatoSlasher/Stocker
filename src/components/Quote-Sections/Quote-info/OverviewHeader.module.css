@@ -1,0 +1,24 @@
+
+.stock-header-container {
+  display: flex;
+  margin: 1rem 0.5rem;
+}
+.stock-header-container img {
+  width: 80px;
+  border-radius: 5px;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.company-text-container {
+  margin: 0rem 0.5rem;
+}
+.company-ticker-exchange {
+  display: flex;
+  color: rgb(129, 129, 129);
+}
+.company-name {
+  font-size: 20px;
+}
