@@ -1,0 +1,19 @@
+.chart-dates-container {
+  margin: 1rem 0.5rem;
+  width: 100%;
+}
+
+.chart-dates-ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0rem 1rem;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+.chart-dates {
+  list-style-type: none;
+
+  font-weight: bold;
+  cursor: pointer;
+}

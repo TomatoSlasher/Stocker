@@ -6,3 +6,6 @@ API endponints
  []-1 minute technical indicator
  []-All Majors Indexes (at home screen)
  []-Most Active/Gainer/Loser Stock Companies
+
+TO-DO
+[]- more/less stock description

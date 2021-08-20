@@ -9,7 +9,7 @@ const OverviewHeader: React.FC<any> = (props) => {
 
       <div className={classes["company-text-container"]}>
         <p className={classes["company-name"]}>{props.data[0].companyName}</p>
-        <h1>{props.data[0].price}</h1>
+        <h1>{props.data[0].price.toFixed(2)}</h1>
 
         <div className={classes["company-ticker-exchange"]}>
           <p className="company-exchange">{props.data[0].exchangeShortName}:</p>
