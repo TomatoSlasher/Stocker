@@ -2,3 +2,16 @@
   display: flex;
   justify-content: space-between;
 }
+.quote-section-ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 4rem 0rem;
+  padding: 0rem 2rem;
+  width: 90vw;
+}
+.quote-section-ul li {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  list-style-type: none;
+}

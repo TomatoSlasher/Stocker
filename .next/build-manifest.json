@@ -14,11 +14,6 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
-    "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -29,10 +24,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/symbol/[symbol]": [
+    "/symbol/[symbol]/financials": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/symbol/[symbol].js"
+      "static/chunks/pages/symbol/[symbol]/financials.js"
+    ],
+    "/symbol/[symbol]/overview": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/symbol/[symbol]/overview.js"
     ]
   },
   "ampFirstPages": []

@@ -23,7 +23,6 @@ const OverViewChart: React.FC<any> = (props) => {
     if (chartCanvas) {
       chartCanvas.remove();
     }
-    console.log(chartContainerRef.current);
     const chart: any = createChart(chartContainerRef.current, {
       width: 500,
       height: 250,

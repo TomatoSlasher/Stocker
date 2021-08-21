@@ -9,3 +9,9 @@ API endponints
 
 TO-DO
 []- more/less stock description
+
+
+API
+https://www.alphavantage.co/documentation/
+https://financialmodelingprep.com/developer/docs/
+https://twelvedata.com/docs#stocks
