@@ -1,0 +1,17 @@
+.income-dates {
+  padding: 0.5rem;
+  background-color: rgb(218, 218, 218);
+}
+
+.income-rows {
+  padding: 0.5rem;
+  background-color: rgb(218, 218, 218);
+  text-align: left;
+}
+.income-rows-child {
+  text-align: center;
+}
+.income-cells {
+  padding: 0.5rem;
+  background-color: rgb(235, 235, 235);
+}

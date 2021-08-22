@@ -10,12 +10,13 @@ const OverviewChart = dynamic(() => import("./Quote-Info/OverviewChart"), {
 });
 
 const StockOverview: React.FC<any> = (props) => {
+  // console.log(props.image);
   return (
     <Fragment>
       <div className={classes["overview-container"]}>
         <div className="overview-content-container">
-          <OverviewHeader data={props.symbol} />
-          <OverviewDescription description={props.symbol[0].description} />
+          <OverviewHeader data={props.symbol} image={props.image} />
+          <OverviewDescription description={props.symbol.Description} />
         </div>
         <div className="overview-chart-container">
           <OverviewChart data={props.historicalData} />
@@ -23,14 +24,12 @@ const StockOverview: React.FC<any> = (props) => {
       </div>
       <div className="quote-section">
         <ul className={classes["quote-section-ul"]}>
-          <Link
-            href={`/symbol/${props.symbol[0].symbol.toLowerCase()}/overview`}
-          >
+          <Link href={`/symbol/${props.symbol.Symbol.toLowerCase()}/overview`}>
             <li>Overview</li>
           </Link>
 
           <Link
-            href={`/symbol/${props.symbol[0].symbol.toLowerCase()}/financials`}
+            href={`/symbol/${props.symbol.Symbol.toLowerCase()}/financials`}
           >
             <li>Financials</li>
           </Link>
