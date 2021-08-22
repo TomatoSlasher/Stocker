@@ -24,13 +24,11 @@ const StockOverview: React.FC<any> = (props) => {
       </div>
       <div className="quote-section">
         <ul className={classes["quote-section-ul"]}>
-          <Link href={`/symbol/${props.symbol.Symbol.toLowerCase()}/overview`}>
-            <li>Overview</li>
+          <Link href={`/symbol/${props.symbol.Symbol}/overview`}>
+            <li>Summary</li>
           </Link>
 
-          <Link
-            href={`/symbol/${props.symbol.Symbol.toLowerCase()}/financials`}
-          >
+          <Link href={`/symbol/${props.symbol.Symbol}/financials`}>
             <li>Financials</li>
           </Link>
 
