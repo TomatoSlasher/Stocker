@@ -10,7 +10,6 @@ const OverviewChart = dynamic(() => import("./Quote-Info/OverviewChart"), {
 });
 
 const StockOverview: React.FC<any> = (props) => {
-  // console.log(props.image);
   return (
     <Fragment>
       <div className={classes["overview-container"]}>

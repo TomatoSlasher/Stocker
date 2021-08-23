@@ -1,7 +1,6 @@
 import classes from "./OverviewGeneral.module.css";
 const OverviewInfo: React.FC<any> = (props) => {
-  console.log(props.data);
-  console.log(props.general);
+
   const NumberFormat = new Intl.NumberFormat("en-US");
 
   const marketCap = props.data.MarketCapitalization / 1000000000;

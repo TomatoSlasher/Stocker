@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import StockOverview from "../../../components/Quote-Sections/StockOverview";
 
 import FinancialsAll from "../../../components/Quote-Sections/Quote-Financials/FinancialsAll";
+import IndexesQuote from "../../../components/general-components/IndexsQuote";
 
 const Financials = (props: any) => {
-  const router = useRouter();
-
   return (
     <div>
+      <IndexesQuote indexData={props.indexData} />
       <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
@@ -24,7 +24,7 @@ const Financials = (props: any) => {
 
 export async function getServerSideProps(context: any) {
   const fetchOverview = await fetch(
-    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${context.params.symbol.toUpperCase()}&apikey=7WPAHOUCRPYYXN1F`
+    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${context.params.symbol.toUpperCase()}&apikey=0NEKC0UVY5YYYQ40`
   );
 
   const data = await fetchOverview.json();
@@ -42,20 +42,50 @@ export async function getServerSideProps(context: any) {
   const historicalData = await fetchHistoricalPrice.json();
 
   const fetchIncomeStatement = await fetch(
-    `https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${context.params.symbol.toUpperCase()}&apikey=7WPAHOUCRPYYXN1F`
+    `https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${context.params.symbol.toUpperCase()}&apikey=GMYPL96CPG3GN8K2`
   );
   const incomeData = await fetchIncomeStatement.json();
 
   const fetchBalanceSheet = await fetch(
-    `https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol=${context.params.symbol.toUpperCase()}&apikey=7WPAHOUCRPYYXN1F`
+    `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${context.params.symbol.toUpperCase()}?limit=5&apikey=1e926fa4ba9f6260f956428ecb9f6a63`
   );
   const balanceSheetData = await fetchBalanceSheet.json();
 
   const fetchCashFlow = await fetch(
-    `https://www.alphavantage.co/query?function=CASH_FLOW&symbol=${context.params.symbol.toUpperCase()}&apikey=7WPAHOUCRPYYXN1F`
+    `https://financialmodelingprep.com/api/v3/cash-flow-statement/${context.params.symbol.toUpperCase()}?limit=5&apikey=1e926fa4ba9f6260f956428ecb9f6a63`
   );
 
   const cashFlowData = await fetchCashFlow.json();
+
+  const fetchGSPCIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+  const GSPCIndexData = await fetchGSPCIndex.json();
+
+  const fetchDowIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+  const DowIndexData = await fetchDowIndex.json();
+
+  const fetchIXICIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+
+  const IXICIndexData = await fetchIXICIndex.json();
+
+  const fetchRUTIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+
+  const RUTIndexData = await fetchRUTIndex.json();
+
+  let indexData: any = [];
+  indexData.push(
+    ...GSPCIndexData,
+    ...DowIndexData,
+    ...IXICIndexData,
+    ...RUTIndexData
+  );
 
   return {
     props: {
@@ -66,6 +96,7 @@ export async function getServerSideProps(context: any) {
       incomeStatement: incomeData,
       balanceSheet: balanceSheetData,
       cashFlow: cashFlowData,
+      indexData: indexData,
     },
   };
 }

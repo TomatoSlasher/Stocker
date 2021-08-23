@@ -2,12 +2,15 @@ import { useRouter } from "next/router";
 import StockOverview from "../../../components/Quote-Sections/StockOverview";
 
 import OverviewGeneral from "../../../components/Quote-Sections/Quote-General/OverviewGeneral";
+import IndexesQuote from "../../../components/general-components/IndexsQuote";
 
 const Financials = (props: any) => {
   const router = useRouter();
 
   return (
     <div>
+      <IndexesQuote indexData={props.indexData} />
+
       <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
@@ -20,7 +23,7 @@ const Financials = (props: any) => {
 
 export async function getServerSideProps(context: any) {
   const fetchOverview = await fetch(
-    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${context.params.symbol.toUpperCase()}&apikey=7WPAHOUCRPYYXN1F`
+    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${context.params.symbol.toUpperCase()}&apikey=GFFC2KM2F1R72KZB`
   );
 
   const data = await fetchOverview.json();
@@ -37,11 +40,41 @@ export async function getServerSideProps(context: any) {
 
   const historicalData = await fetchHistoricalPrice.json();
 
+  const fetchGSPCIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+  const GSPCIndexData = await fetchGSPCIndex.json();
+
+  const fetchDowIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+  const DowIndexData = await fetchDowIndex.json();
+
+  const fetchIXICIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+
+  const IXICIndexData = await fetchIXICIndex.json();
+
+  const fetchRUTIndex = await fetch(
+    `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+
+  const RUTIndexData = await fetchRUTIndex.json();
+  console.log(GSPCIndexData);
+  let indexData: any = [];
+  indexData.push(
+    ...GSPCIndexData,
+    ...DowIndexData,
+    ...IXICIndexData,
+    ...RUTIndexData
+  );
   return {
     props: {
       symbol: data,
       historicalData: historicalData,
       image: imageData,
+      indexData: indexData,
     },
   };
 }

@@ -14,7 +14,10 @@ const FinancialsALL = (props: any) => {
         <IncomeStatement incomeStatement={props.incomeStatement} />
       )}
       {changeStatement == 1 && (
-        <BalanceSheet balanceSheet={props.balanceSheet} />
+        <BalanceSheet
+          balanceSheet={props.balanceSheet}
+          balanceSheetQuarterly={props.balanceSheetQuarterly}
+        />
       )}
       {changeStatement == 2 && <CashFlow cashFlow={props.cashFlow} />}
     </Fragment>
