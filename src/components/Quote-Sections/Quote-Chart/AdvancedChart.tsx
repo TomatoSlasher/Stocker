@@ -27,16 +27,27 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
     }
   );
   const chartVolume = chartTime.map(
-    (val: { datetime: string; volume: number }) => {
+    (val: {
+      datetime: string;
+      volume: number;
+      color: string;
+      close: number;
+      open: number;
+    }) => {
       return {
         time: val.datetime,
         value: val.volume,
-        color: "green",
+        color: `${
+          val.close > val.open
+            ? "rgba(76, 175, 80, .5)"
+            : "rgba(248, 22, 30, 0.5)"
+        }`,
       };
     }
   );
   console.log(transformToGraphData);
   transformToGraphData.reverse();
+  chartVolume.reverse();
   useEffect(() => {
     const chartCanvas = document.querySelector(".tv-lightweight-charts");
 
@@ -48,6 +59,7 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       height: 500,
     });
     const candlestickSeries = chart.addCandlestickSeries({
+      wickVisible: true,
       upColor: "#00B061",
       downColor: "#FF3031",
     });
@@ -55,12 +67,11 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
     candlestickSeries.setData(transformToGraphData);
 
     var volumeSeries = chart.addHistogramSeries({
-      color: "#26a69a",
-      priceFormat: {
-        type: "volume",
-      },
+      base: 0,
+      color: "rgba(76, 175, 80, .5)",
       priceScaleId: "",
       scaleMargins: {
+        top: 0.9,
         bottom: 0,
       },
     });
