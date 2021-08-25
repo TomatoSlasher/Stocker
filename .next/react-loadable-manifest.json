@@ -5,10 +5,16 @@
       "static/chunks/node_modules_next_dist_client_dev_noop_js.js"
     ]
   },
-  "..\\components\\Quote-Sections\\StockOverview.tsx -> ./Quote-Info/OverviewChart": {
-    "id": "./src/components/Quote-Sections/Quote-Info/OverviewChart.tsx",
+  "index.tsx -> ../components/Home-Components/ChartDate": {
+    "id": "./src/components/Home-Components/ChartDate.tsx",
     "files": [
-      "static/chunks/src_components_Quote-Sections_Quote-Info_OverviewChart_tsx.js"
+      "static/chunks/src_components_Home-Components_ChartDate_tsx.js"
+    ]
+  },
+  "symbol\\[symbol]\\chart.tsx -> ../../../components/Quote-Sections/Quote-Chart/AdvancedChart": {
+    "id": "./src/components/Quote-Sections/Quote-Chart/AdvancedChart.tsx",
+    "files": [
+      "static/chunks/src_components_Quote-Sections_Quote-Chart_AdvancedChart_tsx.js"
     ]
   }
 }

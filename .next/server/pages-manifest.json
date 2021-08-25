@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/symbol/[symbol]/financials": "pages/symbol/[symbol]/financials.js",
-  "/symbol/[symbol]/growth": "pages/symbol/[symbol]/growth.js",
-  "/symbol/[symbol]/overview": "pages/symbol/[symbol]/overview.js"
+  "/": "pages/index.js",
+  "/symbol/[symbol]/chart": "pages/symbol/[symbol]/chart.js"
 }

@@ -31,7 +31,7 @@ const StockOverview: React.FC<any> = (props) => {
             <li>Financials</li>
           </Link>
           <Link href={`/symbol/${props.symbol.Symbol}/growth`}>
-            <li>Financials Growth</li>
+            <li>Financial Growth</li>
           </Link>
 
           <li>ShareHolders</li>
