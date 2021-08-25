@@ -15,3 +15,14 @@
   padding: 0.5rem;
   background-color: rgb(235, 235, 235);
 }
+
+.income-cells-up {
+  padding: 0.5rem;
+  background-color: rgb(235, 235, 235);
+  color: #34a853;
+}
+.income-cells-down {
+  padding: 0.5rem;
+  background-color: rgb(235, 235, 235);
+  color: #eb0f29;
+}

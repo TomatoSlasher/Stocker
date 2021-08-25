@@ -5,7 +5,6 @@ const BalanceSheet: React.FC<{
   balanceSheet: any;
   balanceSheetQuarterly: any;
 }> = (props) => {
-  console.log(props.balanceSheetQuarterly);
   const NumberFormat = new Intl.NumberFormat("en-US");
 
   return (

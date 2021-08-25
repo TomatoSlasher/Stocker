@@ -1,7 +1,6 @@
 import classes from "./IndexQuote.module.css";
 
 const IndexesQuote: React.FC<{ indexData: any }> = (props) => {
-  console.log(props);
   const twoDecimal = (val: any) => {
     return val.toFixed(2);
   };

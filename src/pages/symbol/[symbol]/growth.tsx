@@ -1,29 +1,23 @@
-import { useRouter } from "next/router";
-import StockOverview from "../../../components/Quote-Sections/StockOverview";
-
-import OverviewGeneral from "../../../components/Quote-Sections/Quote-General/OverviewGeneral";
 import IndexesQuote from "../../../components/general-components/IndexsQuote";
-
-const Financials = (props: any) => {
-  const router = useRouter();
-
+import StockOverview from "../../../components/Quote-Sections/StockOverview";
+import FinancialGrowth from "../../../components/Quote-Sections/Quote-Growth/FinancialGrowth";
+const Growth = (props: any) => {
   return (
     <div>
       <IndexesQuote indexData={props.indexData} />
-
       <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
         image={props.image}
       />
-      <OverviewGeneral data={props.symbol} general={props.image} />
+      <FinancialGrowth growth={props.growth} />
     </div>
   );
 };
 
 export async function getServerSideProps(context: any) {
   const fetchOverview = await fetch(
-    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${context.params.symbol.toUpperCase()}&apikey=GFFC2KM2F1R72KZB`
+    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${context.params.symbol.toUpperCase()}&apikey=0NEKC0UVY5YYYQ40`
   );
 
   const data = await fetchOverview.json();
@@ -61,6 +55,7 @@ export async function getServerSideProps(context: any) {
   );
 
   const RUTIndexData = await fetchRUTIndex.json();
+
   let indexData: any = [];
   indexData.push(
     ...GSPCIndexData,
@@ -68,14 +63,20 @@ export async function getServerSideProps(context: any) {
     ...IXICIndexData,
     ...RUTIndexData
   );
+  const fetchGrowth = await fetch(
+    `https://financialmodelingprep.com/api/v3/financial-growth/${context.params.symbol.toUpperCase()}?limit=5&apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  );
+  const growthData = await fetchGrowth.json();
+
   return {
     props: {
       symbol: data,
       historicalData: historicalData,
       image: imageData,
       indexData: indexData,
+      growth: growthData,
     },
   };
 }
 
-export default Financials;
+export default Growth;

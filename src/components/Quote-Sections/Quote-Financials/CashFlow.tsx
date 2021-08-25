@@ -1,7 +1,6 @@
 import { useState } from "react";
 import classes from "./Financials.module.css";
 const CashFlow: React.FC<{ cashFlow: any }> = (props) => {
-  console.log(props.cashFlow);
   const NumberFormat = new Intl.NumberFormat("en-US");
 
   return (

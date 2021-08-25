@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import StockOverview from "../../../components/Quote-Sections/StockOverview";
 
 import FinancialsAll from "../../../components/Quote-Sections/Quote-Financials/FinancialsAll";
@@ -92,7 +91,6 @@ export async function getServerSideProps(context: any) {
       symbol: data,
       historicalData: historicalData,
       image: imageData,
-
       incomeStatement: incomeData,
       balanceSheet: balanceSheetData,
       cashFlow: cashFlowData,
