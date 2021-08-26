@@ -37,7 +37,7 @@ export async function getServerSideProps(context: any) {
   //   const imageData = await fetchImage.json();
 
   const fetchHistoricalPrice = await fetch(
-    `https://api.twelvedata.com/time_series?symbol=${context.params.symbol.toUpperCase()}&interval=1day&outputsize=2000&apikey=a24970c9566c49739e8009cdb3a639f0`
+    `https://api.twelvedata.com/time_series?symbol=${context.params.symbol.toUpperCase()}&interval=1day&outputsize=5000&apikey=a24970c9566c49739e8009cdb3a639f0`
   );
 
   const historicalData = await fetchHistoricalPrice.json();

@@ -3,13 +3,12 @@ import classes from "./AdvancedChart.module.css";
 import { createChart } from "lightweight-charts";
 
 const AdvancedChart: React.FC<{ chart: any }> = (props) => {
-  console.log(props.chart);
+  console.log(props.chart.values);
 
-  const [dateChange, setDateChange] = useState(300);
-  const chartTime = props.chart.values.slice(0, dateChange);
+  const [dateChange, setDateChange] = useState(props.chart.values.length - 22);
   //   const chartContainerRef = useRef<any>(null);
 
-  const transformToGraphData = chartTime.map(
+  const candleData = props.chart.values.map(
     (val: {
       datetime: string;
       open: number;
@@ -26,7 +25,7 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       };
     }
   );
-  const chartVolume = chartTime.map(
+  const chartVolume = props.chart.values.map(
     (val: {
       datetime: string;
       volume: number;
@@ -45,8 +44,7 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       };
     }
   );
-  console.log(transformToGraphData);
-  transformToGraphData.reverse();
+  candleData.reverse();
   chartVolume.reverse();
   useEffect(() => {
     const chartCanvas = document.querySelector(".tv-lightweight-charts");
@@ -55,8 +53,8 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       chartCanvas.remove();
     }
     const chart: any = createChart(document.body, {
-      width: 800,
-      height: 500,
+      width: 900,
+      height: 600,
     });
     const candlestickSeries = chart.addCandlestickSeries({
       wickVisible: true,
@@ -64,10 +62,10 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       downColor: "#FF3031",
     });
 
-    candlestickSeries.setData(transformToGraphData);
+    candlestickSeries.setData(candleData);
 
     var volumeSeries = chart.addHistogramSeries({
-      base: 0,
+      // base: 0,
       color: "rgba(76, 175, 80, .5)",
       priceScaleId: "",
       scaleMargins: {
@@ -76,6 +74,12 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       },
     });
     volumeSeries.setData(chartVolume);
+    chart.timeScale().scrollToPosition(0);
+    chart.timeScale().setVisibleLogicalRange({
+    from: props.chart.values.length - dateChange,
+    to: props.chart.values.length - 1,
+});
+
 
     //     grid: {
     //       vertLines: {
@@ -93,7 +97,7 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
 
     //   chart.timeScale().fitContent();
     //   const areaSeries = chart.addAreaSeries();
-    //   areaSeries.setData(transformToGraphData);
+    //   areaSeries.setData(candleData);
     //   areaSeries.applyOptions({
     //     priceLineWidth: 0,
 
@@ -124,7 +128,7 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       className={classes["chart-dates-container"]}
       // ref={chartContainerRef}
     >
-      {/* <div className={classes["chart-dates-wrapper"]}>
+      <div className={classes["chart-dates-wrapper"]}>
         <ul className={classes["chart-dates-ul"]}>
           <li
             className={classes["chart-dates"]}
@@ -134,36 +138,49 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => setDateChange(21)}
+            onClick={() => setDateChange(22)}
           >
             1M
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 3)}
+            onClick={() => setDateChange(22 * 3)}
           >
             3M
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 6)}
+            onClick={() => setDateChange(22 * 6)}
           >
             6M
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 12)}
+            onClick={() => setDateChange(22 * 12)}
           >
             1Y
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 12 * 4)}
+            onClick={() => setDateChange(22 * 12 * 2)}
           >
-            4Y
+            2Y
+          </li>
+          <li
+            className={classes["chart-dates"]}
+            onClick={() => setDateChange(22 * 12 * 5)}
+          >
+            5Y
+          </li>
+          <li
+            className={classes["chart-dates"]}
+            onClick={() => setDateChange(4999)}
+          >
+            MAX
           </li>
         </ul>
-      </div> */}
+
+      </div>
     </div>
   );
 };
