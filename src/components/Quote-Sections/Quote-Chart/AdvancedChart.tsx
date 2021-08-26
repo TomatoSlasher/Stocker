@@ -5,10 +5,11 @@ import { createChart } from "lightweight-charts";
 const AdvancedChart: React.FC<{ chart: any }> = (props) => {
   console.log(props.chart.values);
 
-  const [dateChange, setDateChange] = useState(props.chart.values.length - 22);
+  const [dateChange, setDateChange] = useState(22 * 3);
+  const [chartType, setChartType] = useState('bar');
   //   const chartContainerRef = useRef<any>(null);
 
-  const candleData = props.chart.values.map(
+  const chartCandleData = props.chart.values.map(
     (val: {
       datetime: string;
       open: number;
@@ -44,8 +45,22 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       };
     }
   );
-  candleData.reverse();
+
+  const chartLineData = props.chart.values.map(
+    (val: {
+      datetime: string;
+      close: number;
+    }): { time: string; value: number } => {
+      return { time: val.datetime, value: val.close };
+    }
+  );
+
+
+  chartLineData.reverse();
+
+  chartCandleData.reverse();
   chartVolume.reverse();
+
   useEffect(() => {
     const chartCanvas = document.querySelector(".tv-lightweight-charts");
 
@@ -56,16 +71,16 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       width: 900,
       height: 600,
     });
-    const candlestickSeries = chart.addCandlestickSeries({
-      wickVisible: true,
-      upColor: "#00B061",
-      downColor: "#FF3031",
+
+
+    chart.timeScale().setVisibleLogicalRange({
+    from: props.chart.values.length - dateChange - 1,
+    to: props.chart.values.length - 1,
     });
 
-    candlestickSeries.setData(candleData);
 
     var volumeSeries = chart.addHistogramSeries({
-      // base: 0,
+
       color: "rgba(76, 175, 80, .5)",
       priceScaleId: "",
       scaleMargins: {
@@ -74,11 +89,116 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       },
     });
     volumeSeries.setData(chartVolume);
-    chart.timeScale().scrollToPosition(0);
-    chart.timeScale().setVisibleLogicalRange({
-    from: props.chart.values.length - dateChange,
-    to: props.chart.values.length - 1,
-});
+
+  if (chartType == 'candle') {
+      const candlestickSeries = chart.addCandlestickSeries({
+      wickVisible: true,
+      upColor: "#00B061",
+      downColor: "#FF3031",
+    });
+
+    candlestickSeries.setData(chartCandleData);
+  }
+
+  if (chartType == 'areaGradient') {
+    const areaSeries = chart.addAreaSeries();
+    areaSeries.setData(chartLineData);
+    areaSeries.applyOptions({
+      priceLineWidth: 0,
+
+      priceLineStyle: 2,
+    });
+    const dataLastEl = props.chart.values.length - 1;
+
+    if (+props.chart.values[dateChange].close < +props.chart.values[0].close) {
+      areaSeries.applyOptions({
+        lineColor: "#34A853",
+        topColor: "rgba(52, 168, 83, 0.4)",
+        bottomColor: "rgba(52, 168, 83, 0)",
+
+        lineWidth: 3,
+      });
+    } else {
+      areaSeries.applyOptions({
+        lineColor: "#EA4335",
+        topColor: "rgba(234, 67, 53, 0.4)",
+        bottomColor: "rgba(234, 67, 53, 0)",
+        lineWidth: 3,
+      });
+    }
+  }
+   if (chartType == 'line') {
+     const lineSeries = chart.addLineSeries();
+
+    lineSeries.setData(chartLineData)
+    const dataLastEl = props.chart.values.length - 1;
+
+
+    if (+props.chart.values[dateChange].close < +props.chart.values[0].close) {
+      lineSeries.applyOptions({
+        color: "#34A853",
+
+      });
+    } else {
+      lineSeries.applyOptions({
+        color: "#EA4335",
+
+      });
+    }
+  }
+
+  if (chartType == 'bar') {
+     const barSeries = chart.addBarSeries({
+    thinBars: false,
+upColor: "#00B061",
+      downColor: "#FF3031",
+    });
+
+
+    barSeries.setData(chartCandleData)
+  }
+  if (chartType == 'barThin') {
+     const barSeries = chart.addBarSeries({
+       upColor: "#00B061",
+      downColor: "#FF3031",
+     });
+
+
+    barSeries.setData(chartCandleData)
+  }
+
+  if (chartType == 'area') {
+    const areaSeries = chart.addAreaSeries();
+    areaSeries.setData(chartLineData);
+    areaSeries.applyOptions({
+      priceLineWidth: 0,
+
+      priceLineStyle: 2,
+    });
+    const dataLastEl = props.chart.values.length - 1;
+
+
+    if (+props.chart.values[dateChange].close < +props.chart.values[0].close) {
+      areaSeries.applyOptions({
+        lineColor: "#34A853",
+        topColor: "rgb(52, 168, 83)",
+        bottomColor: "rgb(52, 168, 83)",
+
+        lineWidth: 3,
+      });
+    } else {
+      areaSeries.applyOptions({
+        lineColor: "#EA4335",
+        topColor: "rgb(234, 67, 53)",
+        bottomColor: "rgb(234, 67, 53)",
+        lineWidth: 3,
+      });
+    }
+
+  }
+
+
+
 
 
     //     grid: {
@@ -97,7 +217,7 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
 
     //   chart.timeScale().fitContent();
     //   const areaSeries = chart.addAreaSeries();
-    //   areaSeries.setData(candleData);
+    //   areaSeries.setData(chartCandleData);
     //   areaSeries.applyOptions({
     //     priceLineWidth: 0,
 
@@ -168,13 +288,13 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => setDateChange(22 * 12 * 5)}
+            onClick={() => props.chart.values.length < 22 * 12 * 5 ? setDateChange(props.chart.values.length - 1) :  setDateChange(22 * 12 * 5)}
           >
             5Y
           </li>
           <li
             className={classes["chart-dates"]}
-            onClick={() => setDateChange(4999)}
+            onClick={() => setDateChange(props.chart.values.length - 1)}
           >
             MAX
           </li>
