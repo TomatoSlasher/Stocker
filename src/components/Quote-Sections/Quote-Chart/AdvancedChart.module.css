@@ -1,11 +1,11 @@
 .chart-dates-container {
-  display: flex;
   margin: 1rem 0.5rem;
-
 }
-
+.chart-dates-wrapper {
+  display: flex;
+}
 .chart-dates-ul {
-width: 80vw;
+  width: 60vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,9 +13,22 @@ width: 80vw;
   margin-bottom: 1rem;
   padding: 0;
 }
+
 .chart-dates {
   list-style-type: none;
 
   font-weight: bold;
   cursor: pointer;
+}
+.chart-type {
+  display: flex;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.chart-type:hover {
+  background-color: rgb(233, 233, 233);
+  border-radius: 10px;
+}
+.chart-type-name {
+  padding-left: 0.5rem;
 }

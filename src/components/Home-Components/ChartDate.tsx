@@ -43,6 +43,11 @@ const ChartDate: React.FC = () => {
       const chart: any = createChart(chartCanvas1, {
         width: 570,
         height: 250,
+        layout: {
+
+        fontSize: 12,
+        fontFamily: 'Montserrat, sans-serif',
+    },
       });
       chart.applyOptions({
         handleScroll: false,

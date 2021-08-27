@@ -1,0 +1,29 @@
+.stock-contianer {
+  cursor: pointer;
+  display: flex;
+  background-color: rgb(224, 224, 224);
+  padding: 1rem;
+  margin: 1rem;
+  justify-content: space-between;
+}
+.stock-contianer:hover {
+  background-color: rgb(202, 202, 202);
+}
+.name-container {
+  display: flex;
+}
+.name-container p {
+  margin: 0rem 1rem;
+}
+.prices-container {
+  display: flex;
+}
+.prices-container p {
+  margin: 0rem 1rem;
+}
+.price-up {
+  color: #34a853;
+}
+.price-down {
+  color: #eb0f29;
+}

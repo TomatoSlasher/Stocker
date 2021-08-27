@@ -18,14 +18,16 @@ const OverViewChart: React.FC<any> = (props) => {
   transformToGraphData.reverse();
 
   useEffect(() => {
-    const chartCanvas = document.querySelector(".tv-lightweight-charts");
-
-    if (chartCanvas) {
-      chartCanvas.remove();
+    if (chartContainerRef.current.childNodes[1]) {
+      chartContainerRef.current.childNodes[1].remove();
     }
     const chart: any = createChart(chartContainerRef.current, {
       width: 500,
       height: 250,
+      layout: {
+        fontSize: 12,
+        fontFamily: "Montserrat, sans-serif",
+      },
     });
     chart.applyOptions({
       handleScroll: false,
