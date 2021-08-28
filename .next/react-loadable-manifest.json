@@ -16,5 +16,11 @@
     "files": [
       "static/chunks/src_components_Quote-Sections_Quote-Info_OverviewChart_tsx.js"
     ]
+  },
+  "..\\components\\Quote-Sections\\StockOverview.tsx -> ./Quote-Info/TradeStock": {
+    "id": "./src/components/Quote-Sections/Quote-Info/TradeStock.tsx",
+    "files": [
+      "static/chunks/src_components_Quote-Sections_Quote-Info_TradeStock_tsx.js"
+    ]
   }
 }

@@ -2,7 +2,6 @@ import Link from "next/link";
 import classes from "./StockList.module.css";
 
 const StockList: React.FC<{ stockList: any }> = (props) => {
-  console.log(props.stockList);
   const twoDecimal = (val: number) => {
     return val.toFixed(2);
   };

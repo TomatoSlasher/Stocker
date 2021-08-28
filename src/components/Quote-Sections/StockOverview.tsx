@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import OverviewDescription from "./Quote-Info/OverviewDescription";
 import OverviewHeader from "./Quote-Info/OverviewHeader";
-import TradeStock from "./Quote-Info/TradeStock";
 import classes from "./StockOverview.module.css";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -9,7 +8,9 @@ import Link from "next/link";
 const OverviewChart = dynamic(() => import("./Quote-Info/OverviewChart"), {
   ssr: false,
 });
-
+const TradeStock = dynamic(() => import("./Quote-Info/TradeStock"), {
+  ssr: false,
+});
 const StockOverview: React.FC<any> = (props) => {
   return (
     <Fragment>

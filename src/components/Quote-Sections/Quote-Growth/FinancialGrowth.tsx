@@ -1,7 +1,6 @@
 import classes from "../Quote-Financials/Financials.module.css";
 
 const FinancialGrowth: React.FC<{ growth: any }> = (props) => {
-  console.log(props.growth);
   const fixedNum = (num: number) => {
     return num.toFixed(2);
   };
