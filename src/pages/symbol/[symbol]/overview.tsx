@@ -9,14 +9,14 @@ const Financials = (props: any) => {
 
   return (
     <div>
-      <IndexesQuote indexData={props.indexData} />
+      {/* <IndexesQuote indexData={props.indexData} />*/}
 
       <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
         image={props.image}
       />
-      <OverviewGeneral data={props.symbol} general={props.image} />
+      {/* <OverviewGeneral data={props.symbol} general={props.image} /> */}
     </div>
   );
 };
@@ -40,40 +40,40 @@ export async function getServerSideProps(context: any) {
 
   const historicalData = await fetchHistoricalPrice.json();
 
-  const fetchGSPCIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
-  );
-  const GSPCIndexData = await fetchGSPCIndex.json();
+  // const fetchGSPCIndex = await fetch(
+  //   `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  // );
+  // const GSPCIndexData = await fetchGSPCIndex.json();
 
-  const fetchDowIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
-  );
-  const DowIndexData = await fetchDowIndex.json();
+  // const fetchDowIndex = await fetch(
+  //   `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  // );
+  // const DowIndexData = await fetchDowIndex.json();
 
-  const fetchIXICIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
-  );
+  // const fetchIXICIndex = await fetch(
+  //   `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  // );
 
-  const IXICIndexData = await fetchIXICIndex.json();
+  // const IXICIndexData = await fetchIXICIndex.json();
 
-  const fetchRUTIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
-  );
+  // const fetchRUTIndex = await fetch(
+  //   `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+  // );
 
-  const RUTIndexData = await fetchRUTIndex.json();
-  let indexData: any = [];
-  indexData.push(
-    ...GSPCIndexData,
-    ...DowIndexData,
-    ...IXICIndexData,
-    ...RUTIndexData
-  );
+  // const RUTIndexData = await fetchRUTIndex.json();
+  // let indexData: any = [];
+  // indexData.push(
+  //   ...GSPCIndexData,
+  //   ...DowIndexData,
+  //   ...IXICIndexData,
+  //   ...RUTIndexData
+  // );
   return {
     props: {
       symbol: data,
       historicalData: historicalData,
       image: imageData,
-      indexData: indexData,
+      // indexData: indexData,
     },
   };
 }
