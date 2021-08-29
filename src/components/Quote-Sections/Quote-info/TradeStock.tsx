@@ -60,7 +60,6 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
     localStorage.setItem("order", JSON.stringify(orderObject));
     fullfiledOrders.push(orderObject);
     localStorage.setItem("orderHistory", JSON.stringify(fullfiledOrders));
-    console.log(allPositions);
 
     if (type == "sell" && positionAmount) {
       allPositions.forEach((val: any, i: number) => {
@@ -69,15 +68,20 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
           const newTotalValue = val.totalValue - stockPrice * amount;
           val.totalValue = +newTotalValue.toFixed(2);
           if (val.amount == 0) {
-            console.log(0);
             allPositions.splice(i, 1);
           }
         }
       }, allPositions);
+
       localStorage.setItem("allPositions", JSON.stringify(allPositions));
       return;
     }
-    if (type == "buy" && allPositions.length > 0 && positionAmount) {
+
+    const positionSymbol = allPositions
+      .filter((val: ordersType) => val.symbol == props.data[0].symbol)
+      .some((val: ordersType) => val.symbol >= props.data[0].symbol);
+
+    if (type == "buy" && positionSymbol && allPositions.length > 0) {
       allPositions.forEach((val: any) => {
         if (val.symbol == props.data[0].symbol) {
           val.amount = val.amount + amount;
@@ -88,49 +92,29 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       localStorage.setItem("allPositions", JSON.stringify(allPositions));
       return;
     }
-    sortOrders(fullfiledOrders);
+
+    let latestOrders: ordersType[] = JSON.parse(
+      localStorage.getItem("order") || "[]"
+    );
+
+    newOrders(latestOrders);
   };
 
-  const sortOrders = (orders: any) => {
-    const filterToBuyOrders = orders.filter((val: ordersType) => {
-      return val.orderType == "buy";
-    });
+  const newOrders = (orders: any) => {
+    orders = {
+      symbol: orders.symbol,
+      amount: orders.amount,
+      totalValue: orders.orderTotal,
+      image: orders.image,
+    };
 
-    const historySort = filterToBuyOrders.reduce((res: any, curr: any) => {
-      if (res[curr.symbol]) res[curr.symbol].push(curr);
-      else Object.assign(res, { [curr.symbol]: [curr] });
+    let currentPostitions: ordersType[] = JSON.parse(
+      localStorage.getItem("allPositions") || "[]"
+    );
+    if (currentPostitions == null) currentPostitions = [];
 
-      return res;
-    }, {});
-    const transformedHistory = Object.keys(historySort).map((key) => {
-      return historySort[key];
-    });
-
-    const allOrders = transformedHistory.map((value, i) => {
-      let amount;
-      let avgPrice: any;
-      let totalValue: any;
-      value.reduce((acc: number, cur: ordersType) => {
-        return (amount = acc + cur.amount);
-      }, 0);
-      value.reduce((acc: number, cur: ordersType) => {
-        return (avgPrice = acc + cur.stockPrice);
-      }, 0);
-      value.reduce((acc: number, cur: ordersType) => {
-        return (totalValue = acc + cur.orderTotal);
-      }, 0);
-
-      const fixedAvgPrice = avgPrice / transformedHistory[i].length;
-      let orderData: any = {
-        symbol: value[0].symbol,
-        amount,
-        avgPrice: +fixedAvgPrice.toFixed(2),
-        totalValue: +totalValue.toFixed(2),
-        image: value[0].image,
-      };
-      return orderData;
-    });
-    localStorage.setItem("allPositions", JSON.stringify(allOrders));
+    currentPostitions.push(orders);
+    localStorage.setItem("allPositions", JSON.stringify(currentPostitions));
   };
 
   const completedOrders = JSON.parse(
