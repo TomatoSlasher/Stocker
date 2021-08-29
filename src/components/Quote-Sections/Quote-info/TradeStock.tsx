@@ -2,10 +2,13 @@ import { Fragment, useState, useRef } from "react";
 import classes from "./TradeStock.module.css";
 import dynamic from "next/dynamic";
 interface ordersType {
-  orderAmount: number;
+  amount: number;
   orderTotal: number;
   stockPrice: number;
   symbol: String;
+  orderType: string;
+  date: string;
+  image: string;
 }
 const OverviewChart = dynamic(() => import("./OverviewChart"), {
   ssr: false,
@@ -17,36 +20,83 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const overlayHandler = () => {
     setOverlay(!overlay);
   };
-  const buyOrderHandler = () => {
-    const orderAmount: any = +orderQuantity.current!.value;
+
+  const orderHandler = (type: string) => {
+    const allPositions = JSON.parse(
+      localStorage.getItem("allPositions") || "[]"
+    );
+    const includedInAllPosistions = allPositions.some(
+      (val: ordersType) => val.symbol == props.data[0].symbol
+    );
+    if (type == "sell" && !includedInAllPosistions) {
+      return;
+    }
+
+    const amount: any = +orderQuantity.current!.value;
     const stockPrice = props.data[0].price;
-    const orderTotal: any = orderAmount * stockPrice;
+    const orderTotal: any = amount * stockPrice;
+    let today = new Date().toString().slice(0, 21);
+    const positionAmount = allPositions
+      .filter((val: ordersType) => val.symbol == props.data[0].symbol)
+      .some((val: ordersType) => val.amount >= amount);
+
+    if (type == "sell" && !positionAmount) return;
+
     const orderObject = {
       symbol: props.data[0].symbol,
-      orderAmount,
+      amount,
       stockPrice,
       orderTotal: +orderTotal.toFixed(2),
+      orderType: type,
+      date: today,
+      image: props.data[0].image,
     };
 
     let fullfiledOrders: ordersType[] = JSON.parse(
       localStorage.getItem("orderHistory") || "[]"
     );
-
     if (fullfiledOrders == null) fullfiledOrders = [];
 
     localStorage.setItem("order", JSON.stringify(orderObject));
     fullfiledOrders.push(orderObject);
     localStorage.setItem("orderHistory", JSON.stringify(fullfiledOrders));
-  };
-  const completedOrders = JSON.parse(
-    localStorage.getItem("orderHistory") || "[]"
-  );
+    console.log(allPositions);
 
-  const sortOrders = () => {
-    const orderHistory = JSON.parse(
-      localStorage.getItem("orderHistory") || "[]"
-    );
-    const historySort = orderHistory.reduce((res: any, curr: any) => {
+    if (type == "sell" && positionAmount) {
+      allPositions.forEach((val: any, i: number) => {
+        if (val.symbol == props.data[0].symbol) {
+          val.amount = val.amount - amount;
+          const newTotalValue = val.totalValue - stockPrice * amount;
+          val.totalValue = +newTotalValue.toFixed(2);
+          if (val.amount == 0) {
+            console.log(0);
+            allPositions.splice(i, 1);
+          }
+        }
+      }, allPositions);
+      localStorage.setItem("allPositions", JSON.stringify(allPositions));
+      return;
+    }
+    if (type == "buy" && allPositions.length > 0 && positionAmount) {
+      allPositions.forEach((val: any) => {
+        if (val.symbol == props.data[0].symbol) {
+          val.amount = val.amount + amount;
+          const newTotalValue = val.totalValue + stockPrice * amount;
+          val.totalValue = +newTotalValue.toFixed(2);
+        }
+      }, allPositions);
+      localStorage.setItem("allPositions", JSON.stringify(allPositions));
+      return;
+    }
+    sortOrders(fullfiledOrders);
+  };
+
+  const sortOrders = (orders: any) => {
+    const filterToBuyOrders = orders.filter((val: ordersType) => {
+      return val.orderType == "buy";
+    });
+
+    const historySort = filterToBuyOrders.reduce((res: any, curr: any) => {
       if (res[curr.symbol]) res[curr.symbol].push(curr);
       else Object.assign(res, { [curr.symbol]: [curr] });
 
@@ -59,27 +109,33 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
     const allOrders = transformedHistory.map((value, i) => {
       let amount;
       let avgPrice: any;
-      let totalValue;
+      let totalValue: any;
       value.reduce((acc: number, cur: ordersType) => {
-        return (amount = acc + cur.orderAmount);
+        return (amount = acc + cur.amount);
       }, 0);
       value.reduce((acc: number, cur: ordersType) => {
         return (avgPrice = acc + cur.stockPrice);
       }, 0);
-      //   value.reduce((acc: number, cur: ordersType) => {
-      //     return (value = acc + cur.orderTotal);
-      //   }, 0);
+      value.reduce((acc: number, cur: ordersType) => {
+        return (totalValue = acc + cur.orderTotal);
+      }, 0);
+
       const fixedAvgPrice = avgPrice / transformedHistory[i].length;
       let orderData: any = {
         symbol: value[0].symbol,
         amount,
         avgPrice: +fixedAvgPrice.toFixed(2),
-        // totalValue,
+        totalValue: +totalValue.toFixed(2),
+        image: value[0].image,
       };
       return orderData;
     });
-    console.log(allOrders);
+    localStorage.setItem("allPositions", JSON.stringify(allOrders));
   };
+
+  const completedOrders = JSON.parse(
+    localStorage.getItem("orderHistory") || "[]"
+  );
   return (
     <Fragment>
       <div>
@@ -144,10 +200,13 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
               </div>
               {orderType ? (
                 <div className="buy-button">
-                  <button onClick={buyOrderHandler}>buy</button>
+                  <button onClick={() => orderHandler("buy")}>buy</button>
                 </div>
               ) : (
-                <div className="sell-button" onClick={sortOrders}>
+                <div
+                  className="sell-button"
+                  onClick={() => orderHandler("sell")}
+                >
                   <button>sell</button>
                 </div>
               )}
@@ -159,7 +218,7 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
                       (val: ordersType) => val.symbol == props.data[0].symbol
                     )
                     .reduce((acc: any, cur: any) => {
-                      return acc + cur.orderAmount;
+                      return acc + cur.amount;
                     }, 0)}
                 </p>
               </div>

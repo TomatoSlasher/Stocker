@@ -22,5 +22,11 @@
     "files": [
       "static/chunks/src_components_Quote-Sections_Quote-Info_TradeStock_tsx.js"
     ]
+  },
+  "index.tsx -> ../components/Home-Components/ChartDate": {
+    "id": "./src/components/Home-Components/ChartDate.tsx",
+    "files": [
+      "static/chunks/src_components_Home-Components_ChartDate_tsx.js"
+    ]
   }
 }
