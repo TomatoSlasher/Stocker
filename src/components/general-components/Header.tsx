@@ -31,7 +31,9 @@ const Header: React.FC = () => {
           <button>Search</button>
         </div>
         <div className="header-portfolio">
-          <button>Portfolio</button>
+          <Link href="/portfolio">
+            <button>Portfolio</button>
+          </Link>
         </div>
       </div>
     </header>

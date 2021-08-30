@@ -13,3 +13,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+.portfolio-container {
+  display: flex;
+  justify-content: space-between;
+}
