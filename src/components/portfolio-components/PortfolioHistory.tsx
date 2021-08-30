@@ -17,7 +17,7 @@ const PorfolioHistory = () => {
   const [hasPortfolio, setHasPortfolio] = useState(true);
   return (
     <div className={"portfolio-history"}>
-      <h1>Portfolio History</h1>
+      <h1>Trading History</h1>
       <div className={classes["portfolio-items-container"]}>
         {hasPortfolio ? (
           <ul className={classes["portfolio-items-list"]}>
@@ -31,9 +31,9 @@ const PorfolioHistory = () => {
                 <p>Order Value</p>
               </div>
             </li>
-            {portfolioHistory.map((val: ordersType) => {
+            {portfolioHistory.map((val: ordersType, i) => {
               return (
-                <li className={classes["portfolio-item"]}>
+                <li key={i} className={classes["portfolio-item"]}>
                   <img src={val.image} alt="" />
                   <div className={classes["portfolio-item-text"]}>
                     <div className="symbol-date">
