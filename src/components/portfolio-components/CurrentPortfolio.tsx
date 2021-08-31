@@ -9,6 +9,9 @@ const CurrentPortfolio = () => {
     symbol: string;
     image: string;
   }
+  //resest mkt value
+  const startingMktValue: any = 0;
+  localStorage.setItem("marketValue", startingMktValue);
 
   const portfolio: [] = JSON.parse(
     localStorage.getItem("allPositions") || "[]"

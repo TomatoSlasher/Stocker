@@ -1,7 +1,7 @@
 .portfolio-items-container {
   margin: 1rem 0rem;
-  height: 30rem;
-  width: 50vw;
+  height: 15rem;
+  width: 45vw;
   overflow-y: auto;
   background-color: rgb(226, 226, 226);
   border-radius: 10px;
@@ -32,9 +32,8 @@
   justify-content: space-between;
 }
 .portfolio-item-header {
-  /* padding: 1rem; */
   display: flex;
-  /* justify-content: center; */
+
   align-items: center;
   background-color: white;
   border-radius: 10px;

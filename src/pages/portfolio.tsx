@@ -12,12 +12,20 @@ const PortfolioHistory = dynamic(
     ssr: false,
   }
 );
-
+const AccountBalance = dynamic(
+  () => import("../components/portfolio-components/AccountBalance"),
+  {
+    ssr: false,
+  }
+);
 const Portfolio = () => {
   return (
     <div className="portfolio-container">
+      <div>
+        <AccountBalance />
+        <PortfolioHistory />
+      </div>
       <CurrentPortfolio />
-      <PortfolioHistory />
     </div>
   );
 };

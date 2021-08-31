@@ -1,8 +1,13 @@
 import "../styles/styles.css";
-import Header from "../components/general-components/Header";
-import type { AppProps /*, AppContext */ } from "next/app";
+import type { AppProps } from "next/app";
 import { Fragment } from "react";
-
+import dynamic from "next/dynamic";
+const Header = dynamic(
+  () => import("../components/general-components/Header"),
+  {
+    ssr: false,
+  }
+);
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>

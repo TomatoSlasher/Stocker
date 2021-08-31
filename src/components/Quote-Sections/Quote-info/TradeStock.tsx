@@ -74,6 +74,9 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       }, allPositions);
 
       localStorage.setItem("allPositions", JSON.stringify(allPositions));
+      let cashBalance: any = localStorage.getItem("cashBalance");
+      cashBalance = +cashBalance + orderObject.orderTotal;
+      localStorage.setItem("cashBalance", cashBalance);
       return;
     }
 
@@ -90,6 +93,11 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
         }
       }, allPositions);
       localStorage.setItem("allPositions", JSON.stringify(allPositions));
+      // update cash balance
+      let cashBalance: any = localStorage.getItem("cashBalance");
+      cashBalance = +cashBalance - orderObject.orderTotal;
+      localStorage.setItem("cashBalance", cashBalance);
+
       return;
     }
 
@@ -107,7 +115,9 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       totalValue: orders.orderTotal,
       image: orders.image,
     };
-
+    let cashBalance: any = localStorage.getItem("cashBalance");
+    cashBalance = +cashBalance - orders.totalValue;
+    localStorage.setItem("cashBalance", cashBalance);
     let currentPostitions: ordersType[] = JSON.parse(
       localStorage.getItem("allPositions") || "[]"
     );

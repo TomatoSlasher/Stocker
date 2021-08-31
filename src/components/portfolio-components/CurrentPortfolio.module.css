@@ -1,7 +1,7 @@
 .portfolio-items-container {
   margin: 1rem 0rem;
   height: 30rem;
-  width: 35vw;
+  width: 45vw;
   overflow-y: auto;
   background-color: rgb(226, 226, 226);
   border-radius: 10px;
@@ -43,4 +43,15 @@
 .portfolio-item-header p {
   margin: 1rem 0rem;
   margin-left: 0.5rem;
+}
+.position-up {
+  color: #34a853;
+  font-weight: bold;
+}
+.position-down {
+  color: #eb0f29;
+  font-weight: bold;
+}
+.positions-symbol {
+  cursor: pointer;
 }

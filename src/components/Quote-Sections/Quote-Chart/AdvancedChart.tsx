@@ -3,7 +3,6 @@ import classes from "./AdvancedChart.module.css";
 import { createChart } from "lightweight-charts";
 
 const AdvancedChart: React.FC<{ chart: any }> = (props) => {
-
   const [dateChange, setDateChange] = useState(22 * 3);
   const [chartType, setChartType] = useState("line");
   const chartContainerRef = useRef<any>(null);

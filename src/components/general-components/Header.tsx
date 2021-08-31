@@ -2,6 +2,12 @@ import Link from "next/link";
 import classes from "./Header.module.css";
 
 const Header: React.FC = () => {
+  let items = localStorage.getItem("cashBalance");
+  if (items == null) {
+    const startingBalance: any = 25000;
+    localStorage.setItem("cashBalance", startingBalance);
+  }
+
   return (
     <header>
       <div className={classes["header-container"]}>

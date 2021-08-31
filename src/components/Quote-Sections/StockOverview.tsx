@@ -24,7 +24,7 @@ const StockOverview: React.FC<any> = (props) => {
           <OverviewDescription description={props.symbol.Description} />
         </div>
         <div className="overview-chart-container">
-          {/* <OverviewChart data={props.historicalData} /> */}
+          <OverviewChart data={props.historicalData} />
         </div>
       </div>
       <div className="quote-section">

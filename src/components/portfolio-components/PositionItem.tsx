@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "./CurrentPortfolio.module.css";
+import Link from "next/link";
+
 interface ordersType {
   amount: number;
   totalValue: number;
@@ -11,25 +13,52 @@ const PositionItem: React.FC<any> = (props: { data: ordersType }) => {
 
   useEffect(() => {
     fetch(
-      `https://financialmodelingprep.com/api/v3/profile/${props.data.symbol}?apikey=66e243b7036752eb5c9078cdacfe8625`
+      `https://financialmodelingprep.com/api/v3/quote-short/${props.data.symbol}?apikey=535bef082516f9e1a33c4e9e493b71ca`
     )
       .then((result) => result.json())
       .then((data) => {
-        console.log(data);
         if (data[0]) {
           setCurrentPrice(data[0].price);
         }
       });
   }, []);
 
-  const positionTotalValue = currentPrice * props.data.amount;
+  const positionTotalValue: any = currentPrice * props.data.amount;
+
+  const positionDiff =
+    (100 * (positionTotalValue.toFixed(2) - props.data.totalValue)) /
+    props.data.totalValue;
+
+  let marketValue: any = localStorage.getItem("marketValue");
+  if (marketValue == null) {
+    const startingMktValue: any = 0;
+    localStorage.setItem("marketValue", startingMktValue);
+  }
+  if (positionTotalValue) {
+    marketValue = +marketValue + positionTotalValue;
+    localStorage.setItem("marketValue", marketValue);
+  }
   return (
     <li key={props.data.symbol} className={classes["portfolio-item"]}>
       <img src={props.data.image} alt="" />
       <div className={classes["portfolio-item-text"]}>
-        <p>{props.data.symbol}</p>
+        <Link href={`/symbol/${props.data.symbol}/overview`}>
+          <p className={classes["positions-symbol"]}>{props.data.symbol}</p>
+        </Link>
+
         <p>{props.data.amount}</p>
-        <p>{positionTotalValue.toFixed(2)}</p>
+        <div>
+          <p>{positionTotalValue.toFixed(2)}</p>
+          <p
+            className={
+              positionDiff >= 0
+                ? classes["position-up"]
+                : classes["position-down"]
+            }
+          >
+            {positionDiff.toFixed(2) + "%"}
+          </p>
+        </div>
       </div>
     </li>
   );
