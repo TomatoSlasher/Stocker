@@ -57,23 +57,23 @@ export async function getServerSideProps(context: any) {
   const cashFlowData = await fetchCashFlow.json();
 
   const fetchGSPCIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+    `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=ac54a1b35f7700a8b1bdeb404dc14810`
   );
   const GSPCIndexData = await fetchGSPCIndex.json();
 
   const fetchDowIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+    `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=ac54a1b35f7700a8b1bdeb404dc14810`
   );
   const DowIndexData = await fetchDowIndex.json();
 
   const fetchIXICIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+    `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=ac54a1b35f7700a8b1bdeb404dc14810`
   );
 
   const IXICIndexData = await fetchIXICIndex.json();
 
   const fetchRUTIndex = await fetch(
-    `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=1e926fa4ba9f6260f956428ecb9f6a63`
+    `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=ac54a1b35f7700a8b1bdeb404dc14810`
   );
 
   const RUTIndexData = await fetchRUTIndex.json();

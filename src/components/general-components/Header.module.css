@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
 }
+.logo-container {
+  display: flex;
+}
+.logo-container path {
+  fill: #0062cf;
+}
 .header-menu {
   display: flex;
 }

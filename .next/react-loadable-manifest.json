@@ -16,23 +16,5 @@
     "files": [
       "static/chunks/src_components_Home-Components_ChartDate_tsx.js"
     ]
-  },
-  "portfolio.tsx -> ../components/portfolio-components/AccountBalance": {
-    "id": "./src/components/portfolio-components/AccountBalance.tsx",
-    "files": [
-      "static/chunks/src_components_portfolio-components_AccountBalance_tsx.js"
-    ]
-  },
-  "portfolio.tsx -> ../components/portfolio-components/CurrentPortfolio": {
-    "id": "./src/components/portfolio-components/CurrentPortfolio.tsx",
-    "files": [
-      "static/chunks/src_components_portfolio-components_CurrentPortfolio_tsx.js"
-    ]
-  },
-  "portfolio.tsx -> ../components/portfolio-components/PortfolioHistory": {
-    "id": "./src/components/portfolio-components/PortfolioHistory.tsx",
-    "files": [
-      "static/chunks/src_components_portfolio-components_PortfolioHistory_tsx.js"
-    ]
   }
 }
