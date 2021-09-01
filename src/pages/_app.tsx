@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
       <Header />
+
       <Component {...pageProps} />
     </Fragment>
   );

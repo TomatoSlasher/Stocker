@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem 0.5rem;
+  padding: 1rem 1rem;
+  background-color: white;
 }
 .logo-container {
   display: flex;

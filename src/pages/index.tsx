@@ -17,11 +17,11 @@ const ChartDate = dynamic(
 const HomePage = () => {
   return (
     <Provider store={store}>
-      <StockCard>
+      {/* <StockCard>
         <StockSearch />
         <StockHeader />
         <ChartDate />
-      </StockCard>
+      </StockCard> */}
     </Provider>
   );
 };
