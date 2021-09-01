@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 1rem 0.5rem;
 }
 .logo-container {
   display: flex;
@@ -12,11 +13,12 @@
 .header-menu {
   display: flex;
   position: relative;
+  margin: 0rem 1rem;
+  margin-left: 2rem;
 }
 .markets-menu {
   font-weight: bold;
-  text-align: center;
-  width: 8rem;
+  margin-right: 2rem;
   cursor: pointer;
   position: relative;
 }
@@ -26,19 +28,23 @@
 }
 .menu-dropdown {
   position: absolute;
-  width: 8rem;
-  top: 1rem;
+  width: 12rem;
+  top: 1.4rem;
+  /* padding-top: 2rem; */
+  background-color: white;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
 }
 .header-menu-markets {
   font-weight: bold;
-  text-align: center;
-  padding: 0.5rem 0rem;
-  margin: 0.5rem 0rem;
+  /* text-align: center; */
+  padding: 1rem 0.3rem;
+  border-bottom: 1px solid rgb(201, 201, 201);
   cursor: pointer;
 }
 .header-menu-markets:hover {
-  background-color: rgb(224, 224, 224);
-  border-radius: 10px;
+  background-color: rgb(243, 243, 243);
+  border-radius: 5px;
 }
 .logo {
   cursor: pointer;
@@ -47,6 +53,9 @@
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   padding-top: 0.3rem;
+}
+.search-button:hover {
+  background-color: #2860a1;
 }
 .search-button svg {
   padding-top: 0.2rem;
@@ -57,7 +66,7 @@
 .header-search-input {
   padding: 0rem 0.5rem;
   height: 37px;
-  width: 20rem;
+  width: 30rem;
   border: 1px solid grey;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -69,4 +78,25 @@
 }
 .header-search {
   position: relative;
+}
+.logo-markets-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-about {
+  cursor: pointer;
+}
+.search-portfolio-header {
+  display: flex;
+}
+.portfolio-btn {
+  padding: 0.57rem 2rem;
+  color: white;
+  margin: 0rem 2rem;
+  margin-right: 0rem;
+  font-size: 18px;
+}
+.portfolio-btn:hover {
+  background-color: #2860a1;
 }

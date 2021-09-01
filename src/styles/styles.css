@@ -10,6 +10,9 @@
 * {
   font-family: "Buch", sans-serif !important;
 }
+body {
+  background-color: #f7f7f7;
+}
 h2,
 h1,
 h3,
