@@ -1,5 +1,14 @@
+@font-face {
+  font-family: "Halbfett";
+  src: url("/fonts/TestSöhne-Halbfett.otf");
+}
+
+@font-face {
+  font-family: "Buch";
+  src: url("/fonts/TestSöhne-Buch.otf");
+}
 * {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: "Buch", sans-serif !important;
 }
 h2,
 h1,
@@ -7,6 +16,14 @@ h3,
 h4,
 p {
   margin: 0;
+}
+h1,
+h2,
+h3 {
+  font-family: "Halbfett", sans-serif !important;
+}
+p {
+  font-family: "Buch", sans-serif !important;
 }
 input {
   all: unset;
