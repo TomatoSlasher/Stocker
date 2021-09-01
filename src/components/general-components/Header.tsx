@@ -1,12 +1,14 @@
 import Link from "next/link";
+import { useState } from "react";
 import classes from "./Header.module.css";
-
+import HeaderSearch from "./header-components/HeaderSearch";
 const Header: React.FC = () => {
   let items = localStorage.getItem("cashBalance");
   if (items == null) {
     const startingBalance: any = 25000;
     localStorage.setItem("cashBalance", startingBalance);
   }
+  const [marketsDropdown, setMarketsDropdown] = useState(false);
 
   return (
     <header>
@@ -28,25 +30,36 @@ const Header: React.FC = () => {
           </Link>
         </div>
         <div className={classes["header-menu"]}>
-          <Link href="/most-active">
-            <p className={classes["header-menu-markets"]}>Most Active</p>
-          </Link>
+          <h3
+            onClick={() => setMarketsDropdown(!marketsDropdown)}
+            className={classes["markets-menu"]}
+          >
+            Markets
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 48 48"
+              data-icon="caret-down"
+            >
+              <path d="M24.21 33.173l12.727-12.728c.78-.78.78-2.048 0-2.828-.78-.78-2.047-.78-2.828 0l-9.9 9.9-9.9-9.9c-.78-.78-2.047-.78-2.827 0-.78.78-.78 2.047 0 2.828L24.21 33.173z"></path>
+            </svg>
+          </h3>
+          {marketsDropdown && (
+            <div className={classes["menu-dropdown"]}>
+              <Link href="/most-active">
+                <p className={classes["header-menu-markets"]}>Most Active</p>
+              </Link>
 
-          <Link href="/most-gainers">
-            <p className={classes["header-menu-markets"]}>Most Gainer</p>
-          </Link>
-          <Link href="/most-losers">
-            <p className={classes["header-menu-markets"]}>Most Loser</p>
-          </Link>
+              <Link href="/most-gainers">
+                <p className={classes["header-menu-markets"]}>Most Gainer</p>
+              </Link>
+              <Link href="/most-losers">
+                <p className={classes["header-menu-markets"]}>Most Loser</p>
+              </Link>
+            </div>
+          )}
         </div>
-        <div className="header-search">
-          <input
-            placeholder="Search Company"
-            type="text"
-            className="header-search-input"
-          />
-          <button>Search</button>
-        </div>
+        <HeaderSearch />
         <div className="header-portfolio">
           <Link href="/portfolio">
             <button>Portfolio</button>

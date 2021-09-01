@@ -1,0 +1,32 @@
+.search-dropdown {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  max-height: 15rem;
+  overflow-y: auto;
+  border: 1px solid grey;
+  z-index: 12;
+  top: 2.4rem;
+  border-radius: 5px;
+}
+.search-li {
+  list-style-type: none;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(129, 129, 129);
+  cursor: pointer;
+}
+.search-li:hover {
+  background-color: rgb(240, 240, 240);
+}
+.ticker-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+.exchange-container {
+  margin: 0.2rem 0rem;
+  display: flex;
+  color: rgb(129, 129, 129) !important;
+}
+.exchange-container:last-child {
+  color: black;
+}
