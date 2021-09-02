@@ -43,6 +43,7 @@
 .search-button {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   padding-top: 0.3rem;
   width: 5%;
 }
@@ -62,4 +63,5 @@
   border: 1px solid grey;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 0px;
 }

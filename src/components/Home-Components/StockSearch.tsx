@@ -12,7 +12,8 @@ const StockSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   let timer: any;
-  const tickerChangeHandler = () => {
+  const tickerChangeHandler = (event: any) => {
+    event.preventDefault();
     clearTimeout(timer);
     timer = setTimeout(() => {
       const inputText = tickerChangeRef.current!.value;

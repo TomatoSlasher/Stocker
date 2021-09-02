@@ -3,22 +3,34 @@ import { createChart } from "lightweight-charts";
 import { useSelector } from "react-redux";
 
 import classes from "./ChartDate.module.css";
+import classes2 from "./StockHeader.module.css";
+import { useRef } from "react";
 const ChartDate: React.FC = () => {
   const ticker = useSelector((state: { ticker: string }) => {
     return state.ticker;
   });
 
   const [dateChange, setDateChange] = useState(21);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [graphData, setGraphData]: any = useState();
+  const chartRef = useRef<any>(null);
   useEffect(() => {
-    const fetchDataHandler = async (date: number) => {
+    setIsLoading(true);
+    const fetchDataHandler = async () => {
       const fetchData = await fetch(
         `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=1day&outputsize=2000&apikey=a24970c9566c49739e8009cdb3a639f0`
       );
 
       const data = await fetchData.json();
+      setGraphData(data);
+    };
+    fetchDataHandler();
+  }, [ticker]);
 
-      const dataSixMonths = data.values.slice(0, date);
+  useEffect(() => {
+    setIsLoading(false);
+    if (graphData && chartRef.current) {
+      const dataSixMonths = graphData.values.slice(0, dateChange);
 
       const transformToGraphData = dataSixMonths.map(
         (val: {
@@ -29,17 +41,12 @@ const ChartDate: React.FC = () => {
         }
       );
       transformToGraphData.reverse();
-      const chartCanvas = document.querySelector(".tv-lightweight-charts");
 
-      const chartCanvas1: any = document.getElementById(
-        "chart-dates-container"
-      );
-
-      if (chartCanvas) {
-        chartCanvas.remove();
+      if (chartRef.current.childNodes[1]) {
+        chartRef.current.childNodes[1].remove();
       }
 
-      const chart: any = createChart(chartCanvas1, {
+      const chart: any = createChart(chartRef.current, {
         width: 570,
         height: 250,
         layout: {
@@ -91,55 +98,64 @@ const ChartDate: React.FC = () => {
           lineWidth: 3,
         });
       }
-    };
-    fetchDataHandler(dateChange);
-  }, [ticker, dateChange]);
-
+    }
+  }, [dateChange, graphData, chartRef.current, isLoading]);
   return (
-    <div className={classes["chart-dates-container"]}>
-      <div
-        className={classes["chart-dates-wrapper"]}
-        id="chart-dates-container"
-      >
-        <ul className={classes["chart-dates-ul"]}>
-          <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(8)}
+    <div className={classes["chart-whole"]}>
+      {isLoading ? (
+        <div className={classes["spinner-container"]}>
+          <div className={classes["lds-ripple"]}>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      ) : (
+        <div className={classes["chart-dates-container"]} ref={chartRef}>
+          <div
+            className={classes["chart-dates-wrapper"]}
+            id="chart-dates-container"
           >
-            10D
-          </li>
-          <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21)}
-          >
-            1M
-          </li>
-          <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 3)}
-          >
-            3M
-          </li>
-          <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 6)}
-          >
-            6M
-          </li>
-          <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 12)}
-          >
-            1Y
-          </li>
-          <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 12 * 4)}
-          >
-            4Y
-          </li>
-        </ul>
-      </div>
+            <ul className={classes["chart-dates-ul"]}>
+              <li
+                className={classes["chart-dates"]}
+                onClick={() => setDateChange(8)}
+              >
+                10D
+              </li>
+              <li
+                className={classes["chart-dates"]}
+                onClick={() => setDateChange(21)}
+              >
+                1M
+              </li>
+              <li
+                className={classes["chart-dates"]}
+                onClick={() => setDateChange(21 * 3)}
+              >
+                3M
+              </li>
+              <li
+                className={classes["chart-dates"]}
+                onClick={() => setDateChange(21 * 6)}
+              >
+                6M
+              </li>
+              <li
+                className={classes["chart-dates"]}
+                onClick={() => setDateChange(21 * 12)}
+              >
+                1Y
+              </li>
+              <li
+                className={classes["chart-dates"]}
+                onClick={() => setDateChange(21 * 12 * 4)}
+              >
+                4Y
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

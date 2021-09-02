@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/symbol/[symbol]/chart": "pages/symbol/[symbol]/chart.js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/symbol/[symbol]/chart": "pages/symbol/[symbol]/chart.js"
 }
