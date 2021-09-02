@@ -12,9 +12,11 @@
   border: 1px solid #0062cf;
   height: 2.5rem;
   margin: 2.5rem 1rem;
+  transition: 0.3s all ease-in-out;
 }
 .more-info-btn:hover {
-  background-color: rgb(233, 233, 233);
+  background-color: #0062cf;
+  color: white;
 }
 .stock-header-container {
   display: flex;

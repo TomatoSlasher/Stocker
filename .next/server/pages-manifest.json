@@ -3,6 +3,5 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
-  "/symbol/[symbol]/chart": "pages/symbol/[symbol]/chart.js",
   "/symbol/[symbol]/overview": "pages/symbol/[symbol]/overview.js"
 }
