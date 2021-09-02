@@ -29,6 +29,12 @@
       "static/chunks/src_components_general-components_Header_tsx.js"
     ]
   },
+  "index.tsx -> ../components/Home-Components/ChartDate": {
+    "id": "./src/components/Home-Components/ChartDate.tsx",
+    "files": [
+      "static/chunks/src_components_Home-Components_ChartDate_tsx.js"
+    ]
+  },
   "symbol\\[symbol]\\chart.tsx -> ../../../components/Quote-Sections/Quote-Chart/AdvancedChart": {
     "id": "./src/components/Quote-Sections/Quote-Chart/AdvancedChart.tsx",
     "files": [

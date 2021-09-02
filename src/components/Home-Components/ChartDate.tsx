@@ -8,7 +8,6 @@ const ChartDate: React.FC = () => {
     return state.ticker;
   });
 
-
   const [dateChange, setDateChange] = useState(21);
 
   useEffect(() => {
@@ -44,10 +43,9 @@ const ChartDate: React.FC = () => {
         width: 570,
         height: 250,
         layout: {
-
-        fontSize: 12,
-        fontFamily: 'Montserrat, sans-serif',
-    },
+          fontSize: 12,
+          fontFamily: "Montserrat, sans-serif",
+        },
       });
       chart.applyOptions({
         handleScroll: false,
@@ -64,10 +62,6 @@ const ChartDate: React.FC = () => {
           horzLines: {
             visible: false,
           },
-        },
-        layout: {
-          fontSize: 16,
-          fontFamily: "Arial",
         },
       });
 

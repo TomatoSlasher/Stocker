@@ -1,0 +1,16 @@
+.hero-container {
+  margin: 3rem;
+}
+.hero-container h1 {
+  font-size: 57px;
+  width: 37rem;
+  line-height: 4rem;
+}
+.hero-small-p {
+  color: #016ae2;
+  font-size: 20px;
+}
+.hero-overview {
+  font-size: 20px;
+  margin-top: 1.5rem;
+}
