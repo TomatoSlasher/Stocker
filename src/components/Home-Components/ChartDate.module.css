@@ -17,6 +17,11 @@
 
   font-weight: bold;
   cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+.chart-dates:hover {
+  background-color: rgb(223, 223, 223);
 }
 .spinner-container {
   display: flex;
@@ -57,5 +62,13 @@
   }
 }
 .chart-whole {
-  height: 19rem;
+  height: 20rem;
+}
+.active-date {
+  list-style-type: none;
+
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 3px solid #0062cf;
+  padding: 0rem 0.5rem;
 }

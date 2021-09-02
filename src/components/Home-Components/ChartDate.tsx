@@ -10,12 +10,19 @@ const ChartDate: React.FC = () => {
     return state.ticker;
   });
 
-  const [dateChange, setDateChange] = useState(21);
+  const [dateChange, setDateChange] = useState(22);
   const [isLoading, setIsLoading] = useState(false);
   const [graphData, setGraphData]: any = useState();
   const chartRef = useRef<any>(null);
+  const [activeDate, setActiveDate] = useState("1M");
+
   useEffect(() => {
-    setIsLoading(true);
+    if (chartRef.current.childNodes[1] != null) {
+      chartRef.current.childNodes[1].remove();
+      setIsLoading(true);
+    }
+  }, [dateChange, ticker]);
+  useEffect(() => {
     const fetchDataHandler = async () => {
       const fetchData = await fetch(
         `https://api.twelvedata.com/time_series?symbol=${ticker}&interval=1day&outputsize=2000&apikey=a24970c9566c49739e8009cdb3a639f0`
@@ -23,12 +30,13 @@ const ChartDate: React.FC = () => {
 
       const data = await fetchData.json();
       setGraphData(data);
+      setDateChange(21);
+      setActiveDate("1M");
     };
     fetchDataHandler();
   }, [ticker]);
 
   useEffect(() => {
-    setIsLoading(false);
     if (graphData && chartRef.current) {
       const dataSixMonths = graphData.values.slice(0, dateChange);
 
@@ -41,10 +49,6 @@ const ChartDate: React.FC = () => {
         }
       );
       transformToGraphData.reverse();
-
-      if (chartRef.current.childNodes[1]) {
-        chartRef.current.childNodes[1].remove();
-      }
 
       const chart: any = createChart(chartRef.current, {
         width: 570,
@@ -99,7 +103,8 @@ const ChartDate: React.FC = () => {
         });
       }
     }
-  }, [dateChange, graphData, chartRef.current, isLoading]);
+    setIsLoading(false);
+  }, [dateChange, graphData]);
   return (
     <div className={classes["chart-whole"]}>
       {isLoading ? (
@@ -117,38 +122,80 @@ const ChartDate: React.FC = () => {
           >
             <ul className={classes["chart-dates-ul"]}>
               <li
-                className={classes["chart-dates"]}
-                onClick={() => setDateChange(8)}
+                className={
+                  activeDate == "10D"
+                    ? classes["active-date"]
+                    : classes["chart-dates"]
+                }
+                onClick={() => {
+                  setActiveDate("10D");
+                  setDateChange(8);
+                }}
               >
                 10D
               </li>
               <li
-                className={classes["chart-dates"]}
-                onClick={() => setDateChange(21)}
+                className={
+                  activeDate == "1M"
+                    ? classes["active-date"]
+                    : classes["chart-dates"]
+                }
+                onClick={() => {
+                  setActiveDate("1M");
+                  setDateChange(22);
+                }}
               >
                 1M
               </li>
               <li
-                className={classes["chart-dates"]}
-                onClick={() => setDateChange(21 * 3)}
+                className={
+                  activeDate == "3M"
+                    ? classes["active-date"]
+                    : classes["chart-dates"]
+                }
+                onClick={() => {
+                  setActiveDate("3M");
+                  setDateChange(22 * 3);
+                }}
               >
                 3M
               </li>
               <li
-                className={classes["chart-dates"]}
-                onClick={() => setDateChange(21 * 6)}
+                className={
+                  activeDate == "6M"
+                    ? classes["active-date"]
+                    : classes["chart-dates"]
+                }
+                onClick={() => {
+                  setActiveDate("6M");
+                  setDateChange(22 * 6);
+                }}
               >
                 6M
               </li>
               <li
-                className={classes["chart-dates"]}
-                onClick={() => setDateChange(21 * 12)}
+                className={
+                  activeDate == "1Y"
+                    ? classes["active-date"]
+                    : classes["chart-dates"]
+                }
+                onClick={() => {
+                  setActiveDate("1Y");
+                  setDateChange(22 * 12);
+                }}
               >
                 1Y
               </li>
               <li
-                className={classes["chart-dates"]}
-                onClick={() => setDateChange(21 * 12 * 4)}
+                className={
+                  activeDate == "4Y"
+                    ? classes["active-date"]
+                    : classes["chart-dates"]
+                }
+                onClick={() => {
+                  setActiveDate("4Y");
+                  setDateChange(22 * 12 * 4);
+                }}
               >
                 4Y
               </li>

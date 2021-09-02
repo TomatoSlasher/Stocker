@@ -7,9 +7,14 @@
 }
 
 .more-info-btn {
-  color: white;
+  background-color: white;
+  color: #0062cf;
+  border: 1px solid #0062cf;
   height: 2.5rem;
   margin: 2.5rem 1rem;
+}
+.more-info-btn:hover {
+  background-color: rgb(233, 233, 233);
 }
 .stock-header-container {
   display: flex;
