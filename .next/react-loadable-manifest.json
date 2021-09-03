@@ -5,24 +5,6 @@
       "static/chunks/node_modules_next_dist_client_dev_noop_js.js"
     ]
   },
-  "..\\components\\Quote-Sections\\Quote-Info\\TradeStock.tsx -> ./OverviewChart": {
-    "id": "./src/components/Quote-Sections/Quote-Info/OverviewChart.tsx",
-    "files": [
-      "static/chunks/src_components_Quote-Sections_Quote-Info_OverviewChart_tsx.js"
-    ]
-  },
-  "..\\components\\Quote-Sections\\StockOverview.tsx -> ./Quote-Info/OverviewChart": {
-    "id": "./src/components/Quote-Sections/Quote-Info/OverviewChart.tsx",
-    "files": [
-      "static/chunks/src_components_Quote-Sections_Quote-Info_OverviewChart_tsx.js"
-    ]
-  },
-  "..\\components\\Quote-Sections\\StockOverview.tsx -> ./Quote-Info/TradeStock": {
-    "id": "./src/components/Quote-Sections/Quote-Info/TradeStock.tsx",
-    "files": [
-      "static/chunks/src_components_Quote-Sections_Quote-Info_TradeStock_tsx.js"
-    ]
-  },
   "_app.tsx -> ../components/general-components/Header": {
     "id": "./src/components/general-components/Header.tsx",
     "files": [

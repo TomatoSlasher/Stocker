@@ -1,4 +1,5 @@
 import "../styles/styles.css";
+import Footer from "../components/general-components/Footer";
 import type { AppProps } from "next/app";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Header />
 
       <Component {...pageProps} />
+      <Footer />
     </Fragment>
   );
 }
