@@ -78,7 +78,7 @@ const Footer = () => {
             <h1>Built with:</h1>
             <div className={classes["built-with"]}>
               <img
-                className={classes["bulit-with-img"]}
+                className={classes["react-img"]}
                 src={react.src}
                 alt="react logo"
               />

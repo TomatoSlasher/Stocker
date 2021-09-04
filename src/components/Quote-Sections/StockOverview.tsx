@@ -15,16 +15,19 @@ const StockOverview: React.FC<any> = (props) => {
   return (
     <Fragment>
       <div className={classes["overview-container"]}>
-        <div className="overview-content-container">
-          <OverviewHeader data={props.symbol} image={props.image} />
-          <TradeStock
-            data={props.image}
-            historicalData={props.historicalData}
-          />
+        <div className={classes["overview-content-container"]}>
+          <div className={classes["overview-header-container"]}>
+            <OverviewHeader data={props.symbol} image={props.image} />
+            <TradeStock
+              data={props.image}
+              historicalData={props.historicalData}
+            />
+          </div>
+
           <OverviewDescription description={props.symbol.Description} />
         </div>
         <div className="overview-chart-container">
-          <OverviewChart data={props.historicalData} />
+          <OverviewChart data={props.historicalData} height={250} />
         </div>
       </div>
       <div className="quote-section">

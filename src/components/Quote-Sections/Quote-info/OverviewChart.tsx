@@ -6,7 +6,7 @@ const OverViewChart: React.FC<any> = (props) => {
   const [dateChange, setDateChange] = useState(21);
   const dataSixMonths = props.data.values.slice(0, dateChange);
   const chartContainerRef = useRef<any>(null);
-
+  const [activeDate, setActiveDate] = useState("1M");
   const transformToGraphData = dataSixMonths.map(
     (val: {
       datetime: string;
@@ -22,8 +22,8 @@ const OverViewChart: React.FC<any> = (props) => {
       chartContainerRef.current.childNodes[1].remove();
     }
     const chart: any = createChart(chartContainerRef.current, {
-      width: 500,
-      height: 250,
+      width: 515,
+      height: props.height,
       layout: {
         fontSize: 12,
         fontFamily: "Montserrat, sans-serif",
@@ -44,10 +44,6 @@ const OverViewChart: React.FC<any> = (props) => {
         horzLines: {
           visible: false,
         },
-      },
-      layout: {
-        fontSize: 16,
-        fontFamily: "Arial",
       },
     });
 
@@ -84,38 +80,80 @@ const OverViewChart: React.FC<any> = (props) => {
       <div className={classes["chart-dates-wrapper"]}>
         <ul className={classes["chart-dates-ul"]}>
           <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(8)}
+            className={
+              activeDate == "10D"
+                ? classes["active-date"]
+                : classes["chart-dates"]
+            }
+            onClick={() => {
+              setActiveDate("10D");
+              setDateChange(8);
+            }}
           >
             10D
           </li>
           <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21)}
+            className={
+              activeDate == "1M"
+                ? classes["active-date"]
+                : classes["chart-dates"]
+            }
+            onClick={() => {
+              setActiveDate("1M");
+              setDateChange(22);
+            }}
           >
             1M
           </li>
           <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 3)}
+            className={
+              activeDate == "3M"
+                ? classes["active-date"]
+                : classes["chart-dates"]
+            }
+            onClick={() => {
+              setActiveDate("3M");
+              setDateChange(22 * 3);
+            }}
           >
             3M
           </li>
           <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 6)}
+            className={
+              activeDate == "6M"
+                ? classes["active-date"]
+                : classes["chart-dates"]
+            }
+            onClick={() => {
+              setActiveDate("6M");
+              setDateChange(22 * 6);
+            }}
           >
             6M
           </li>
           <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 12)}
+            className={
+              activeDate == "1Y"
+                ? classes["active-date"]
+                : classes["chart-dates"]
+            }
+            onClick={() => {
+              setActiveDate("1Y");
+              setDateChange(22 * 12);
+            }}
           >
             1Y
           </li>
           <li
-            className={classes["chart-dates"]}
-            onClick={() => setDateChange(21 * 12 * 4)}
+            className={
+              activeDate == "4Y"
+                ? classes["active-date"]
+                : classes["chart-dates"]
+            }
+            onClick={() => {
+              setActiveDate("4Y");
+              setDateChange(22 * 12 * 4);
+            }}
           >
             4Y
           </li>

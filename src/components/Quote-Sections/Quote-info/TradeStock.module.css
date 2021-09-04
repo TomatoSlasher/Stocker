@@ -1,3 +1,18 @@
+.trade-btn {
+  background-color: white;
+  color: #0062cf;
+  border: 1px solid #0062cf;
+  height: 2.5rem;
+  width: 4.5rem;
+  text-align: center;
+
+  transition: 0.3s all ease-in-out;
+}
+.trade-btn:hover {
+  background-color: #0062cf;
+  color: white;
+}
+
 .trade-overlay {
   position: absolute;
   width: 100%;
@@ -7,6 +22,9 @@
   left: 0;
   z-index: 11;
 }
+.trade-overlay::-webkit-scrollbar {
+  display: none;
+}
 .trade-wrapper {
   display: flex;
   justify-content: center;
@@ -15,19 +33,28 @@
 }
 .trade-container {
   background-color: white;
-  height: 35rem;
+  height: 90vh;
   width: 33rem;
+  border-radius: 5px;
+}
+.trade-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
 }
 .input-number {
   border: 1px solid black !important;
+  padding: 0.5rem 0.5rem;
   /* all: initial; */
 }
 .stock-info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .company-logo {
-  width: 5rem;
+  width: 80px;
 }
 .stock-name {
   color: rgb(138, 138, 138);
@@ -44,11 +71,67 @@
 .trade-values {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.5rem;
 }
+.trade-values button {
+  padding: 0.5rem 2.3rem;
+  background-color: white;
+  border: 1px solid #0062cf;
+  color: #0062cf;
+  transition: all 0.2s ease-in-out;
+}
+.trade-values button:hover {
+  background-color: rgb(245, 245, 245);
+}
+.trade-values button:first-child {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.trade-values button:nth-child(2) {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
 .buy-order {
-  background-color: #34a853;
+  background-color: #34a853 !important;
+  border: 1px solid #34a853 !important;
+  color: white !important;
 }
 .sell-order {
+  background-color: #eb0f29 !important;
+  border: 1px solid #eb0f29 !important;
+  color: white !important;
+}
+.close-btn {
+  cursor: pointer;
+}
+.buy-button {
+  margin: 0.75rem 0.5rem;
+}
+.buy-button button {
+  transition: all 0.2s ease-in-out;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0rem;
+  background-color: #34a853;
+}
+.buy-button button:hover {
+  background-color: #50b46b;
+}
+
+.sell-button {
+  margin: 0.75rem 0.5rem;
+}
+.sell-button button {
+  transition: all 0.2s ease-in-out;
+  font-size: 25px;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0rem;
   background-color: #eb0f29;
+}
+.sell-button button:hover {
+  background-color: #ec253c;
 }

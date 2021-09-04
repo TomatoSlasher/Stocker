@@ -17,10 +17,13 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const [overlay, setOverlay] = useState(false);
   const [orderType, setOrderType]: any = useState(true);
   const orderQuantity = useRef<HTMLInputElement>(null);
+  const [currentAmount, setCurrentAmount] = useState(1);
   const overlayHandler = () => {
     setOverlay(!overlay);
   };
-
+  const currentAmountHandler = () => {
+    setCurrentAmount(+orderQuantity.current!.value);
+  };
   const orderHandler = (type: string) => {
     const allPositions = JSON.parse(
       localStorage.getItem("allPositions") || "[]"
@@ -128,21 +131,43 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   };
 
   const completedOrders = JSON.parse(
-    localStorage.getItem("orderHistory") || "[]"
+    localStorage.getItem("allPositions") || "[]"
   );
+  const priceAmount = props.data[0].price * currentAmount;
   return (
     <Fragment>
       <div>
-        <button onClick={overlayHandler}>Trade</button>
+        <button className={classes["trade-btn"]} onClick={overlayHandler}>
+          Trade
+        </button>
       </div>
       {overlay && (
         <div className={classes["trade-overlay"]}>
           <div className={classes["trade-wrapper"]}>
-            <button onClick={overlayHandler} className="close">
-              close
-            </button>
             <div className={classes["trade-container"]}>
-              <OverviewChart data={props.historicalData} />
+              <div className={classes["trade-header-container"]}>
+                <h1>Paper Trading</h1>
+
+                <svg
+                  width="20"
+                  onClick={overlayHandler}
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fas"
+                  data-icon="times"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 352 512"
+                  className={classes["close-btn"]}
+                >
+                  <path
+                    fill="#202a35"
+                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                  ></path>
+                </svg>
+              </div>
+
+              <OverviewChart data={props.historicalData} height={180} />
               <div className={classes["stock-info"]}>
                 <div className="stock-text-container">
                   <p className={classes["stock-name"]}>
@@ -165,7 +190,7 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
                 />
               </div>
               <div className={classes["trade-values"]}>
-                <p className="trade-values-section">Quantity</p>
+                <h3 className="trade-values-section">Quantity</h3>
                 <input
                   placeholder="Shares Amount"
                   min="1"
@@ -173,10 +198,11 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
                   className={classes["input-number"]}
                   ref={orderQuantity}
                   defaultValue="1"
+                  onChange={currentAmountHandler}
                 />
               </div>
               <div className={classes["trade-values"]}>
-                <p className="trade-values-section">Order Type</p>
+                <h3 className="trade-values-section">Order Type</h3>
                 <div className="buy-sell">
                   <button
                     onClick={() => setOrderType(true)}
@@ -192,28 +218,32 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
                   </button>
                 </div>
               </div>
+              <div className={classes["trade-values"]}>
+                <h3 className="trade-values-section">Estimated Amount </h3>
+                <div className="buy-sell">${priceAmount.toFixed(2)}</div>
+              </div>
               {orderType ? (
-                <div className="buy-button">
-                  <button onClick={() => orderHandler("buy")}>buy</button>
+                <div className={classes["buy-button"]}>
+                  <button onClick={() => orderHandler("buy")}>Buy</button>
                 </div>
               ) : (
                 <div
-                  className="sell-button"
+                  className={classes["sell-button"]}
                   onClick={() => orderHandler("sell")}
                 >
-                  <button>sell</button>
+                  <button>Sell</button>
                 </div>
               )}
               <div>
                 <p className="owned-shares">
                   Owned {props.data[0].symbol} Shares:{" "}
                   {completedOrders
-                    .filter(
-                      (val: ordersType) => val.symbol == props.data[0].symbol
-                    )
-                    .reduce((acc: any, cur: any) => {
-                      return acc + cur.amount;
-                    }, 0)}
+                    ? completedOrders.filter((val: ordersType) => {
+                        if (val.symbol === props.data[0].symbol) {
+                          return val.amount;
+                        }
+                      })
+                    : 0}
                 </p>
               </div>
             </div>
