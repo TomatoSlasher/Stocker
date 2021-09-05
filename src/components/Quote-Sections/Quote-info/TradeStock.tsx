@@ -2,6 +2,7 @@ import { Fragment, useState, useRef } from "react";
 import classes from "./TradeStock.module.css";
 import dynamic from "next/dynamic";
 import TradeMsg from "./trade-components/TradeMsg";
+import TradeConfirmed from "./trade-components/TradeConfirmed";
 interface ordersType {
   amount: number;
   orderTotal: number;
@@ -22,8 +23,11 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const [hasError, setHasError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [errotTitle, setErrotTitle] = useState("");
+  const [orderFilled, setOrderFilled] = useState(false);
+  const [orderData, setorderData]: any = useState();
   const overlayHandler = () => {
     setOverlay(!overlay);
+    setOrderFilled(false);
   };
   const currentAmountHandler = () => {
     setCurrentAmount(+orderQuantity.current!.value);
@@ -111,6 +115,15 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       let cashBalance: any = localStorage.getItem("cashBalance");
       cashBalance = +cashBalance + orderObject.orderTotal;
       localStorage.setItem("cashBalance", cashBalance);
+      setorderData({
+        type: type,
+        amount: amount,
+        symbol: props.data[0].symbol,
+        price: stockPrice,
+        total: orderTotal,
+        date: today,
+      });
+      setOrderFilled(true);
       return;
     }
 
@@ -131,7 +144,15 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       let cashBalance: any = localStorage.getItem("cashBalance");
       cashBalance = +cashBalance - orderObject.orderTotal;
       localStorage.setItem("cashBalance", cashBalance);
-
+      setorderData({
+        type: type,
+        amount: amount,
+        symbol: props.data[0].symbol,
+        price: stockPrice,
+        total: orderTotal,
+        date: today,
+      });
+      setOrderFilled(true);
       return;
     }
 
@@ -140,6 +161,15 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
     );
 
     newOrders(latestOrders);
+    setorderData({
+      type: type,
+      amount: amount,
+      symbol: props.data[0].symbol,
+      price: stockPrice,
+      total: orderTotal,
+      date: today,
+    });
+    setOrderFilled(true);
   };
 
   const newOrders = (orders: any) => {
@@ -207,94 +237,101 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
                   ></path>
                 </svg>
               </div>
+              {orderFilled ? (
+                <TradeConfirmed data={orderData} />
+              ) : (
+                <div>
+                  <OverviewChart data={props.historicalData} height={180} />
+                  <div className={classes["stock-info"]}>
+                    <div className="stock-text-container">
+                      <p className={classes["stock-name"]}>
+                        {props.data[0].companyName}
+                      </p>
+                      <div className={classes["ticker-price"]}>
+                        <h2 className={classes["company-symbol"]}>
+                          {props.data[0].symbol}
+                        </h2>
+                        <h2 className={classes["company-price"]}>
+                          ${props.data[0].price}
+                        </h2>
+                      </div>
+                    </div>
 
-              <OverviewChart data={props.historicalData} height={180} />
-              <div className={classes["stock-info"]}>
-                <div className="stock-text-container">
-                  <p className={classes["stock-name"]}>
-                    {props.data[0].companyName}
-                  </p>
-                  <div className={classes["ticker-price"]}>
-                    <h2 className={classes["company-symbol"]}>
-                      {props.data[0].symbol}
-                    </h2>
-                    <h2 className={classes["company-price"]}>
-                      ${props.data[0].price}
-                    </h2>
+                    <img
+                      className={classes["company-logo"]}
+                      src={props.data[0].image}
+                      alt="company logo"
+                    />
+                  </div>
+                  <div className={classes["trade-values"]}>
+                    <h3 className="trade-values-section">Quantity</h3>
+                    <input
+                      placeholder="Shares Amount"
+                      min="1"
+                      type="number"
+                      className={classes["input-number"]}
+                      ref={orderQuantity}
+                      defaultValue="1"
+                      onChange={currentAmountHandler}
+                    />
+                  </div>
+                  <div className={classes["trade-values"]}>
+                    <h3 className="trade-values-section">Order Type</h3>
+                    <div className="buy-sell">
+                      <button
+                        onClick={() => setOrderType(true)}
+                        className={orderType ? classes["buy-order"] : ""}
+                      >
+                        Buy
+                      </button>
+                      <button
+                        onClick={() => setOrderType(false)}
+                        className={!orderType ? classes["sell-order"] : ""}
+                      >
+                        Sell
+                      </button>
+                    </div>
+                  </div>
+                  <div className={classes["trade-values"]}>
+                    <h3 className="trade-values-section">Estimated Amount </h3>
+                    <div className="buy-sell">
+                      <h4>${NumberFormat.format(twoDecimal(priceAmount))}</h4>
+                    </div>
+                  </div>
+                  {orderType ? (
+                    <div className={classes["buy-button"]}>
+                      <button onClick={() => orderHandler("buy")}>Buy</button>
+                    </div>
+                  ) : (
+                    <div
+                      className={classes["sell-button"]}
+                      onClick={() => orderHandler("sell")}
+                    >
+                      <button>Sell</button>
+                    </div>
+                  )}
+                  <div className={classes["shares-balance"]}>
+                    <h4 className={classes["owned-shares"]}>
+                      Owned {props.data[0].symbol} Shares:{" "}
+                      {completedOrders
+                        .filter(
+                          (val: ordersType) =>
+                            val.symbol === props.data[0].symbol
+                        )
+                        .map((val: ordersType) => val.amount)}
+                      {completedOrders.some(
+                        (e: ordersType) => e.symbol === props.data[0].symbol
+                      )
+                        ? ""
+                        : "0"}
+                    </h4>
+                    <h4 className={classes["cash-balance"]}>
+                      Cash Balance: $
+                      {NumberFormat.format(twoDecimal(+cashBalance))}
+                    </h4>
                   </div>
                 </div>
-
-                <img
-                  className={classes["company-logo"]}
-                  src={props.data[0].image}
-                  alt="company logo"
-                />
-              </div>
-              <div className={classes["trade-values"]}>
-                <h3 className="trade-values-section">Quantity</h3>
-                <input
-                  placeholder="Shares Amount"
-                  min="1"
-                  type="number"
-                  className={classes["input-number"]}
-                  ref={orderQuantity}
-                  defaultValue="1"
-                  onChange={currentAmountHandler}
-                />
-              </div>
-              <div className={classes["trade-values"]}>
-                <h3 className="trade-values-section">Order Type</h3>
-                <div className="buy-sell">
-                  <button
-                    onClick={() => setOrderType(true)}
-                    className={orderType ? classes["buy-order"] : ""}
-                  >
-                    Buy
-                  </button>
-                  <button
-                    onClick={() => setOrderType(false)}
-                    className={!orderType ? classes["sell-order"] : ""}
-                  >
-                    Sell
-                  </button>
-                </div>
-              </div>
-              <div className={classes["trade-values"]}>
-                <h3 className="trade-values-section">Estimated Amount </h3>
-                <div className="buy-sell">
-                  <h4>${NumberFormat.format(twoDecimal(priceAmount))}</h4>
-                </div>
-              </div>
-              {orderType ? (
-                <div className={classes["buy-button"]}>
-                  <button onClick={() => orderHandler("buy")}>Buy</button>
-                </div>
-              ) : (
-                <div
-                  className={classes["sell-button"]}
-                  onClick={() => orderHandler("sell")}
-                >
-                  <button>Sell</button>
-                </div>
               )}
-              <div className={classes["shares-balance"]}>
-                <h4 className={classes["owned-shares"]}>
-                  Owned {props.data[0].symbol} Shares:{" "}
-                  {completedOrders
-                    .filter(
-                      (val: ordersType) => val.symbol === props.data[0].symbol
-                    )
-                    .map((val: ordersType) => val.amount)}
-                  {completedOrders.some(
-                    (e: ordersType) => e.symbol === props.data[0].symbol
-                  )
-                    ? ""
-                    : "0"}
-                </h4>
-                <h4 className={classes["cash-balance"]}>
-                  Cash Balance: ${NumberFormat.format(twoDecimal(+cashBalance))}
-                </h4>
-              </div>
             </div>
           </div>
         </div>
