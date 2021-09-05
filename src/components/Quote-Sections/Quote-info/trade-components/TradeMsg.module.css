@@ -1,0 +1,56 @@
+@keyframes show {
+  0% {
+    transform: translateY(-5rem);
+    opacity: 0;
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(2.5rem);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.trade-msg-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 100;
+}
+.trade-msg-container {
+  background-color: #6cb1ff;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  width: 15rem;
+  animation: show 0.5s ease-in-out forwards;
+  visibility: hidden;
+  box-shadow: 0 11px 11px rgba(0, 0, 0, 0.3), 0 11px 12px rgba(0, 0, 0, 0.22);
+  position: relative;
+}
+.trade-msg-container h2,
+.trade-msg-container p {
+  color: white;
+}
+.trade-msg-container h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.trade-msg-container p {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.close-btn {
+  cursor: pointer;
+  float: right;
+}
+.error-icon {
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background-color: #8ec3ff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100%;
+}

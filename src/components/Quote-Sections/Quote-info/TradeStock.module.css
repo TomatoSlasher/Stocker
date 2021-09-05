@@ -1,7 +1,7 @@
 .trade-btn {
-  background-color: white;
-  color: #0062cf;
-  border: 1px solid #0062cf;
+  background: linear-gradient(90deg, #7ebaff 0%, #126acf 100%);
+  color: white;
+
   height: 2.5rem;
   width: 4.5rem;
   text-align: center;
@@ -9,10 +9,8 @@
   transition: 0.3s all ease-in-out;
 }
 .trade-btn:hover {
-  background-color: #0062cf;
-  color: white;
+  background: linear-gradient(90deg, #66adff 0%, #0c57ac 100%);
 }
-
 .trade-overlay {
   position: absolute;
   width: 100%;
@@ -31,11 +29,22 @@
   align-items: center;
   height: 100%;
 }
+@keyframes show {
+  0% {
+    transform: translateY(-8rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+}
 .trade-container {
   background-color: white;
-  height: 90vh;
+  height: 89vh;
   width: 33rem;
   border-radius: 5px;
+  animation: show 0.4s ease-in-out forwards;
 }
 .trade-header-container {
   display: flex;
@@ -55,6 +64,8 @@
 }
 .company-logo {
   width: 80px;
+  margin-right: 0.5rem;
+  border-radius: 5px;
 }
 .stock-name {
   color: rgb(138, 138, 138);
@@ -134,4 +145,15 @@
 }
 .sell-button button:hover {
   background-color: #ec253c;
+}
+.cash-balance {
+  margin: 0.5rem;
+}
+.owned-shares {
+  margin: 0.5rem;
+}
+.shares-balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1,6 +1,7 @@
 import { Fragment, useState, useRef } from "react";
 import classes from "./TradeStock.module.css";
 import dynamic from "next/dynamic";
+import TradeMsg from "./trade-components/TradeMsg";
 interface ordersType {
   amount: number;
   orderTotal: number;
@@ -18,6 +19,9 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const [orderType, setOrderType]: any = useState(true);
   const orderQuantity = useRef<HTMLInputElement>(null);
   const [currentAmount, setCurrentAmount] = useState(1);
+  const [hasError, setHasError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errotTitle, setErrotTitle] = useState("");
   const overlayHandler = () => {
     setOverlay(!overlay);
   };
@@ -25,6 +29,8 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
     setCurrentAmount(+orderQuantity.current!.value);
   };
   const orderHandler = (type: string) => {
+    const cashBalance = JSON.parse(localStorage.getItem("cashBalance") || "[]");
+
     const allPositions = JSON.parse(
       localStorage.getItem("allPositions") || "[]"
     );
@@ -32,6 +38,12 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       (val: ordersType) => val.symbol == props.data[0].symbol
     );
     if (type == "sell" && !includedInAllPosistions) {
+      setHasError(true);
+      setErrotTitle("Cannot Sell");
+      setErrorMsg(`You own no ${props.data[0].symbol} shares`);
+      setTimeout(() => {
+        setHasError(false);
+      }, 5000);
       return;
     }
 
@@ -43,8 +55,27 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       .filter((val: ordersType) => val.symbol == props.data[0].symbol)
       .some((val: ordersType) => val.amount >= amount);
 
-    if (type == "sell" && !positionAmount) return;
+    if (type == "sell" && !positionAmount) {
+      setHasError(true);
+      setErrotTitle("Cannot Sell");
+      setErrorMsg(
+        `Order quantity (${amount}) exceeds your owned ${props.data[0].symbol} shares  `
+      );
+      setTimeout(() => {
+        setHasError(false);
+      }, 5000);
 
+      return;
+    }
+    if (type == "buy" && orderTotal > cashBalance) {
+      setHasError(true);
+      setErrotTitle("Cannot Buy");
+      setErrorMsg(`Insufficient funds`);
+      setTimeout(() => {
+        setHasError(false);
+      }, 5000);
+      return;
+    }
     const orderObject = {
       symbol: props.data[0].symbol,
       amount,
@@ -133,6 +164,15 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const completedOrders = JSON.parse(
     localStorage.getItem("allPositions") || "[]"
   );
+
+  const cashBalance = localStorage.getItem("cashBalance") || "[]";
+
+  const twoDecimal = (val: any) => {
+    return val.toFixed(2);
+  };
+
+  const NumberFormat = new Intl.NumberFormat("en-US");
+
   const priceAmount = props.data[0].price * currentAmount;
   return (
     <Fragment>
@@ -143,6 +183,7 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
       </div>
       {overlay && (
         <div className={classes["trade-overlay"]}>
+          {hasError && <TradeMsg errorTitle={errotTitle} errorMsg={errorMsg} />}
           <div className={classes["trade-wrapper"]}>
             <div className={classes["trade-container"]}>
               <div className={classes["trade-header-container"]}>
@@ -220,7 +261,9 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
               </div>
               <div className={classes["trade-values"]}>
                 <h3 className="trade-values-section">Estimated Amount </h3>
-                <div className="buy-sell">${priceAmount.toFixed(2)}</div>
+                <div className="buy-sell">
+                  <h4>${NumberFormat.format(twoDecimal(priceAmount))}</h4>
+                </div>
               </div>
               {orderType ? (
                 <div className={classes["buy-button"]}>
@@ -234,17 +277,23 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
                   <button>Sell</button>
                 </div>
               )}
-              <div>
-                <p className="owned-shares">
+              <div className={classes["shares-balance"]}>
+                <h4 className={classes["owned-shares"]}>
                   Owned {props.data[0].symbol} Shares:{" "}
                   {completedOrders
-                    ? completedOrders.filter((val: ordersType) => {
-                        if (val.symbol === props.data[0].symbol) {
-                          return val.amount;
-                        }
-                      })
-                    : 0}
-                </p>
+                    .filter(
+                      (val: ordersType) => val.symbol === props.data[0].symbol
+                    )
+                    .map((val: ordersType) => val.amount)}
+                  {completedOrders.some(
+                    (e: ordersType) => e.symbol === props.data[0].symbol
+                  )
+                    ? ""
+                    : "0"}
+                </h4>
+                <h4 className={classes["cash-balance"]}>
+                  Cash Balance: ${NumberFormat.format(twoDecimal(+cashBalance))}
+                </h4>
               </div>
             </div>
           </div>
