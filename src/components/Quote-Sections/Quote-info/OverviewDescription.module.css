@@ -1,3 +1,18 @@
 .overview-description {
+  font-size: 18px;
   width: 40rem;
+  display: inline-block;
+  line-height: 1.75rem;
+}
+.more-desc {
+  padding: 0rem;
+  background-color: #0062cf;
+  color: white;
+
+  padding: 0.1rem 0.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.more-desc:hover {
+  background-color: #1f78dd;
 }

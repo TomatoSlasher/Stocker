@@ -24,10 +24,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/symbol/[symbol]/growth": [
+    "/next/dist/pages/_error": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/symbol/[symbol]/growth.js"
+      "static/chunks/pages/next/dist/pages/_error.js"
+    ],
+    "/symbol/[symbol]/chart": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/symbol/[symbol]/chart.js"
     ],
     "/symbol/[symbol]/overview": [
       "static/chunks/webpack.js",

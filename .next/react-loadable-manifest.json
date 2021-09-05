@@ -28,5 +28,11 @@
     "files": [
       "static/chunks/src_components_general-components_Header_tsx.js"
     ]
+  },
+  "symbol\\[symbol]\\chart.tsx -> ../../../components/Quote-Sections/Quote-Chart/AdvancedChart": {
+    "id": "./src/components/Quote-Sections/Quote-Chart/AdvancedChart.tsx",
+    "files": [
+      "static/chunks/src_components_Quote-Sections_Quote-Chart_AdvancedChart_tsx.js"
+    ]
   }
 }
