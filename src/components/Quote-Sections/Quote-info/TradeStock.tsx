@@ -16,9 +16,13 @@ const OverviewChart = dynamic(() => import("./OverviewChart"), {
   ssr: false,
 });
 const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
+  const orderQuantity = useRef<HTMLInputElement>(null);
+
+  const tradeWrapper = useRef<any>(null);
+
   const [overlay, setOverlay] = useState(false);
   const [orderType, setOrderType]: any = useState(true);
-  const orderQuantity = useRef<HTMLInputElement>(null);
+
   const [currentAmount, setCurrentAmount] = useState(1);
   const [hasError, setHasError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -28,6 +32,19 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const overlayHandler = () => {
     setOverlay(!overlay);
     setOrderFilled(false);
+  };
+  if (overlay) {
+    const doc: any = document.body;
+    doc.style.overflow = "hidden";
+  }
+  if (!overlay) {
+    const doc: any = document.body;
+    doc.style.overflow = "auto";
+  }
+  const outsideClickHandler = (e: any) => {
+    if (e.target === tradeWrapper.current) {
+      overlayHandler();
+    }
   };
   const currentAmountHandler = () => {
     setCurrentAmount(+orderQuantity.current!.value);
@@ -212,9 +229,9 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
         </button>
       </div>
       {overlay && (
-        <div className={classes["trade-overlay"]}>
+        <div onClick={outsideClickHandler} className={classes["trade-overlay"]}>
           {hasError && <TradeMsg errorTitle={errotTitle} errorMsg={errorMsg} />}
-          <div className={classes["trade-wrapper"]}>
+          <div ref={tradeWrapper} className={classes["trade-wrapper"]}>
             <div className={classes["trade-container"]}>
               <div className={classes["trade-header-container"]}>
                 <h1>Paper Trading</h1>

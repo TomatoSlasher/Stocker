@@ -12,13 +12,14 @@
   background: linear-gradient(90deg, #66adff 0%, #0c57ac 100%);
 }
 .trade-overlay {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background-color: rgba(97, 97, 97, 0.5);
   top: 0;
   left: 0;
   z-index: 11;
+  overflow: hidden;
 }
 .trade-overlay::-webkit-scrollbar {
   display: none;
@@ -28,6 +29,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  overflow: hidden;
 }
 @keyframes show {
   0% {
@@ -147,10 +149,10 @@
   background-color: #ec253c;
 }
 .cash-balance {
-  margin: 0.5rem;
+  margin: 0rem 0.5rem;
 }
 .owned-shares {
-  margin: 0.5rem;
+  margin: 0rem 0.5rem;
 }
 .shares-balance {
   display: flex;
