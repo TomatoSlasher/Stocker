@@ -1,13 +1,26 @@
 .overview-info-container {
   display: flex;
+  width: 95vw;
+  justify-content: space-between;
+
+  background-color: white;
+  margin: 1rem 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3), 0 5px 5px rgba(0, 0, 0, 0.22);
 }
 .info-item {
   list-style-type: none;
   margin: 1rem;
   display: flex;
   justify-content: space-between;
-  width: 20rem;
+  /* align-items: left; */
+  width: 45vw;
 }
 .item-value {
   font-weight: bold;
+}
+.seperator {
+  width: 2px;
+  height: auto;
+  background-color: rgb(196, 196, 196);
 }

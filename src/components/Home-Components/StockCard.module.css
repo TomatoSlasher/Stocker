@@ -1,9 +1,22 @@
+@keyframes appear {
+  0% {
+    transform: translateY(-10rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+}
+
 .card {
   margin: 3rem;
   float: right;
   width: 37rem;
 
+  height: 506px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  animation: appear 1s 0s ease-in-out forwards;
 }

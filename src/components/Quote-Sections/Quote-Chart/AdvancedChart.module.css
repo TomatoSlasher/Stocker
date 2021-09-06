@@ -1,17 +1,29 @@
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .chart-dates-container {
   margin: 1rem 0.5rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 0rem 1rem;
 }
 .chart-dates-wrapper {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 1rem;
+  margin-bottom: 1rem;
+  padding: 0;
 }
 .chart-dates-ul {
   width: 60vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0rem 1rem;
-  margin-bottom: 1rem;
-  padding: 0;
 }
 
 .chart-dates {
@@ -20,15 +32,38 @@
   font-weight: bold;
   cursor: pointer;
 }
+.active-chart-container {
+  position: relative;
+}
+.chart-type-container {
+  position: absolute;
+  z-index: 20;
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
 .chart-type {
   display: flex;
+  align-items: center;
   cursor: pointer;
   padding: 0.5rem;
 }
 .chart-type:hover {
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(243, 243, 243);
   border-radius: 10px;
 }
 .chart-type-name {
   padding-left: 0.5rem;
+}
+.active-chart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0rem 2rem;
+}
+.active-chart:hover {
+  background-color: rgb(243, 243, 243);
+  border-radius: 5px;
 }

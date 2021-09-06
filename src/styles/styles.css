@@ -13,12 +13,14 @@
 body {
   background-color: #f7f7f7;
   margin: 0;
+  overflow-x: hidden !important;
 }
 h2,
 h1,
 h3,
 h4,
-p {
+p,
+li {
   margin: 0;
   color: #202a35;
 }

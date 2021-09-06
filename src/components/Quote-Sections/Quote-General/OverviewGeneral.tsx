@@ -1,6 +1,5 @@
 import classes from "./OverviewGeneral.module.css";
 const OverviewInfo: React.FC<any> = (props) => {
-
   const NumberFormat = new Intl.NumberFormat("en-US");
 
   const marketCap = props.data.MarketCapitalization / 1000000000;
@@ -38,7 +37,8 @@ const OverviewInfo: React.FC<any> = (props) => {
           <p className={classes["item-value"]}>{props.data.Beta}</p>
         </li>
       </ul>
-      <ul>
+      <div className={classes["seperator"]}></div>
+      <ul className={classes["second-ul"]}>
         <li className={classes["info-item"]}>
           <p className="item-key">IPO Date</p>
           <p className={classes["item-value"]}>{props.general[0].ipoDate}</p>
