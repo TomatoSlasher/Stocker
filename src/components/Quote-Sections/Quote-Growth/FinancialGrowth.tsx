@@ -5,12 +5,12 @@ const FinancialGrowth: React.FC<{ growth: any }> = (props) => {
     return num.toFixed(2);
   };
   return (
-    <div className="income-statement-container">
-      <h2>Financial Growth</h2>
-
-      <table>
+    <div className={classes["income-statement-container"]}>
+      <h1>Financial Growth</h1>
+      <br />
+      <table className={classes["table"]}>
         <tr>
-          <span></span>
+          <h2>Breakdown</h2>
           {props.growth.map((data: any) => {
             return <th className={classes["income-dates"]}>{data.date}</th>;
           })}

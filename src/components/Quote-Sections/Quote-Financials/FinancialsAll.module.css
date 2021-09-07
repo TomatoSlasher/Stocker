@@ -1,0 +1,26 @@
+.financials-container {
+  background-color: white;
+
+  margin: 0rem 1rem;
+}
+.financials-wrapper {
+  padding: 1rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 50px;
+
+  border-bottom: 5px solid rgb(170, 170, 170);
+}
+.financials-statment {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+}
+.financials-statment:hover {
+  background-color: rgb(240, 240, 240);
+}
+.active-statement {
+  border-bottom: 4px solid #0062cf;
+  padding: 0.25rem 0.5rem;
+}

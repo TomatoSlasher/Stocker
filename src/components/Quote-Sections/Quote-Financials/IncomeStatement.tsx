@@ -6,7 +6,7 @@ const IncomeStatement: React.FC<{ incomeStatement: any }> = (props) => {
   const [incomeDate, setIncomeDate] = useState(
     props.incomeStatement.annualReports
   );
-
+  const [activeDate, setActiveDate] = useState("annual");
   const incomeQuarterlyDateHandler = () => {
     setIncomeDate(props.incomeStatement.quarterlyReports.slice(0, 6));
   };
@@ -14,15 +14,42 @@ const IncomeStatement: React.FC<{ incomeStatement: any }> = (props) => {
     setIncomeDate(props.incomeStatement.annualReports);
   };
   return (
-    <div className="income-statement-container">
-      <h2>Income Statement</h2>
+    <div className={classes["income-statement-container"]}>
+      <h1>Income Statement</h1>
       <p>All number in thousands</p>
-      <button onClick={incomeAnnualDateHandler}>Annual</button>
-      <button onClick={incomeQuarterlyDateHandler}>Quarterly</button>
+      <div className={classes["btn-container"]}>
+        <button
+          className={
+            activeDate === "annual"
+              ? classes["active-date-btn"]
+              : classes["date-btn"]
+          }
+          onClick={() => {
+            setActiveDate("annual");
+            incomeAnnualDateHandler();
+          }}
+        >
+          Annual
+        </button>
+        <button
+          className={
+            activeDate === "quarterly"
+              ? classes["active-date-btn"]
+              : classes["date-btn"]
+          }
+          onClick={() => {
+            setActiveDate("quarterly");
+            incomeQuarterlyDateHandler();
+          }}
+        >
+          Quarterly
+        </button>
+      </div>
+
       <br />
-      <table>
+      <table className={classes["table"]}>
         <tr>
-          <span></span>
+          <h2>Breakdown</h2>
           {incomeDate.map((data: any) => {
             return (
               <th className={classes["income-dates"]}>

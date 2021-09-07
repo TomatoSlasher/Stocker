@@ -1,11 +1,34 @@
+@keyframes show {
+  0% {
+    transform: translateX(-2rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0rem);
+    opacity: 1;
+  }
+}
+
+.income-statement-container {
+  background-color: white;
+  margin: 0rem 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  animation: show 0.5s ease-in-out forwards;
+}
+
+.table {
+  width: 100%;
+}
 .income-dates {
   padding: 0.5rem;
-  background-color: rgb(218, 218, 218);
+  background-color: rgb(230, 230, 230);
 }
 
 .income-rows {
   padding: 0.5rem;
-  background-color: rgb(218, 218, 218);
+  background-color: rgb(230, 230, 230);
   text-align: left;
 }
 .income-rows-child {
@@ -13,16 +36,41 @@
 }
 .income-cells {
   padding: 0.5rem;
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(245, 245, 245);
 }
 
 .income-cells-up {
   padding: 0.5rem;
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(245, 245, 245);
   color: #34a853;
 }
 .income-cells-down {
   padding: 0.5rem;
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(245, 245, 245);
   color: #eb0f29;
+}
+.btn-container {
+  margin: 0.5rem 0rem;
+}
+.btn-container button:first-child {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.btn-container button:nth-child(2) {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+.date-btn {
+  background-color: white;
+  border: 1px solid #0062cf;
+  color: #0062cf;
+}
+.date-btn:hover {
+  background-color: rgb(241, 241, 241);
+  color: #0062cf;
+}
+.active-date-btn {
+  background-color: #0062cf;
+  border: 1px solid #0062cf;
+  color: white;
 }

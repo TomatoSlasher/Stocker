@@ -4,14 +4,14 @@ const CashFlow: React.FC<{ cashFlow: any }> = (props) => {
   const NumberFormat = new Intl.NumberFormat("en-US");
 
   return (
-    <div className="income-statement-container">
-      <h2>Cash Flow Statement</h2>
+    <div className={classes["income-statement-container"]}>
+      <h1>Cash Flow Statement</h1>
       <p>All number in thousands</p>
 
       <br />
-      <table>
+      <table className={classes["table"]}>
         <tr>
-          <th className={classes["income-dates"]}>Breakdown</th>
+          <h2>Breakdown</h2>
           {props.cashFlow.map((data: any) => {
             return <th className={classes["income-dates"]}>{data.date}</th>;
           })}

@@ -8,13 +8,13 @@ const BalanceSheet: React.FC<{
   const NumberFormat = new Intl.NumberFormat("en-US");
 
   return (
-    <div className="income-statement-container">
-      <h2>Balance Sheet</h2>
+    <div className={classes["income-statement-container"]}>
+      <h1>Balance Sheet</h1>
       <p>All number in thousands</p>
-
-      <table>
+      <br />
+      <table className={classes["table"]}>
         <tr>
-          <span></span>
+          <h2>Breakdown</h2>
           {props.balanceSheet.map((data: any) => {
             return <th className={classes["income-dates"]}>{data.date}</th>;
           })}
