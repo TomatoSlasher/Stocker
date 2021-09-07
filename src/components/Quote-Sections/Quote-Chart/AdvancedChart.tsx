@@ -204,53 +204,86 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
         <div className={classes["chart-dates-wrapper"]}>
           <ul className={classes["chart-dates-ul"]}>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == 8
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() => setDateChange(8)}
             >
               10D
             </li>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == 22
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() => setDateChange(22)}
             >
               1M
             </li>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == 22 * 3
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() => setDateChange(22 * 3)}
             >
               3M
             </li>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == 22 * 6
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() => setDateChange(22 * 6)}
             >
               6M
             </li>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == 22 * 12
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() => setDateChange(22 * 12)}
             >
               1Y
             </li>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == 22 * 12 * 2
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() => setDateChange(22 * 12 * 2)}
             >
               2Y
             </li>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == 22 * 12 * 5 ||
+                dateChange == props.chart.values.length - 2
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() =>
                 props.chart.values.length < 22 * 12 * 5
-                  ? setDateChange(props.chart.values.length - 1)
+                  ? setDateChange(props.chart.values.length - 2)
                   : setDateChange(22 * 12 * 5)
               }
             >
               5Y
             </li>
             <li
-              className={classes["chart-dates"]}
+              className={
+                dateChange == props.chart.values.length - 1
+                  ? classes["active-chart-date"]
+                  : classes["chart-dates"]
+              }
               onClick={() => setDateChange(props.chart.values.length - 1)}
             >
               MAX

@@ -24,6 +24,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgb(240, 240, 240);
+  padding: 0.25rem;
+  border-radius: 5px;
 }
 
 .chart-dates {
@@ -31,6 +34,20 @@
 
   font-weight: bold;
   cursor: pointer;
+  padding: 0.5rem;
+}
+.active-chart-date {
+  list-style-type: none;
+
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0rem 0.5rem;
+  border-bottom: 3px solid #0062cf;
+  transition: border-bottom 0.1s linear;
+}
+.chart-dates:hover {
+  background-color: rgb(223, 223, 223);
+  border-radius: 5px;
 }
 .active-chart-container {
   position: relative;
@@ -38,9 +55,22 @@
 .chart-type-container {
   position: absolute;
   z-index: 20;
-  background-color: white;
+  left: 2rem;
+  width: 10rem;
+  background-color: rgb(245, 245, 245);
   padding: 0.5rem;
   border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3), 0 5px 5px rgba(0, 0, 0, 0.22);
+}
+.chart-type-container::after {
+  content: " ";
+  position: absolute;
+  left: 20px;
+  top: -10px;
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid rgb(245, 245, 245);
 }
 .chart-type {
   display: flex;
@@ -49,7 +79,7 @@
   padding: 0.5rem;
 }
 .chart-type:hover {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(223, 223, 223);
   border-radius: 10px;
 }
 .chart-type-name {
@@ -61,9 +91,12 @@
   align-items: center;
   font-weight: bold;
   cursor: pointer;
-  margin: 0rem 2rem;
+  background-color: rgb(240, 240, 240);
+  padding: 0.25rem;
+  border-radius: 5px;
+  margin: 0rem 1rem;
 }
 .active-chart:hover {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(223, 223, 223);
   border-radius: 5px;
 }

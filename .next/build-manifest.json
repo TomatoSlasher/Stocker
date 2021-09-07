@@ -29,10 +29,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/symbol/[symbol]/chart.js"
     ],
-    "/symbol/[symbol]/overview": [
+    "/symbol/[symbol]/financials": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/symbol/[symbol]/overview.js"
+      "static/chunks/pages/symbol/[symbol]/financials.js"
     ]
   },
   "ampFirstPages": []
