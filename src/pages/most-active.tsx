@@ -1,6 +1,6 @@
 import StockList from "../components/Stock-List/StockList";
 const MostActive = (props: any) => {
-  return <StockList stockList={props.mostActive} />;
+  return <StockList stockList={props.mostActive} name="Most Active" />;
 };
 
 export async function getServerSideProps(context: any) {

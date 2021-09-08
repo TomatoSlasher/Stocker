@@ -60,10 +60,12 @@
 }
 .position-up {
   color: #34a853;
+  display: flex;
   font-weight: bold;
 }
 .position-down {
   color: #eb0f29;
+  display: flex;
   font-weight: bold;
 }
 .positions-symbol {

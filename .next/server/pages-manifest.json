@@ -2,6 +2,11 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+  "/": "pages/index.js",
+  "/about": "pages/about.js",
+  "/most-active": "pages/most-active.js",
   "/portfolio": "pages/portfolio.js",
-  "/symbol/[symbol]/financials": "pages/symbol/[symbol]/financials.js"
+  "/most-losers": "pages/most-losers.js",
+  "/symbol/[symbol]/overview": "pages/symbol/[symbol]/overview.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }

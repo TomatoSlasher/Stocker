@@ -48,95 +48,183 @@ const IndexesQuote: React.FC = () => {
   }, []);
   useEffect(() => {
     const fetchIndexHistorical = async (index: string, el: any) => {
-      const fetchGSPCIndex = await fetch(
-        `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=c32c062e2e731dc049a0374a77ac2c9b`
-      );
-      const GSPCIndexData = await fetchGSPCIndex.json();
-      const historicalData = GSPCIndexData.historical.slice(0, 264);
+      if (el.current != null) {
+        const fetchGSPCIndex = await fetch(
+          `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=ac54a1b35f7700a8b1bdeb404dc14810`
+        );
+        const GSPCIndexData = await fetchGSPCIndex.json();
+        const historicalData = GSPCIndexData.historical.slice(0, 264);
 
-      const transformToGraphData = historicalData.map(
-        (val: {
-          date: string;
+        const transformToGraphData = historicalData.map(
+          (val: {
+            date: string;
 
-          close: number;
-        }) => {
-          return {
-            time: val.date,
+            close: number;
+          }) => {
+            return {
+              time: val.date,
 
-            value: val.close,
-          };
+              value: val.close,
+            };
+          }
+        );
+
+        transformToGraphData.reverse();
+
+        if (el.current.childNodes[1]) {
+          el.current.childNodes[1].remove();
         }
-      );
-
-      transformToGraphData.reverse();
-
-      if (el.current.childNodes[1]) {
-        el.current.childNodes[1].remove();
-      }
-      const chart: any = createChart(el.current, {
-        width: 180,
-        height: 100,
-      });
-      chart.applyOptions({
-        timeScale: {
-          visible: false,
-        },
-        crosshair: {
-          vertLine: { visible: false },
-          horzLine: { visible: false },
-        },
-
-        handleScroll: false,
-        handleScale: false,
-        priceScale: {
-          visible: false,
-        },
-
-        grid: {
-          vertLines: {
+        const chart: any = createChart(el.current, {
+          width: 180,
+          height: 100,
+        });
+        chart.applyOptions({
+          timeScale: {
             visible: false,
           },
-          horzLines: {
+          crosshair: {
+            vertLine: { visible: false },
+            horzLine: { visible: false },
+          },
+
+          handleScroll: false,
+          handleScale: false,
+          priceScale: {
             visible: false,
           },
-        },
-      });
-      chart.timeScale().fitContent();
-      const areaSeries = chart.addAreaSeries();
-      areaSeries.setData(transformToGraphData);
-      areaSeries.applyOptions({
-        priceLineWidth: 0,
-        priceLineStyle: 2,
-        crosshairMarkerVisible: false,
-        priceLineVisible: false,
-      });
-      const dataLastEl = transformToGraphData.length - 1;
 
-      if (
-        transformToGraphData[0].value < transformToGraphData[dataLastEl].value
-      ) {
+          grid: {
+            vertLines: {
+              visible: false,
+            },
+            horzLines: {
+              visible: false,
+            },
+          },
+        });
+        chart.timeScale().fitContent();
+        const areaSeries = chart.addAreaSeries();
+        areaSeries.setData(transformToGraphData);
         areaSeries.applyOptions({
-          lineColor: "#34A853",
-          topColor: "rgba(52, 168, 83, 0.4)",
-          bottomColor: "rgba(52, 168, 83, 0)",
+          priceLineWidth: 0,
+          priceLineStyle: 2,
+          crosshairMarkerVisible: false,
+          priceLineVisible: false,
+        });
+        const dataLastEl = transformToGraphData.length - 1;
 
-          lineWidth: 3,
+        if (
+          transformToGraphData[0].value < transformToGraphData[dataLastEl].value
+        ) {
+          areaSeries.applyOptions({
+            lineColor: "#34A853",
+            topColor: "rgba(52, 168, 83, 0.4)",
+            bottomColor: "rgba(52, 168, 83, 0)",
+
+            lineWidth: 3,
+          });
+        } else {
+          areaSeries.applyOptions({
+            lineColor: "#EA4335",
+            topColor: "rgba(234, 67, 53, 0.4)",
+            bottomColor: "rgba(234, 67, 53, 0)",
+            lineWidth: 3,
+          });
+        }
+      } else return;
+    };
+    const fetchIndexHistorical2 = async (index: string, el: any) => {
+      if (el.current != null) {
+        const fetchGSPCIndex = await fetch(
+          `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=66e243b7036752eb5c9078cdacfe8625`
+        );
+        const GSPCIndexData = await fetchGSPCIndex.json();
+        const historicalData = GSPCIndexData.historical.slice(0, 264);
+
+        const transformToGraphData = historicalData.map(
+          (val: {
+            date: string;
+
+            close: number;
+          }) => {
+            return {
+              time: val.date,
+
+              value: val.close,
+            };
+          }
+        );
+
+        transformToGraphData.reverse();
+
+        if (el.current.childNodes[1]) {
+          el.current.childNodes[1].remove();
+        }
+        const chart: any = createChart(el.current, {
+          width: 180,
+          height: 100,
         });
-      } else {
+        chart.applyOptions({
+          timeScale: {
+            visible: false,
+          },
+          crosshair: {
+            vertLine: { visible: false },
+            horzLine: { visible: false },
+          },
+
+          handleScroll: false,
+          handleScale: false,
+          priceScale: {
+            visible: false,
+          },
+
+          grid: {
+            vertLines: {
+              visible: false,
+            },
+            horzLines: {
+              visible: false,
+            },
+          },
+        });
+        chart.timeScale().fitContent();
+        const areaSeries = chart.addAreaSeries();
+        areaSeries.setData(transformToGraphData);
         areaSeries.applyOptions({
-          lineColor: "#EA4335",
-          topColor: "rgba(234, 67, 53, 0.4)",
-          bottomColor: "rgba(234, 67, 53, 0)",
-          lineWidth: 3,
+          priceLineWidth: 0,
+          priceLineStyle: 2,
+          crosshairMarkerVisible: false,
+          priceLineVisible: false,
         });
-      }
+        const dataLastEl = transformToGraphData.length - 1;
+
+        if (
+          transformToGraphData[0].value < transformToGraphData[dataLastEl].value
+        ) {
+          areaSeries.applyOptions({
+            lineColor: "#34A853",
+            topColor: "rgba(52, 168, 83, 0.4)",
+            bottomColor: "rgba(52, 168, 83, 0)",
+
+            lineWidth: 3,
+          });
+        } else {
+          areaSeries.applyOptions({
+            lineColor: "#EA4335",
+            topColor: "rgba(234, 67, 53, 0.4)",
+            bottomColor: "rgba(234, 67, 53, 0)",
+            lineWidth: 3,
+          });
+        }
+      } else return;
     };
 
     fetchIndexHistorical("GSPC", SPRef);
     fetchIndexHistorical("DJI", DOWRef);
-    fetchIndexHistorical("IXIC", NASRef);
-    fetchIndexHistorical("RUT", RUTRef);
-  }, [SPRef.current, DOWRef.current, RUTRef.current, NASRef.current]);
+    fetchIndexHistorical2("IXIC", NASRef);
+    fetchIndexHistorical2("RUT", RUTRef);
+  }, [currentIndexData]);
   return (
     <div className="indexes-container">
       {currentIndexData.length > 0 && (

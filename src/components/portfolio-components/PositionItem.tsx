@@ -59,14 +59,13 @@ const PositionItem: React.FC<any> = (props: { data: ordersType }) => {
             }
           >
             <span>
-              {positionDiff >= 0 ? "+" : "-"}
+              {positionDiff >= 0 ? "+" : ""}
 
-              {posChange.toFixed(2)}
+              {posChange.toFixed(1)}
             </span>
             <span className={classes["change-perc"]}>
-              {positionDiff >= 0 ? "+" : "-"}
-
-              {positionDiff.toFixed(2) + "%"}
+              {positionDiff >= 0 ? "+" : ""}
+              {positionDiff.toFixed(1) + "%"}
             </span>
           </p>
         </div>

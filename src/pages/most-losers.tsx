@@ -1,6 +1,6 @@
 import StockList from "../components/Stock-List/StockList";
 const MostLosers = (props: any) => {
-  return <StockList stockList={props.mostLoser} />;
+  return <StockList stockList={props.mostLoser} name="Most Loser" />;
 };
 
 export async function getServerSideProps(context: any) {

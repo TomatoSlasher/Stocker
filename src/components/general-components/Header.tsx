@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import classes from "./Header.module.css";
 import HeaderSearch from "./header-components/HeaderSearch";
 import IndexesQuote from "./IndexsQuote";
+import { useRouter } from "next/router";
+
 const Header: React.FC = () => {
   let items = localStorage.getItem("cashBalance");
   if (items == null) {
@@ -10,6 +12,22 @@ const Header: React.FC = () => {
     localStorage.setItem("cashBalance", startingBalance);
   }
   const [marketsDropdown, setMarketsDropdown] = useState(false);
+  const [showIndex, setShowIndex] = useState(true);
+  const router = useRouter();
+  console.log(router);
+  useEffect(() => {
+    if (router.pathname === "/most-gainers") {
+      setShowIndex(false);
+    } else if (router.pathname === "/most-active") {
+      setShowIndex(false);
+    } else if (router.pathname === "/most-losers") {
+      setShowIndex(false);
+    } else if (router.pathname === "/portfolio") {
+      setShowIndex(false);
+    } else {
+      setShowIndex(true);
+    }
+  }, [router]);
 
   return (
     <Fragment>
@@ -83,7 +101,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      {/* <IndexesQuote /> */}
+      {showIndex ? <IndexesQuote /> : ""}
     </Fragment>
   );
 };

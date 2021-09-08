@@ -1,55 +1,75 @@
 import Link from "next/link";
 import classes from "./StockList.module.css";
 
-const StockList: React.FC<{ stockList: any }> = (props) => {
+const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
   const twoDecimal = (val: number) => {
     return val.toFixed(2);
   };
   return (
-    <ul className="stock-list-ul">
-      {props.stockList.map(
-        (data: {
-          changes: number;
-          changesPercentage: number;
-          companyName: string;
-          price: number;
-          ticker: string;
-        }) => {
-          return (
-            <Link href={`/symbol/${data.ticker.toUpperCase()}/overview`}>
-              <div className={classes["stock-contianer"]}>
-                <div className={classes["name-container"]}>
-                  <p className="name">{data.ticker}</p>
-                  <p className="name">{data.companyName}</p>
-                </div>
+    <div className={classes["list-wrapper"]}>
+      <h1 className={classes["most-title"]}>{props.name}</h1>
+      <div className={classes["list-container"]}>
+        <div className={classes["stock-contianer-header"]}>
+          <div className={classes["name-container"]}>
+            <h4 className={classes["symbol"]}>Symbol</h4>
+            <h4 className={classes["comp"]}>Company Name</h4>
+          </div>
 
-                <div className={classes["prices-container"]}>
-                  <p className="name">{data.price}</p>
-                  <p
-                    className={
-                      +data.changesPercentage > 0
-                        ? classes["price-up"]
-                        : classes["price-down"]
-                    }
-                  >
-                    {twoDecimal(+data.changesPercentage) + "%"}
-                  </p>
-                  <p
-                    className={
-                      +data.changesPercentage > 0
-                        ? classes["price-up"]
-                        : classes["price-down"]
-                    }
-                  >
-                    {data.changes}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          );
-        }
-      )}
-    </ul>
+          <div className={classes["prices-container"]}>
+            <h4 className={classes["symbol"]}>Price</h4>
+            <h4 className={classes["change"]}>Change/Percentege</h4>
+          </div>
+        </div>
+        <ul className={classes["stock-list-ul"]}>
+          {props.stockList.map(
+            (data: {
+              changes: number;
+              changesPercentage: number;
+              companyName: string;
+              price: number;
+              ticker: string;
+            }) => {
+              return (
+                <Link href={`/symbol/${data.ticker.toUpperCase()}/overview`}>
+                  <div className={classes["stock-contianer"]}>
+                    <div className={classes["name-container"]}>
+                      <h4 className={classes["symbol"]}>{data.ticker}</h4>
+                      <p className={classes["symbol2"]}>{data.companyName}</p>
+                    </div>
+
+                    <div className={classes["prices-container"]}>
+                      <p className={classes["symbol"]}>
+                        {twoDecimal(+data.price)}
+                      </p>
+                      <div className={classes["change"]}>
+                        <p
+                          className={
+                            +data.changesPercentage > 0
+                              ? classes["price-up"]
+                              : classes["price-down"]
+                          }
+                        >
+                          {data.changes.toFixed(2)}
+                        </p>
+                        <p
+                          className={
+                            +data.changesPercentage > 0
+                              ? classes["price-up"]
+                              : classes["price-down"]
+                          }
+                        >
+                          {twoDecimal(+data.changesPercentage) + "%"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              );
+            }
+          )}
+        </ul>
+      </div>
+    </div>
   );
 };
 export default StockList;
