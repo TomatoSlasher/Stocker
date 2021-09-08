@@ -3,7 +3,6 @@ import classes from "./OverviewDescription.module.css";
 const OverviewDescription: React.FC<{ description: string }> = (props) => {
   const [showFull, setshowFull] = useState(false);
   const [longDesc, setLongDesc] = useState(false);
-  console.log(props.description.length);
   useEffect(() => {
     if (props.description.length > 500) {
       setLongDesc(true);

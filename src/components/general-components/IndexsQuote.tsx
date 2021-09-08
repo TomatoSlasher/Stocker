@@ -52,7 +52,6 @@ const IndexesQuote: React.FC = () => {
         `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=c32c062e2e731dc049a0374a77ac2c9b`
       );
       const GSPCIndexData = await fetchGSPCIndex.json();
-      console.log(GSPCIndexData);
       const historicalData = GSPCIndexData.historical.slice(0, 264);
 
       const transformToGraphData = historicalData.map(

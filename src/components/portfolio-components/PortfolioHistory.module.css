@@ -1,8 +1,14 @@
+.portfolio-history {
+  margin: 1rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+}
 .portfolio-items-container {
-  margin: 1rem 0rem;
-  height: 15rem;
-  width: 45vw;
-  overflow-y: auto;
+  margin-top: 1rem;
+  height: 16rem;
+  width: 50vw;
+
   background-color: rgb(226, 226, 226);
   border-radius: 10px;
   position: relative;
@@ -15,39 +21,77 @@
 }
 .portfolio-item {
   display: flex;
-
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   border-radius: 10px;
   margin: 1rem;
 }
-.portfolio-item img {
-  height: 3rem;
-  margin: 0.5rem;
-}
+
 .portfolio-item-text {
   margin: 0rem 0.5rem;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
 }
 .portfolio-item-header {
   display: flex;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 
   align-items: center;
-  background-color: white;
-  border-radius: 10px;
-  margin: 1rem;
+  background-color: rgb(240, 240, 240);
 }
-.portfolio-item-header p {
-  margin: 1rem 0rem;
-  margin-left: 0.4rem;
-}
-.header-date {
-  width: 12rem;
-  text-align: center;
-}
+
 .portfolio-item-text-date {
   color: rgb(124, 124, 124);
   font-weight: bold;
+}
+.logo-img {
+  width: 55px !important;
+  border-radius: 5px;
+  height: 55px !important;
+  padding: 0.5rem;
+}
+.logo {
+  /* width: 55px !important; */
+
+  height: 40px !important;
+  margin-left: 16px;
+  padding: 8px;
+  padding-left: 63px;
+}
+.symbol-date {
+  width: 12rem;
+}
+.his-amount {
+  width: 5rem;
+  margin-left: 0.5rem;
+}
+.buy-order {
+  width: 4.8rem;
+  margin-left: 0.5rem;
+  background-color: #34a853;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.4rem 0.2rem;
+  color: white;
+}
+
+.sell-order {
+  width: 4.8rem;
+  margin-left: 0.5rem;
+  background-color: #eb0f29;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.4rem 0.2rem;
+  color: white;
+}
+.his-amount2 {
+  width: 5rem;
+  margin-left: 1rem;
+}
+.portfolio-items-list {
+  height: 12rem;
+  overflow-y: auto;
 }

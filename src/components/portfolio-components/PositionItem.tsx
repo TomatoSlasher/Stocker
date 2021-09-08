@@ -24,7 +24,8 @@ const PositionItem: React.FC<any> = (props: { data: ordersType }) => {
   }, []);
 
   const positionTotalValue: any = currentPrice * props.data.amount;
-
+  const posChange = positionTotalValue.toFixed(2) - props.data.totalValue;
+  const avgPrice = props.data.totalValue / props.data.amount;
   const positionDiff =
     (100 * (positionTotalValue.toFixed(2) - props.data.totalValue)) /
     props.data.totalValue;
@@ -40,15 +41,16 @@ const PositionItem: React.FC<any> = (props: { data: ordersType }) => {
   }
   return (
     <li key={props.data.symbol} className={classes["portfolio-item"]}>
-      <img src={props.data.image} alt="" />
+      <img className={classes["pos-img"]} src={props.data.image} alt="" />
       <div className={classes["portfolio-item-text"]}>
         <Link href={`/symbol/${props.data.symbol}/overview`}>
           <p className={classes["positions-symbol"]}>{props.data.symbol}</p>
         </Link>
 
-        <p>{props.data.amount}</p>
-        <div>
-          <p>{positionTotalValue.toFixed(2)}</p>
+        <p className={classes["pos-amount"]}>{props.data.amount}</p>
+        <p className={classes["pos-amount"]}>${avgPrice.toFixed(2)}</p>
+        <div className={classes["pos-amount"]}>
+          <p>${positionTotalValue.toFixed(2)}</p>
           <p
             className={
               positionDiff >= 0
@@ -56,7 +58,16 @@ const PositionItem: React.FC<any> = (props: { data: ordersType }) => {
                 : classes["position-down"]
             }
           >
-            {positionDiff.toFixed(2) + "%"}
+            <span>
+              {positionDiff >= 0 ? "+" : "-"}
+
+              {posChange.toFixed(2)}
+            </span>
+            <span className={classes["change-perc"]}>
+              {positionDiff >= 0 ? "+" : "-"}
+
+              {positionDiff.toFixed(2) + "%"}
+            </span>
           </p>
         </div>
       </div>

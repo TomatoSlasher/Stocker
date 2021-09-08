@@ -13,7 +13,6 @@ const TradeStock = dynamic(() => import("./Quote-Info/TradeStock"), {
 });
 const StockOverview: React.FC<any> = (props) => {
   const router = useRouter();
-  console.log(router.pathname);
 
   const [activeLink, setActiveLink] = useState("");
   useEffect(() => {

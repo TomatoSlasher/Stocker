@@ -29,10 +29,22 @@
       "static/chunks/src_components_general-components_Header_tsx.js"
     ]
   },
-  "symbol\\[symbol]\\chart.tsx -> ../../../components/Quote-Sections/Quote-Chart/AdvancedChart": {
-    "id": "./src/components/Quote-Sections/Quote-Chart/AdvancedChart.tsx",
+  "portfolio.tsx -> ../components/portfolio-components/AccountBalance": {
+    "id": "./src/components/portfolio-components/AccountBalance.tsx",
     "files": [
-      "static/chunks/src_components_Quote-Sections_Quote-Chart_AdvancedChart_tsx.js"
+      "static/chunks/src_components_portfolio-components_AccountBalance_tsx.js"
+    ]
+  },
+  "portfolio.tsx -> ../components/portfolio-components/CurrentPortfolio": {
+    "id": "./src/components/portfolio-components/CurrentPortfolio.tsx",
+    "files": [
+      "static/chunks/src_components_portfolio-components_CurrentPortfolio_tsx.js"
+    ]
+  },
+  "portfolio.tsx -> ../components/portfolio-components/PortfolioHistory": {
+    "id": "./src/components/portfolio-components/PortfolioHistory.tsx",
+    "files": [
+      "static/chunks/src_components_portfolio-components_PortfolioHistory_tsx.js"
     ]
   }
 }

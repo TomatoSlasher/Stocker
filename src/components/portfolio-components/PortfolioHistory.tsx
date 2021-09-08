@@ -16,43 +16,57 @@ const PorfolioHistory = () => {
   );
   const [hasPortfolio, setHasPortfolio] = useState(true);
   return (
-    <div className={"portfolio-history"}>
+    <div className={classes["portfolio-history"]}>
       <h1>Trading History</h1>
       <div className={classes["portfolio-items-container"]}>
         {hasPortfolio ? (
-          <ul className={classes["portfolio-items-list"]}>
-            <li className={classes["portfolio-item-header"]}>
-              <p className="logo">Logo</p>
+          <div>
+            <div className={classes["portfolio-item-header"]}>
+              <span className={classes["logo"]}></span>
               <div className={classes["portfolio-item-text"]}>
-                <p className={classes["header-date"]}>Symbol/Date</p>
-                <p>Amount</p>
-                <p>Order Type</p>
-                <p>Price</p>
-                <p>Order Value</p>
+                <p className={classes["symbol-date"]}>Symbol/Date</p>
+                <p className={classes["his-amount"]}>Quantity</p>
+                <p className={classes["his-amount"]}>Order Type</p>
+                <p className={classes["his-amount2"]}>Price</p>
+                <p className={classes["his-amount"]}>Total Cost</p>
               </div>
-            </li>
-            {portfolioHistory.map((val: ordersType, i) => {
-              return (
-                <li key={i} className={classes["portfolio-item"]}>
-                  <img src={val.image} alt="" />
-                  <div className={classes["portfolio-item-text"]}>
-                    <div className="symbol-date">
-                      <p>{val.symbol}</p>
-                      <p className={classes["portfolio-item-text-date"]}>
-                        {val.date}
+            </div>
+            <ul className={classes["portfolio-items-list"]}>
+              {portfolioHistory.map((val: ordersType, i) => {
+                return (
+                  <li key={i} className={classes["portfolio-item"]}>
+                    <img
+                      className={classes["logo-img"]}
+                      src={val.image}
+                      alt=""
+                    />
+                    <div className={classes["portfolio-item-text"]}>
+                      <div className={classes["symbol-date"]}>
+                        <p>{val.symbol}</p>
+                        <p className={classes["portfolio-item-text-date"]}>
+                          {val.date}
+                        </p>
+                      </div>
+
+                      <p className={classes["his-amount"]}>{val.amount}</p>
+
+                      <p
+                        className={
+                          val.orderType === "buy"
+                            ? classes["buy-order"]
+                            : classes["sell-order"]
+                        }
+                      >
+                        {val.orderType}
                       </p>
+                      <p className={classes["his-amount2"]}>{val.stockPrice}</p>
+                      <p className={classes["his-amount"]}>{val.orderTotal}</p>
                     </div>
-
-                    <p>{val.amount}</p>
-
-                    <p>{val.orderType}</p>
-                    <p>{val.stockPrice}</p>
-                    <p>{val.orderTotal}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         ) : (
           <div className={classes["empty-portfolio"]}>
             <h1>You have no open positions</h1>

@@ -1,34 +1,31 @@
 .account-balance-wrapper {
-  margin: 1rem 0rem;
-  height: 15rem;
-  width: 45vw;
-  overflow-y: auto;
-  background-color: rgb(226, 226, 226);
-  border-radius: 10px;
-}
-.account-balance-bottom {
-  display: flex;
-  justify-content: space-between;
-  margin: 0rem 2rem;
-}
-.account-card {
+  margin: 1rem;
+
   background-color: white;
   border-radius: 10px;
-  padding: 0.5rem;
-  /* margin: 1rem 2rem; */
-  width: 45%;
-}
-.account-card p {
-  margin: 1rem 0rem;
 }
 .account-value-card {
-  padding: 0.5rem;
-  background-color: white;
-  border-radius: 10px;
-  width: 45%;
-  margin: 1rem 2rem;
-  height: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.account-value-card p {
-  margin: 1rem 0rem;
+
+.up-pl {
+  color: #34a853;
+  font-weight: bold;
+}
+.down-pl {
+  color: #eb0f29;
+  font-weight: bold;
+}
+.account-cards {
+  padding: 1rem 2rem;
+}
+.account-cards-first {
+  padding: 1rem 2rem;
+
+  width: 20rem;
+}
+.pl-change {
+  margin: 0rem 0.5rem;
 }
