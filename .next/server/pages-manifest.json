@@ -3,8 +3,5 @@
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
   "/": "pages/index.js",
-  "/NASDAQ": "pages/NASDAQ.js",
-  "/symbol/[symbol]/overview": "pages/symbol/[symbol]/overview.js",
-  "/SP500": "pages/SP500.js",
   "/DOW": "pages/DOW.js"
 }

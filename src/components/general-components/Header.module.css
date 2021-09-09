@@ -14,8 +14,16 @@
 .header-menu {
   display: flex;
   position: relative;
-  margin: 0rem 1rem;
-  margin-left: 2rem;
+
+  margin-left: 1.5rem;
+  cursor: pointer;
+}
+
+.header-menu2 {
+  display: flex;
+  position: relative;
+  margin: 0rem 0.25rem;
+  cursor: pointer;
 }
 .markets-menu {
   font-weight: bold;
@@ -30,12 +38,23 @@
 .menu-dropdown {
   position: absolute;
   width: 12rem;
-  top: 1.4rem;
+  top: 2rem;
+  left: -1rem;
   z-index: 21;
   /* padding-top: 2rem; */
-  background-color: white;
+  background-color: rgb(238, 238, 238);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
+}
+.menu-dropdown::after {
+  content: " ";
+  position: absolute;
+  left: 20px;
+  top: -10px;
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid rgb(238, 238, 238);
 }
 .header-menu-markets {
   font-weight: bold;
@@ -45,7 +64,7 @@
   cursor: pointer;
 }
 .header-menu-markets:hover {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(230, 230, 230);
   border-radius: 5px;
 }
 .logo {
@@ -101,4 +120,9 @@
 }
 .portfolio-btn:hover {
   background-color: #2860a1;
+}
+.drop-wrapper {
+  height: 10rem;
+  width: 10rem;
+  position: absolute;
 }

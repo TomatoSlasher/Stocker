@@ -12,6 +12,7 @@ const Header: React.FC = () => {
     localStorage.setItem("cashBalance", startingBalance);
   }
   const [marketsDropdown, setMarketsDropdown] = useState(false);
+  const [IndexDropDown, setindexDropDown] = useState(false);
   const [showIndex, setShowIndex] = useState(true);
   const router = useRouter();
   console.log(router);
@@ -67,21 +68,60 @@ const Header: React.FC = () => {
                 </svg>
               </h3>
               {marketsDropdown && (
-                <div className={classes["menu-dropdown"]}>
-                  <Link href="/most-active">
-                    <p className={classes["header-menu-markets"]}>
-                      Most Active
-                    </p>
-                  </Link>
+                <div className={classes["drop-wrapper"]}>
+                  <div className={classes["menu-dropdown"]}>
+                    <Link href="/most-active">
+                      <p className={classes["header-menu-markets"]}>
+                        Most Active
+                      </p>
+                    </Link>
 
-                  <Link href="/most-gainers">
-                    <p className={classes["header-menu-markets"]}>
-                      Most Gainer
-                    </p>
-                  </Link>
-                  <Link href="/most-losers">
-                    <p className={classes["header-menu-markets"]}>Most Loser</p>
-                  </Link>
+                    <Link href="/most-gainers">
+                      <p className={classes["header-menu-markets"]}>
+                        Most Gainer
+                      </p>
+                    </Link>
+                    <Link href="/most-losers">
+                      <p className={classes["header-menu-markets"]}>
+                        Most Loser
+                      </p>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div
+              onMouseEnter={() => setindexDropDown(true)}
+              onMouseLeave={() => setindexDropDown(false)}
+              className={classes["header-menu2"]}
+            >
+              <h3 className={classes["markets-menu"]}>
+                Indexes
+                <svg
+                  width="25"
+                  height="25"
+                  viewBox="0 0 48 48"
+                  data-icon="caret-down"
+                >
+                  <path d="M24.21 33.173l12.727-12.728c.78-.78.78-2.048 0-2.828-.78-.78-2.047-.78-2.828 0l-9.9 9.9-9.9-9.9c-.78-.78-2.047-.78-2.827 0-.78.78-.78 2.047 0 2.828L24.21 33.173z"></path>
+                </svg>
+              </h3>
+              {IndexDropDown && (
+                <div className={classes["drop-wrapper"]}>
+                  <div className={classes["menu-dropdown"]}>
+                    <Link href="/SP500">
+                      <p className={classes["header-menu-markets"]}>S&P 500</p>
+                    </Link>
+
+                    <Link href="/DOW">
+                      <p className={classes["header-menu-markets"]}>
+                        Dow Jones 30
+                      </p>
+                    </Link>
+                    <Link href="/NASDAQ">
+                      <p className={classes["header-menu-markets"]}>Nasdaq</p>
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
