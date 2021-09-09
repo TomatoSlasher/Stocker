@@ -42,7 +42,9 @@
   transform: scale(1.01);
 }
 .stock-contianer:hover .symbol,
-.stock-contianer:hover .symbol2 {
+.stock-contianer:hover .symbol2,
+.stock-contianer:hover .sector,
+.stock-contianer:hover .change2 p {
   color: #0062cf !important;
 }
 .symbol {
@@ -60,6 +62,9 @@
 .price {
   width: 3rem;
 }
+.sector {
+  width: 15rem;
+}
 .price-up {
   color: #34a853;
   margin: 0rem 0.9rem;
@@ -69,6 +74,10 @@
   margin: 0rem 0.9rem;
 }
 .change {
+  display: flex;
+  width: 10rem;
+}
+.change2 {
   display: flex;
   width: 10rem;
 }

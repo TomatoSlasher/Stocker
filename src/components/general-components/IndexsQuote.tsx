@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import classes from "./IndexQuote.module.css";
 import { createChart } from "lightweight-charts";
 import { useRef } from "react";
-
+import Link from "next/link";
 const IndexesQuote: React.FC = () => {
   const twoDecimal = (val: any) => {
     return val.toFixed(2);
@@ -16,22 +16,22 @@ const IndexesQuote: React.FC = () => {
   useEffect(() => {
     const fetchIndex = async () => {
       const fetchGSPCIndex = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=c32c062e2e731dc049a0374a77ac2c9b`
+        `https://financialmodelingprep.com/api/v3/quote/%5EGSPC?apikey=b2643679ff15b6f250513b29b37b0375`
       );
       const GSPCIndexData = await fetchGSPCIndex.json();
 
       const fetchDowIndex = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=c32c062e2e731dc049a0374a77ac2c9b`
+        `https://financialmodelingprep.com/api/v3/quote/%5EDJI?apikey=b2643679ff15b6f250513b29b37b0375`
       );
       const DowIndexData = await fetchDowIndex.json();
 
       const fetchIXICIndex = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=c32c062e2e731dc049a0374a77ac2c9b`
+        `https://financialmodelingprep.com/api/v3/quote/%5EIXIC?apikey=b2643679ff15b6f250513b29b37b0375`
       );
       const IXICIndexData = await fetchIXICIndex.json();
 
       const fetchRUTIndex = await fetch(
-        `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=c32c062e2e731dc049a0374a77ac2c9b`
+        `https://financialmodelingprep.com/api/v3/quote/%5ERUT?apikey=b2643679ff15b6f250513b29b37b0375`
       );
       const RUTIndexData = await fetchRUTIndex.json();
 
@@ -47,96 +47,14 @@ const IndexesQuote: React.FC = () => {
     fetchIndex();
   }, []);
   useEffect(() => {
-    const fetchIndexHistorical = async (index: string, el: any) => {
+    const fetchIndexHistorical = async (
+      index: string,
+      el: any,
+      key: string
+    ) => {
       if (el.current != null) {
         const fetchGSPCIndex = await fetch(
-          `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=ac54a1b35f7700a8b1bdeb404dc14810`
-        );
-        const GSPCIndexData = await fetchGSPCIndex.json();
-        const historicalData = GSPCIndexData.historical.slice(0, 264);
-
-        const transformToGraphData = historicalData.map(
-          (val: {
-            date: string;
-
-            close: number;
-          }) => {
-            return {
-              time: val.date,
-
-              value: val.close,
-            };
-          }
-        );
-
-        transformToGraphData.reverse();
-
-        if (el.current.childNodes[1]) {
-          el.current.childNodes[1].remove();
-        }
-        const chart: any = createChart(el.current, {
-          width: 180,
-          height: 100,
-        });
-        chart.applyOptions({
-          timeScale: {
-            visible: false,
-          },
-          crosshair: {
-            vertLine: { visible: false },
-            horzLine: { visible: false },
-          },
-
-          handleScroll: false,
-          handleScale: false,
-          priceScale: {
-            visible: false,
-          },
-
-          grid: {
-            vertLines: {
-              visible: false,
-            },
-            horzLines: {
-              visible: false,
-            },
-          },
-        });
-        chart.timeScale().fitContent();
-        const areaSeries = chart.addAreaSeries();
-        areaSeries.setData(transformToGraphData);
-        areaSeries.applyOptions({
-          priceLineWidth: 0,
-          priceLineStyle: 2,
-          crosshairMarkerVisible: false,
-          priceLineVisible: false,
-        });
-        const dataLastEl = transformToGraphData.length - 1;
-
-        if (
-          transformToGraphData[0].value < transformToGraphData[dataLastEl].value
-        ) {
-          areaSeries.applyOptions({
-            lineColor: "#34A853",
-            topColor: "rgba(52, 168, 83, 0.4)",
-            bottomColor: "rgba(52, 168, 83, 0)",
-
-            lineWidth: 3,
-          });
-        } else {
-          areaSeries.applyOptions({
-            lineColor: "#EA4335",
-            topColor: "rgba(234, 67, 53, 0.4)",
-            bottomColor: "rgba(234, 67, 53, 0)",
-            lineWidth: 3,
-          });
-        }
-      } else return;
-    };
-    const fetchIndexHistorical2 = async (index: string, el: any) => {
-      if (el.current != null) {
-        const fetchGSPCIndex = await fetch(
-          `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=66e243b7036752eb5c9078cdacfe8625`
+          `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=${key}`
         );
         const GSPCIndexData = await fetchGSPCIndex.json();
         const historicalData = GSPCIndexData.historical.slice(0, 264);
@@ -220,10 +138,10 @@ const IndexesQuote: React.FC = () => {
       } else return;
     };
 
-    fetchIndexHistorical("GSPC", SPRef);
-    fetchIndexHistorical("DJI", DOWRef);
-    fetchIndexHistorical2("IXIC", NASRef);
-    fetchIndexHistorical2("RUT", RUTRef);
+    fetchIndexHistorical("GSPC", SPRef, "ac54a1b35f7700a8b1bdeb404dc14810");
+    fetchIndexHistorical("DJI", DOWRef, "ac54a1b35f7700a8b1bdeb404dc14810");
+    fetchIndexHistorical("IXIC", NASRef, "66e243b7036752eb5c9078cdacfe8625");
+    fetchIndexHistorical("RUT", RUTRef, "66e243b7036752eb5c9078cdacfe8625");
   }, [currentIndexData]);
   return (
     <div className="indexes-container">
@@ -231,7 +149,10 @@ const IndexesQuote: React.FC = () => {
         <ul className={classes["index-ul"]}>
           <li className={classes["index-li"]}>
             <div className={classes["index-text-container"]}>
-              <h3 className={classes["index-name"]}>S&P 500</h3>
+              <Link href="/SP500">
+                <h3 className={classes["index-name"]}>S&P 500</h3>
+              </Link>
+
               <p className={classes["index-price"]}>
                 {NumberFormat.format(twoDecimal(+currentIndexData[0].price))}
               </p>
@@ -264,7 +185,10 @@ const IndexesQuote: React.FC = () => {
           </li>
           <li className={classes["index-li"]}>
             <div className={classes["index-text-container"]}>
-              <h3 className={classes["index-name"]}>Dow 30</h3>
+              <Link href="/DOW">
+                <h3 className={classes["index-name"]}>Dow 30</h3>
+              </Link>
+
               <p className={classes["index-price"]}>
                 {NumberFormat.format(twoDecimal(+currentIndexData[1].price))}
               </p>
@@ -296,7 +220,10 @@ const IndexesQuote: React.FC = () => {
           </li>
           <li className={classes["index-li"]}>
             <div className={classes["index-text-container"]}>
-              <h3 className={classes["index-name"]}>Nasdaq</h3>
+              <Link href="/NASDAQ">
+                <h3 className={classes["index-name"]}>Nasdaq</h3>
+              </Link>
+
               <p className={classes["index-price"]}>
                 {NumberFormat.format(twoDecimal(+currentIndexData[2].price))}
               </p>
@@ -328,7 +255,7 @@ const IndexesQuote: React.FC = () => {
           </li>
           <li className={classes["index-li"]}>
             <div className={classes["index-text-container"]}>
-              <h3 className={classes["index-name"]}>Russell 2000</h3>
+              <h3 className={classes["index-name2"]}>Russell 2000</h3>
               <p className={classes["index-price"]}>
                 {NumberFormat.format(twoDecimal(+currentIndexData[3].price))}
               </p>

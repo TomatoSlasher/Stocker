@@ -23,6 +23,24 @@
       "static/chunks/src_components_Quote-Sections_Quote-Info_TradeStock_tsx.js"
     ]
   },
+  "DOW.tsx -> ../components/Quote-Sections/Quote-Chart/AdvancedChart": {
+    "id": "./src/components/Quote-Sections/Quote-Chart/AdvancedChart.tsx",
+    "files": [
+      "static/chunks/src_components_Quote-Sections_Quote-Chart_AdvancedChart_tsx.js"
+    ]
+  },
+  "NASDAQ.tsx -> ../components/Quote-Sections/Quote-Chart/AdvancedChart": {
+    "id": "./src/components/Quote-Sections/Quote-Chart/AdvancedChart.tsx",
+    "files": [
+      "static/chunks/src_components_Quote-Sections_Quote-Chart_AdvancedChart_tsx.js"
+    ]
+  },
+  "SP500.tsx -> ../components/Quote-Sections/Quote-Chart/AdvancedChart": {
+    "id": "./src/components/Quote-Sections/Quote-Chart/AdvancedChart.tsx",
+    "files": [
+      "static/chunks/src_components_Quote-Sections_Quote-Chart_AdvancedChart_tsx.js"
+    ]
+  },
   "_app.tsx -> ../components/general-components/Header": {
     "id": "./src/components/general-components/Header.tsx",
     "files": [
@@ -33,24 +51,6 @@
     "id": "./src/components/Home-Components/ChartDate.tsx",
     "files": [
       "static/chunks/src_components_Home-Components_ChartDate_tsx.js"
-    ]
-  },
-  "portfolio.tsx -> ../components/portfolio-components/AccountBalance": {
-    "id": "./src/components/portfolio-components/AccountBalance.tsx",
-    "files": [
-      "static/chunks/src_components_portfolio-components_AccountBalance_tsx.js"
-    ]
-  },
-  "portfolio.tsx -> ../components/portfolio-components/CurrentPortfolio": {
-    "id": "./src/components/portfolio-components/CurrentPortfolio.tsx",
-    "files": [
-      "static/chunks/src_components_portfolio-components_CurrentPortfolio_tsx.js"
-    ]
-  },
-  "portfolio.tsx -> ../components/portfolio-components/PortfolioHistory": {
-    "id": "./src/components/portfolio-components/PortfolioHistory.tsx",
-    "files": [
-      "static/chunks/src_components_portfolio-components_PortfolioHistory_tsx.js"
     ]
   }
 }

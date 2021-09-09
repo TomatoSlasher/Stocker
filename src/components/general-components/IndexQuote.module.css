@@ -18,8 +18,15 @@
 }
 .index-name {
   margin-bottom: 0.5rem;
+  color: #016ae2;
+  cursor: pointer;
 }
-
+.index-name:hover {
+  color: #0458b8;
+}
+.index-name2 {
+  margin-bottom: 0.5rem;
+}
 .index-price {
   margin-bottom: 0.5rem;
 }
