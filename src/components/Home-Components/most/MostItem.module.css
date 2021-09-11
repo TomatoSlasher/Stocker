@@ -92,3 +92,27 @@
   height: 2.5rem;
   transition: all 0.2s ease-in-out;
 }
+@media only screen and (max-width: 500px) {
+  .most-item-container {
+    width: 12rem;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .most-item-container {
+    width: 10rem;
+  }
+  .most-item-name {
+    font-size: 14px;
+  }
+  .slider-container {
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (max-width: 370px) {
+  .most-item-container {
+    width: 8rem;
+  }
+  .most-item-name {
+    font-size: 12px;
+  }
+}
