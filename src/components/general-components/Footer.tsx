@@ -32,7 +32,7 @@ const Footer = () => {
 
           <div className={classes["footer-links-container"]}>
             <div className={classes["footer-links"]}>
-              <h2>Markets</h2>
+              <h2 className={classes["about-link"]}>Markets</h2>
               <Link href="/most-active">
                 <p className={classes["markets-link"]}>Most Active</p>
               </Link>
@@ -44,11 +44,13 @@ const Footer = () => {
               </Link>
             </div>
             <Link href="/about">
-              <h2 className={classes["about-link"]}>About</h2>
+              <div className={classes["footer-links"]}>
+                <h2 className={classes["about-link"]}>About</h2>
+              </div>
             </Link>
 
             <div className={classes["footer-links"]}>
-              <h2>Indexes</h2>
+              <h2 className={classes["about-link"]}>Indexes</h2>
               <Link href="/most-active">
                 <p className={classes["markets-link"]}>S&P 500</p>
               </Link>
