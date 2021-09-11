@@ -25,3 +25,53 @@
   font-size: 20px;
   margin-top: 1.5rem;
 }
+@media only screen and (max-width: 1300px) {
+  .hero-container {
+    margin: 1rem;
+  }
+  .hero-container h1 {
+    width: 30rem;
+  }
+}
+@media only screen and (max-width: 980px) {
+  .hero-container h1 {
+    font-size: 45px;
+    width: 25rem;
+    line-height: 3rem;
+  }
+}
+@media only screen and (max-width: 890px) {
+  .hero-container h1 {
+    font-size: 37px;
+    width: 20rem;
+    line-height: 2.5rem;
+  }
+}
+@media only screen and (max-width: 730px) {
+  .hero-container h1 {
+    font-size: 57px;
+    width: 100%;
+    line-height: 4rem;
+    text-align: center;
+  }
+  .hero-small-p {
+    text-align: center;
+  }
+  .hero-overview {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .hero-container h1 {
+    font-size: 50px;
+
+    line-height: 3rem;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .hero-container h1 {
+    font-size: 40px;
+
+    line-height: 2.5rem;
+  }
+}

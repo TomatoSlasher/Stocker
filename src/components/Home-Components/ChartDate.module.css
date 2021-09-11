@@ -1,7 +1,7 @@
 .chart-dates-container {
   /* display: flex; */
   margin: 1rem 0.5rem;
-  width: 100%;
+  width: auto;
 }
 
 .chart-dates-ul {
@@ -63,7 +63,7 @@
 }
 .chart-whole {
   height: 20rem;
-  width: 36.5rem;
+  width: auto;
 }
 .active-date {
   list-style-type: none;

@@ -1,27 +1,80 @@
 import React, { useEffect, useState } from "react";
 import { createChart } from "lightweight-charts";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 
 import classes from "./ChartDate.module.css";
 import classes2 from "./StockHeader.module.css";
 import { useRef } from "react";
+import { isRejectedWithValue } from "@reduxjs/toolkit";
 const ChartDate: React.FC = () => {
   const ticker = useSelector((state: { ticker: string }) => {
     return state.ticker;
   });
+  const isTablet = useMediaQuery({ query: "(max-width: 1150px)" });
+  const isTablet2 = useMediaQuery({ query: "(max-width: 1050px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 820px)" });
+  const isMobile2 = useMediaQuery({ query: "(max-width: 730px)" });
+  const isMobile3 = useMediaQuery({ query: "(max-width: 620px)" });
+  const isMobile4 = useMediaQuery({ query: "(max-width: 500px)" });
+  const isMobile5 = useMediaQuery({ query: "(max-width: 420px)" });
+
+  const isLaptop = useMediaQuery({ query: "(min-width: 1151px)" });
 
   const [dateChange, setDateChange] = useState(22);
   const [isLoading, setIsLoading] = useState(false);
   const [graphData, setGraphData]: any = useState();
   const chartRef = useRef<any>(null);
   const [activeDate, setActiveDate] = useState("1M");
+  const [chartWidth, setChartWidth] = useState(570);
+  const [chartHeight, setChartHeight] = useState(250);
+
+  useEffect(() => {
+    if (isLaptop) {
+      setChartWidth(570);
+    }
+    if (isTablet) {
+      setChartWidth(510);
+    }
+    if (isTablet2) {
+      setChartWidth(430);
+    }
+    if (isMobile) {
+      setChartWidth(350);
+      setChartHeight(175);
+    } else {
+      setChartHeight(250);
+    }
+
+    if (isMobile2) {
+      setChartWidth(570);
+    }
+    if (isMobile3) {
+      setChartWidth(460);
+    }
+    if (isMobile4) {
+      setChartWidth(370);
+    }
+    if (isMobile5) {
+      setChartWidth(330);
+    }
+  }, [
+    isTablet,
+    isLaptop,
+    isTablet2,
+    isMobile,
+    isMobile2,
+    isMobile3,
+    isMobile4,
+    isMobile5,
+  ]);
 
   useEffect(() => {
     if (chartRef.current.childNodes[1] != null) {
       chartRef.current.childNodes[1].remove();
       setIsLoading(true);
     }
-  }, [dateChange, ticker]);
+  }, [dateChange, ticker, chartWidth, chartHeight]);
   useEffect(() => {
     const fetchDataHandler = async () => {
       const fetchData = await fetch(
@@ -51,8 +104,8 @@ const ChartDate: React.FC = () => {
       transformToGraphData.reverse();
 
       const chart: any = createChart(chartRef.current, {
-        width: 570,
-        height: 250,
+        width: chartWidth,
+        height: chartHeight,
         layout: {
           fontSize: 12,
           fontFamily: "Montserrat, sans-serif",
@@ -104,7 +157,7 @@ const ChartDate: React.FC = () => {
       }
     }
     setIsLoading(false);
-  }, [dateChange, graphData]);
+  }, [dateChange, graphData, chartWidth, chartHeight]);
   return (
     <div className={classes["chart-whole"]}>
       {isLoading ? (

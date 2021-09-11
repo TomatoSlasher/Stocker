@@ -1,5 +1,5 @@
 .stock-content-container {
-  width: 36.5rem;
+  width: 100%;
 }
 .stock-header-wrapper {
   display: flex;
@@ -76,5 +76,12 @@
     width: 72px;
     height: 72px;
     opacity: 0;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .more-info-btn {
+    height: 2.5rem;
+    margin: 2.5rem 1rem;
+    padding: 0 0.5rem;
   }
 }

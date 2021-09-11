@@ -4,32 +4,22 @@
   align-items: center;
   margin-bottom: 2rem;
 }
-.slider-container svg {
-  margin: 1rem 0rem;
-  cursor: pointer;
-  width: 1.5rem;
-  border-radius: 100%;
-  background-color: rgb(223, 223, 223);
-  padding: 0.75rem 1rem;
-}
-.slider-container svg:hover {
-  background-color: rgb(201, 201, 201);
-}
 
 .slider-ul {
-  overflow: hidden;
-  width: 91vw;
+  overflow-x: auto;
+  width: 95vw;
   background-color: rgb(221, 221, 221);
   margin: 1rem 1rem;
+
   border-radius: 10px;
   -webkit-mask: linear-gradient(
       to left,
       rgba(245, 0, 0, 0) 0%,
-      rgb(214, 21, 21, 1) 40%
+      rgb(214, 21, 21, 1) 20%
     ),
-    linear-gradient(to left, rgba(245, 0, 0, 0) 0%, rgb(214, 21, 21, 1) 20%);
-  mask: linear-gradient(to left, rgba(245, 0, 0, 0) 0%, rgb(214, 21, 21, 1) 40%),
-    linear-gradient(to left, rgba(245, 0, 0, 0) 0%, rgb(214, 21, 21, 1) 20%);
+    linear-gradient(to left, rgba(245, 0, 0, 0) 0%, rgb(214, 21, 21, 1) 10%);
+  mask: linear-gradient(to left, rgba(245, 0, 0, 0) 0%, rgb(214, 21, 21, 1) 20%),
+    linear-gradient(to left, rgba(245, 0, 0, 0) 0%, rgb(214, 21, 21, 1) 10%);
 }
 .most-ul {
   display: flex;

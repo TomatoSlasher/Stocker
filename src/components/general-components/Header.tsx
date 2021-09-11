@@ -141,7 +141,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      {showIndex ? <IndexesQuote /> : ""}
+      {/* {showIndex ? <IndexesQuote /> : ""} */}
     </Fragment>
   );
 };
