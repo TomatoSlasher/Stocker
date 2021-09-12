@@ -8,22 +8,53 @@ const OverViewChart: React.FC<any> = (props) => {
   const dataSixMonths = props.data.values.slice(0, dateChange);
   const chartContainerRef = useRef<any>(null);
   const [activeDate, setActiveDate] = useState("1M");
-  const [chartHeight, setchartHeight] = useState(515);
+  const [chartWidth, setchartWidth] = useState(515);
+  const [chartHeight, setChartHeight] = useState(props.height);
   const isLaptop = useMediaQuery({ query: "(min-width: 981px)" });
 
   const isMobile = useMediaQuery({ query: "(max-width: 980px)" });
   const isMobile2 = useMediaQuery({ query: "(max-width: 860px)" });
+  const isMobile3 = useMediaQuery({ query: "(max-width: 770px)" });
+  const isMobile4 = useMediaQuery({ query: "(max-width: 610px)" });
+  const isMobile5 = useMediaQuery({ query: "(max-width: 550px)" });
+  const isMobile6 = useMediaQuery({ query: "(max-width: 440px)" });
+
   useEffect(() => {
     if (isLaptop) {
-      setchartHeight(515);
+      setchartWidth(515);
     }
     if (isMobile) {
-      setchartHeight(400);
+      setchartWidth(400);
     }
     if (isMobile2) {
-      setchartHeight(600);
+      setchartWidth(690);
     }
-  }, [isMobile, isMobile2, isLaptop]);
+    if (isMobile3) {
+      setchartWidth(550);
+    }
+    if (isMobile4) {
+      setchartWidth(500);
+      setChartHeight(250);
+    } else setChartHeight(props.height);
+
+    if (isMobile5) {
+      setchartWidth(400);
+      setChartHeight(200);
+    } else setChartHeight(props.height);
+
+    if (isMobile6) {
+      setchartWidth(330);
+      setChartHeight(230);
+    } else setChartHeight(props.height);
+  }, [
+    isMobile,
+    isMobile2,
+    isLaptop,
+    isMobile3,
+    isMobile4,
+    isMobile5,
+    isMobile6,
+  ]);
 
   const transformToGraphData = dataSixMonths.map(
     (val: {
@@ -40,8 +71,8 @@ const OverViewChart: React.FC<any> = (props) => {
       chartContainerRef.current.childNodes[1].remove();
     }
     const chart: any = createChart(chartContainerRef.current, {
-      width: chartHeight,
-      height: props.height,
+      width: chartWidth,
+      height: chartHeight,
       layout: {
         fontSize: 12,
         fontFamily: "Montserrat, sans-serif",
@@ -91,7 +122,7 @@ const OverViewChart: React.FC<any> = (props) => {
         lineWidth: 3,
       });
     }
-  }, [dateChange, chartHeight]);
+  }, [dateChange, chartWidth, chartHeight]);
 
   return (
     <div className={classes["chart-dates-container"]} ref={chartContainerRef}>

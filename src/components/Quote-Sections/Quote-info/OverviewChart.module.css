@@ -33,3 +33,30 @@
   border-bottom: 3px solid #0062cf;
   padding: 0rem 0.5rem;
 }
+@media only screen and (max-width: 860px) {
+  .chart-dates-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 45rem;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .chart-dates-container {
+    width: 35rem;
+  }
+}
+@media only screen and (max-width: 610px) {
+  .chart-dates-container {
+    width: 32rem;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .chart-dates-container {
+    width: 25rem;
+  }
+}
+@media only screen and (max-width: 440px) {
+  .chart-dates-container {
+    width: 21rem;
+  }
+}
