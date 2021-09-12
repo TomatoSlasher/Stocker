@@ -55,13 +55,16 @@
   background-color: rgb(84, 253, 84);
   padding: 1rem;
   border-radius: 100%;
-  margin-bottom: 2rem;
+  margin: 2rem 0rem;
 }
 .order-icon-sell {
   background-color: rgb(255, 61, 61);
   padding: 1rem;
   border-radius: 100%;
-  margin-bottom: 2rem;
+  margin: 2rem 0rem;
+}
+.order-details {
+  margin-bottom: 3rem;
 }
 .order-details-title {
   margin-top: 1rem;

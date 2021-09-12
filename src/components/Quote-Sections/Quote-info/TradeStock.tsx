@@ -215,7 +215,7 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const cashBalance = localStorage.getItem("cashBalance") || "[]";
 
   const twoDecimal = (val: any) => {
-    return val.toFixed(2);
+    return val.toFixed(1);
   };
 
   const NumberFormat = new Intl.NumberFormat("en-US");

@@ -18,34 +18,46 @@ const OverViewChart: React.FC<any> = (props) => {
   const isMobile4 = useMediaQuery({ query: "(max-width: 610px)" });
   const isMobile5 = useMediaQuery({ query: "(max-width: 550px)" });
   const isMobile6 = useMediaQuery({ query: "(max-width: 440px)" });
+  const isMobile7 = useMediaQuery({ query: "(max-width: 400px)" });
 
   useEffect(() => {
-    if (isLaptop) {
-      setchartWidth(515);
-    }
-    if (isMobile) {
-      setchartWidth(400);
-    }
-    if (isMobile2) {
-      setchartWidth(690);
-    }
-    if (isMobile3) {
-      setchartWidth(550);
-    }
-    if (isMobile4) {
-      setchartWidth(500);
-      setChartHeight(250);
-    } else setChartHeight(props.height);
+    if (props.height != 180) {
+      if (isLaptop) {
+        setchartWidth(515);
+      }
+      if (isMobile) {
+        setchartWidth(400);
+      }
+      if (isMobile2) {
+        setchartWidth(690);
+      }
+      if (isMobile3) {
+        setchartWidth(550);
+      }
+      if (isMobile4) {
+        setchartWidth(500);
+        setChartHeight(250);
+      } else setChartHeight(props.height);
 
-    if (isMobile5) {
-      setchartWidth(400);
-      setChartHeight(200);
-    } else setChartHeight(props.height);
+      if (isMobile5) {
+        setchartWidth(400);
+      } else setChartHeight(props.height);
 
-    if (isMobile6) {
-      setchartWidth(330);
-      setChartHeight(230);
-    } else setChartHeight(props.height);
+      if (isMobile6) {
+        setchartWidth(330);
+      } else setChartHeight(props.height);
+    }
+    if (props.height == 180) {
+      if (isMobile5) {
+        setchartWidth(400);
+      }
+      if (isMobile6) {
+        setchartWidth(380);
+      }
+      if (isMobile7) {
+        setchartWidth(355);
+      }
+    }
   }, [
     isMobile,
     isMobile2,
@@ -54,6 +66,7 @@ const OverViewChart: React.FC<any> = (props) => {
     isMobile4,
     isMobile5,
     isMobile6,
+    isMobile7,
   ]);
 
   const transformToGraphData = dataSixMonths.map(
@@ -125,7 +138,14 @@ const OverViewChart: React.FC<any> = (props) => {
   }, [dateChange, chartWidth, chartHeight]);
 
   return (
-    <div className={classes["chart-dates-container"]} ref={chartContainerRef}>
+    <div
+      className={
+        props.height != 180
+          ? classes["chart-dates-container"]
+          : classes["chart-dates-container2"]
+      }
+      ref={chartContainerRef}
+    >
       <div className={classes["chart-dates-wrapper"]}>
         <ul className={classes["chart-dates-ul"]}>
           <li
