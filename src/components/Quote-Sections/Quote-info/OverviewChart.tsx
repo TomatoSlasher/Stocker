@@ -1,12 +1,30 @@
 import { useState, useRef, useEffect } from "react";
 import { createChart } from "lightweight-charts";
 import classes from "./OverviewChart.module.css";
+import { useMediaQuery } from "react-responsive";
 
 const OverViewChart: React.FC<any> = (props) => {
   const [dateChange, setDateChange] = useState(21);
   const dataSixMonths = props.data.values.slice(0, dateChange);
   const chartContainerRef = useRef<any>(null);
   const [activeDate, setActiveDate] = useState("1M");
+  const [chartHeight, setchartHeight] = useState(515);
+  const isLaptop = useMediaQuery({ query: "(min-width: 981px)" });
+
+  const isMobile = useMediaQuery({ query: "(max-width: 980px)" });
+  const isMobile2 = useMediaQuery({ query: "(max-width: 860px)" });
+  useEffect(() => {
+    if (isLaptop) {
+      setchartHeight(515);
+    }
+    if (isMobile) {
+      setchartHeight(400);
+    }
+    if (isMobile2) {
+      setchartHeight(600);
+    }
+  }, [isMobile, isMobile2, isLaptop]);
+
   const transformToGraphData = dataSixMonths.map(
     (val: {
       datetime: string;
@@ -22,7 +40,7 @@ const OverViewChart: React.FC<any> = (props) => {
       chartContainerRef.current.childNodes[1].remove();
     }
     const chart: any = createChart(chartContainerRef.current, {
-      width: 515,
+      width: chartHeight,
       height: props.height,
       layout: {
         fontSize: 12,
@@ -73,7 +91,7 @@ const OverViewChart: React.FC<any> = (props) => {
         lineWidth: 3,
       });
     }
-  }, [dateChange]);
+  }, [dateChange, chartHeight]);
 
   return (
     <div className={classes["chart-dates-container"]} ref={chartContainerRef}>

@@ -161,3 +161,27 @@
   justify-content: space-between;
   align-items: center;
 }
+@media only screen and (max-width: 470px) {
+  .trade-btn-container {
+    background-color: rgba(128, 128, 128, 0.7);
+    padding: 0.75rem 0.5rem;
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    width: 96.5%;
+    box-shadow: 0 0 70px 10px rgba(1, 1, 1, 0.5);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .trade-btn {
+    font-size: 25px;
+    width: 95%;
+    margin: 0rem 0.75rem;
+  }
+}

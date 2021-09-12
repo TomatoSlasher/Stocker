@@ -223,7 +223,7 @@ const TradeStock: React.FC<{ data: any; historicalData: any }> = (props) => {
   const priceAmount = props.data[0].price * currentAmount;
   return (
     <Fragment>
-      <div>
+      <div className={classes["trade-btn-container"]}>
         <button className={classes["trade-btn"]} onClick={overlayHandler}>
           Trade
         </button>

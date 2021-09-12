@@ -21,7 +21,7 @@ const OverviewDescription: React.FC<{ description: string }> = (props) => {
                 onClick={() => setshowFull(false)}
                 className={classes["more-desc"]}
               >
-                - less
+                less
               </span>
             </p>
           ) : (
@@ -31,7 +31,7 @@ const OverviewDescription: React.FC<{ description: string }> = (props) => {
                 onClick={() => setshowFull(true)}
                 className={classes["more-desc"]}
               >
-                + more
+                more
               </span>
             </p>
           )}

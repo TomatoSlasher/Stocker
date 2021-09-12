@@ -51,3 +51,24 @@
 
   border-radius: 5px;
 }
+@media only screen and (max-width: 860px) {
+  .overview-container {
+    display: block;
+  }
+  .overview-content-container {
+    width: auto;
+    margin-bottom: 2rem;
+  }
+  .overview-header-container {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 470px) {
+  .overview-header-container {
+    display: block;
+  }
+  .overview-content-container {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+}

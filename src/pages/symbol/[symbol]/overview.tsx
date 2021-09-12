@@ -13,7 +13,7 @@ const Financials = (props: any) => {
         historicalData={props.historicalData}
         image={props.image}
       />
-      <OverviewGeneral data={props.symbol} general={props.image} />
+      {/* <OverviewGeneral data={props.symbol} general={props.image} /> */}
     </div>
   );
 };

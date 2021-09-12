@@ -16,3 +16,13 @@
 .more-desc:hover {
   background-color: #1f78dd;
 }
+@media only screen and (max-width: 860px) {
+  .overview-description {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .overview-description {
+    font-size: 16px;
+  }
+}
