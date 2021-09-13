@@ -45,6 +45,7 @@
 }
 .links-header {
   padding: 0.5rem 1rem;
+  color: #0062cf;
 }
 .links-header:hover {
   background-color: rgb(236, 236, 236);
@@ -62,6 +63,36 @@
   .overview-header-container {
     width: auto;
   }
+
+}
+@media only screen and (max-width: 540px) {
+.quote-section-ul {
+  padding: 1.5rem 1rem;
+}
+}
+@media only screen and (max-width: 510px) {
+.quote-section-ul {
+  padding: 1.5rem .5rem;
+}
+.quote-section-ul li {
+  font-size: 16px;
+}
+}
+@media only screen and (max-width: 450px) {
+.quote-section-ul {
+  padding: 1rem .5rem;
+}
+.quote-section-ul li {
+  font-size: 16px;
+}
+.active-path {
+  padding: 0.5rem 0rem;
+  padding-left:.5rem;
+}
+.links-header {
+  padding: 0.5rem 0rem;
+  padding-left:.5rem;
+}
 }
 @media only screen and (max-width: 470px) {
   .overview-header-container {

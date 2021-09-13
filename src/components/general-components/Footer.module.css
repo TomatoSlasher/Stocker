@@ -219,6 +219,11 @@
     height: 45rem;
   }
 }
+@media only screen and (max-width: 470px) {
+.footer-container {
+    height: 50rem;
+  }
+}
 @media only screen and (max-width: 410px) {
   .built-with img {
     width: 3rem;
@@ -233,9 +238,9 @@
   }
 }
 @media only screen and (max-width: 370px) {
-  .footer-container {
+  /* .footer-container {
     height: 47rem;
-  }
+  } */
   .footer-links:nth-child(2) {
     text-align: center;
   }

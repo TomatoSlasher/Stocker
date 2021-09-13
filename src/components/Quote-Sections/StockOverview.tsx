@@ -48,7 +48,7 @@ const StockOverview: React.FC<any> = (props) => {
           <OverviewChart data={props.historicalData} height={310} />
         </div>
       </div>
-      {/* <div className={classes["quote-section"]}>
+      <div className={classes["quote-section"]}>
         <ul className={classes["quote-section-ul"]}>
           <Link href={`/symbol/${props.symbol.Symbol}/overview`}>
             <li
@@ -95,7 +95,7 @@ const StockOverview: React.FC<any> = (props) => {
             </li>
           </Link>
         </ul>
-      </div> */}
+      </div>
     </Fragment>
   );
 };
