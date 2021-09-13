@@ -74,12 +74,12 @@
 }
 .built-with img {
   margin: 0rem 1rem;
-  width: 5rem;
+  width: 4rem;
 }
 .next-img {
   margin-top: 0.3rem;
-  height: 5.5rem;
-  width: 7.5rem !important;
+  height: 5rem;
+  width: 7rem !important;
 }
 .typescript-img {
   border-radius: 5px;
@@ -220,7 +220,7 @@
   }
 }
 @media only screen and (max-width: 470px) {
-.footer-container {
+  .footer-container {
     height: 50rem;
   }
 }

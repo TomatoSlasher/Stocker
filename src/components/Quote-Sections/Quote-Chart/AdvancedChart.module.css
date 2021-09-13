@@ -7,9 +7,14 @@
 .chart-dates-container {
   margin: 1rem 0.5rem;
   background-color: white;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   border-radius: 5px;
   margin: 1rem 1rem;
+}
+.advanced-chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .chart-dates-wrapper {
   display: flex;
@@ -55,7 +60,7 @@
 .chart-type-container {
   position: absolute;
   z-index: 20;
-  left: 2rem;
+  left: 0rem;
   width: 10rem;
   background-color: rgb(245, 245, 245);
   padding: 0.5rem;
@@ -65,7 +70,7 @@
 .chart-type-container::after {
   content: " ";
   position: absolute;
-  left: 20px;
+  left: 25px;
   top: -10px;
   border-top: none;
   border-right: 10px solid transparent;
@@ -99,4 +104,47 @@
 .active-chart:hover {
   background-color: rgb(223, 223, 223);
   border-radius: 5px;
+}
+@media only screen and (max-width: 750px) {
+  .chart-dates-wrapper {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .chart-dates-ul {
+    width: 98%;
+  }
+  .chart-type-container {
+    top: 3rem;
+    left: 8.3rem;
+  }
+  .active-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .active-chart {
+    width: 35vw;
+  }
+  .chart-dates-wrapper {
+    display: block;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .active-chart {
+    width: 40vw;
+  }
+  .chart-type-container {
+    left: 6.6rem;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .active-chart {
+    width: 45vw;
+  }
+  .chart-type-container {
+    left: 6.6rem;
+  }
 }

@@ -38,7 +38,7 @@ const TradeConfirmed: React.FC<{
         <h3>
           {props.data.type == "buy" ? "Bought" : "Sold"} {props.data.amount}{" "}
           {props.data.symbol} {props.data.amount > 1 ? "Shares" : "Share"} at $
-          {props.data.price}
+          {props.data.price.toFixed(2)}
           /share
         </h3>
         <div className={classes["order-statement"]}></div>
@@ -47,7 +47,7 @@ const TradeConfirmed: React.FC<{
           <div className={classes["order-table"]}>
             <div className={classes["order-row"]}>
               <p>Price</p>
-              <p>${props.data.price}</p>
+              <p>${props.data.price.toFixed(2)}</p>
             </div>
             <div className={classes["order-row"]}>
               <p>Quantity</p>
@@ -59,7 +59,7 @@ const TradeConfirmed: React.FC<{
             </div>
             <div className={classes["order-row"]}>
               <p>Order Total</p>
-              <p>${props.data.total}</p>
+              <p>${props.data.total.toFixed(2)}</p>
             </div>
             <div className={classes["order-row"]}>
               <p>Date</p>

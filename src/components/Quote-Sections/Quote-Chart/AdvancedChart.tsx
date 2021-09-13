@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./AdvancedChart.module.css";
 import { createChart } from "lightweight-charts";
+import { useMediaQuery } from "react-responsive";
 
 const AdvancedChart: React.FC<{ chart: any }> = (props) => {
   const [dateChange, setDateChange] = useState(22 * 3);
@@ -8,7 +9,65 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
   const chartContainerRef = useRef<any>(null);
   const [activeDrop, setActiveDrop] = useState(false);
   const [currentChartType, setCurrentChartType] = useState("line");
+  const [chartWidth, setChartWidth] = useState(1300);
+  const [chartHeight, setChartHeight] = useState(550);
 
+  const isFull = useMediaQuery({ query: "(min-width: 1341px)" });
+  const isLaptop = useMediaQuery({ query: "(max-width: 1340px)" });
+  const isLaptop2 = useMediaQuery({ query: "(max-width: 1240px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1040px)" });
+  const isTablet2 = useMediaQuery({ query: "(max-width: 900px)" });
+  const isTablet3 = useMediaQuery({ query: "(max-width: 750px)" });
+  const isTablet4 = useMediaQuery({ query: "(max-width: 650px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 540px)" });
+  const isMobile2 = useMediaQuery({ query: "(max-width: 450px)" });
+
+  useEffect(() => {
+    if (isFull) {
+      setChartWidth(1300);
+      setChartHeight(550);
+    }
+    if (isLaptop) {
+      setChartWidth(1200);
+    }
+    if (isLaptop2) {
+      setChartWidth(1000);
+    }
+    if (isTablet) {
+      setChartWidth(850);
+      setChartHeight(475);
+    }
+    if (isTablet2) {
+      setChartWidth(700);
+      setChartHeight(450);
+    }
+    if (isTablet3) {
+      setChartWidth(600);
+      setChartHeight(400);
+    }
+    if (isTablet4) {
+      setChartWidth(500);
+      setChartHeight(350);
+    }
+    if (isMobile) {
+      setChartWidth(420);
+      setChartHeight(350);
+    }
+    if (isMobile2) {
+      setChartWidth(370);
+      setChartHeight(330);
+    }
+  }, [
+    isLaptop,
+    isFull,
+    isLaptop2,
+    isTablet,
+    isTablet2,
+    isTablet3,
+    isTablet4,
+    isMobile,
+    isMobile2,
+  ]);
   const dropHandler = () => {
     setActiveDrop(!activeDrop);
   };
@@ -64,12 +123,12 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
   chartVolume.reverse();
 
   useEffect(() => {
-    if (chartContainerRef.current.childNodes[1]) {
-      chartContainerRef.current.childNodes[1].remove();
+    if (chartContainerRef.current.childNodes[0]) {
+      chartContainerRef.current.childNodes[0].remove();
     }
     const chart: any = createChart(chartContainerRef.current, {
-      width: 1300,
-      height: 550,
+      width: chartWidth,
+      height: chartHeight,
       layout: {
         fontSize: 12,
         fontFamily: "Montserrat, sans-serif",
@@ -83,6 +142,8 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
 
     var volumeSeries = chart.addHistogramSeries({
       color: "rgba(76, 175, 80, .5)",
+      priceLineVisible: false,
+      lastValueVisible: false,
       priceScaleId: "",
       scaleMargins: {
         top: 0.9,
@@ -196,11 +257,11 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
         });
       }
     }
-  }, [dateChange, chartType]);
+  }, [dateChange, chartType, chartWidth, chartHeight]);
 
   return (
     <div className={classes["chart-container"]}>
-      <div className={classes["chart-dates-container"]} ref={chartContainerRef}>
+      <div className={classes["chart-dates-container"]}>
         <div className={classes["chart-dates-wrapper"]}>
           <ul className={classes["chart-dates-ul"]}>
             <li
@@ -530,6 +591,10 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
             )}
           </div>
         </div>
+        <div
+          className={classes["advanced-chart-container"]}
+          ref={chartContainerRef}
+        ></div>
       </div>
     </div>
   );
