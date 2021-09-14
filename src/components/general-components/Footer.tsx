@@ -69,9 +69,9 @@ const Footer = () => {
         <div className={classes["footer-right"]}>
           <div className={classes["footer-description"]}>
             <p className={classes["footer-p"]}>
-              This project makes you be able to research public companies and
-              view their financials and their historical stock prices etc., and
-              you can also start paper-trading in your portfolio with a starting
+              Stocker makes you be able to research public companies and view
+              their financials and their historical stock prices etc., and you
+              can also start paper-trading in your portfolio with a starting
               balance of $25,000 (all trading data is stored in local storage),
               this website is built with the financialmodelingprep.com API for
               most of the data and with LightWeight Charts library for the

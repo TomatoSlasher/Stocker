@@ -24,3 +24,70 @@
   border-bottom: 4px solid #0062cf;
   padding: 0.25rem 0.5rem;
 }
+@media only screen and (max-width: 790px) {
+  .financials-wrapper {
+    padding: 1rem 3rem;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .financials-wrapper {
+    padding: 1rem 1rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .financials-statment {
+    font-size: 21px;
+  }
+
+  .active-statement {
+    font-size: 21px;
+  }
+}
+@media only screen and (max-width: 530px) {
+  .financials-statment {
+    font-size: 19px;
+  }
+
+  .active-statement {
+    font-size: 19px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .financials-statment {
+    font-size: 18px;
+  }
+
+  .active-statement {
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 470px) {
+  .financials-statment {
+    padding: 0.25rem;
+  }
+
+  .active-statement {
+    padding: 0.25rem;
+  }
+}
+@media only screen and (max-width: 445px) {
+  .financials-statment {
+    font-size: 16px;
+  }
+
+  .active-statement {
+    font-size: 16px;
+  }
+  .financials-wrapper {
+    padding: 1rem 0.5rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .financials-statment {
+    font-size: 15px;
+  }
+
+  .active-statement {
+    font-size: 15px;
+  }
+}
