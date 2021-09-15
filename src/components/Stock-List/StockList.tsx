@@ -11,13 +11,25 @@ const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
       <div className={classes["list-container"]}>
         <div className={classes["stock-contianer-header"]}>
           <div className={classes["name-container"]}>
-            <h4 className={classes["symbol"]}>Symbol</h4>
-            <h4 className={classes["comp"]}>Company Name</h4>
+            <h4 className={`${classes["head-text"]} ${classes["symbol"]}`}>
+              Symbol
+            </h4>
+            <h4 className={`${classes["head-text"]} ${classes["comp"]}`}>
+              Company Name
+            </h4>
           </div>
 
           <div className={classes["prices-container"]}>
-            <h4 className={classes["symbol"]}>Price</h4>
-            <h4 className={classes["change"]}>Change/Percentege</h4>
+            <h4
+              className={`${classes["head-text"]} ${classes["price-head"]} ${classes["symbol"]}`}
+            >
+              Price
+            </h4>
+            <h4
+              className={`${classes["head-text"]} ${classes["change-head"]} ${classes["change"]}`}
+            >
+              Change/Percentege
+            </h4>
           </div>
         </div>
         <ul className={classes["stock-list-ul"]}>
@@ -33,15 +45,23 @@ const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
                 <Link href={`/symbol/${data.ticker.toUpperCase()}/overview`}>
                   <div className={classes["stock-contianer"]}>
                     <div className={classes["name-container"]}>
-                      <h4 className={classes["symbol"]}>{data.ticker}</h4>
+                      <h4
+                        className={`${classes["ticker"]} ${classes["symbol"]}`}
+                      >
+                        {data.ticker}
+                      </h4>
                       <p className={classes["symbol2"]}>{data.companyName}</p>
                     </div>
 
                     <div className={classes["prices-container"]}>
-                      <p className={classes["symbol"]}>
+                      <p
+                        className={`${classes["data-price"]} ${classes["symbol"]}`}
+                      >
                         {twoDecimal(+data.price)}
                       </p>
-                      <div className={classes["change"]}>
+                      <div
+                        className={`${classes["data-change"]} ${classes["change"]}`}
+                      >
                         <p
                           className={
                             +data.changesPercentage > 0

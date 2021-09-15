@@ -20,7 +20,7 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 1rem 2.5rem;
-  padding-left: 1.5rem;
+  padding-left: 1.8rem;
   /* margin: 0rem 1rem; */
   justify-content: space-between;
   align-items: center;
@@ -53,6 +53,7 @@
 
 .name-container {
   display: flex;
+  align-items: center;
 }
 
 .prices-container {
@@ -80,4 +81,95 @@
 .change2 {
   display: flex;
   width: 10rem;
+}
+
+.change-head {
+  text-align: center;
+  width: 9rem;
+}
+@media only screen and (max-width: 1200px) {
+  .ticker {
+    color: #0062cf;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .symbol2 {
+    width: 11rem;
+  }
+  .most-title {
+    margin: 0rem 0rem;
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .symbol2 {
+    width: 8rem;
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .symbol2 {
+    width: 7rem;
+    font-size: 14px;
+  }
+  .list-wrapper {
+    padding: 0.5rem;
+    margin: 0.5rem 0.5rem;
+  }
+  .stock-contianer-header {
+    padding-left: 0.6rem;
+  }
+  .stock-contianer {
+    padding: 1rem 0.5rem;
+    margin: 1rem 0rem;
+  }
+  .change-head {
+    text-align: center;
+    width: 8rem;
+  }
+  .symbol {
+    width: 4rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .symbol {
+    width: 3.4rem;
+  }
+  .head-text {
+    font-size: 14px;
+  }
+  .stock-contianer-header {
+    padding-left: 0.2rem;
+    padding-right: 0.1rem;
+  }
+
+  .price-up {
+    margin: 0rem 0.2rem;
+  }
+  .price-down {
+    margin: 0rem 0.2rem;
+  }
+  .prices-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .data-change {
+    width: 6.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .price-head {
+    text-align: center;
+  }
+  .symbol2 {
+    width: 6rem;
+    font-size: 13px;
+  }
+  .comp {
+    text-align: center;
+  }
+  .stock-contianer {
+    padding-left: 0.4rem;
+  }
 }
