@@ -90,3 +90,16 @@
 .change-perc {
   margin-left: 0.5rem;
 }
+@media only screen and (max-width: 1320px) {
+  .current-portfolio-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .current-portfolio-container {
+    width: 77.5vw;
+  }
+  .portfolio-items-container {
+    width: 100%;
+  }
+}

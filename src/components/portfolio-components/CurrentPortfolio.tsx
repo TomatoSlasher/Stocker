@@ -20,31 +20,33 @@ const CurrentPortfolio = () => {
   const [hasPortfolio, setHasPortfolio] = useState(true);
 
   return (
-    <div className={classes["current-portfolio-container"]}>
-      <h1>Positions ({portfolio.length})</h1>
-      <div className={classes["portfolio-items-container"]}>
-        {hasPortfolio ? (
-          <div className={classes["portfolio-item-header-container"]}>
-            <div className={classes["portfolio-item-header"]}>
-              <p className={classes["logo"]}></p>
-              <div className={classes["portfolio-item-text"]}>
-                <p>Symbol</p>
-                <p>Quantity</p>
-                <p>Avg Price</p>
-                <p>Mkt Value</p>
+    <div className={classes["current-portfolio-wrapper"]}>
+      <div className={classes["current-portfolio-container"]}>
+        <h1>Positions ({portfolio.length})</h1>
+        <div className={classes["portfolio-items-container"]}>
+          {hasPortfolio ? (
+            <div className={classes["portfolio-item-header-container"]}>
+              <div className={classes["portfolio-item-header"]}>
+                <p className={classes["logo"]}></p>
+                <div className={classes["portfolio-item-text"]}>
+                  <p>Symbol</p>
+                  <p>Quantity</p>
+                  <p>Avg Price</p>
+                  <p className={classes["mkt-value"]}>Mkt Value</p>
+                </div>
               </div>
+              <ul className={classes["portfolio-items-list"]}>
+                {portfolio.map((val: ordersType, i) => {
+                  return <PositionItem key={i} data={val} />;
+                })}
+              </ul>
             </div>
-            <ul className={classes["portfolio-items-list"]}>
-              {portfolio.map((val: ordersType, i) => {
-                return <PositionItem key={i} data={val} />;
-              })}
-            </ul>
-          </div>
-        ) : (
-          <div className={classes["empty-portfolio"]}>
-            <h1>You have no open positions</h1>
-          </div>
-        )}
+          ) : (
+            <div className={classes["empty-portfolio"]}>
+              <h1>You have no open positions</h1>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

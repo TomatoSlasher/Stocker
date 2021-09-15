@@ -95,3 +95,26 @@
   height: 12rem;
   overflow-y: auto;
 }
+@media only screen and (max-width: 1320px) {
+  .portfolio-history-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .portfolio-history {
+    width: 77vw;
+  }
+  .portfolio-items-container {
+    width: 100%;
+    height: 30rem;
+  }
+  .portfolio-items-list {
+    height: 25rem;
+  }
+  .portfolio-item-text {
+    justify-content: space-between;
+  }
+  .portfolio-item-header {
+    padding-right: 1rem;
+  }
+}

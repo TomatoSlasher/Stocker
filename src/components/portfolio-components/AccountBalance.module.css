@@ -29,3 +29,75 @@
 .pl-change {
   margin: 0rem 0.5rem;
 }
+@media only screen and (max-width: 1320px) {
+  .account-balance-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .account-balance-wrapper {
+    width: 80vw;
+  }
+  .account-value-card {
+    display: flex;
+    justify-content: space-between;
+  }
+  .account-cards {
+    width: 10rem;
+  }
+  .account-cards-first {
+    width: 14rem;
+  }
+}
+@media only screen and (max-width: 630px) {
+  .account-cards-first {
+    padding: 1rem;
+  }
+  .account-cards {
+    padding: 1rem;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .account-total {
+    font-size: 20px;
+  }
+  .account-cards-first {
+    padding: 1rem 0.5rem;
+  }
+  .account-cards {
+    padding: 1rem 0.5rem;
+  }
+  .account-balance-wrapper {
+    width: 95vw;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .account-cards-first {
+    width: 13rem;
+  }
+  .account-cards-first {
+    padding: 1rem 0.3rem;
+  }
+  .account-cards {
+    padding: 1rem 0.3rem;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .account-cards-first {
+    width: 13rem;
+  }
+  .account-cards-first {
+    padding: 1rem 0.5rem;
+  }
+  .account-cards {
+    padding: 1rem 0.5rem;
+  }
+  .account-total {
+    font-size: 18px;
+  }
+  .account-cards-first {
+    width: 11rem;
+  }
+}
