@@ -38,7 +38,7 @@ const Portfolio = () => {
         <div>
           <AccountBalance />
           <CurrentPortfolio />
-          <PortfolioHistory />
+          {/* <PortfolioHistory /> */}
         </div>
       )}
     </div>

@@ -29,9 +29,9 @@ const CurrentPortfolio = () => {
               <div className={classes["portfolio-item-header"]}>
                 <p className={classes["logo"]}></p>
                 <div className={classes["portfolio-item-text"]}>
-                  <p>Symbol</p>
-                  <p>Quantity</p>
-                  <p>Avg Price</p>
+                  <p className={classes["head-text"]}>Symbol</p>
+                  <p className={classes["head-text"]}>Quantity</p>
+                  <p className={classes["avg-price"]}>Avg Price</p>
                   <p className={classes["mkt-value"]}>Mkt Value</p>
                 </div>
               </div>
