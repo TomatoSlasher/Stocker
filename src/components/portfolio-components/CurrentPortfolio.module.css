@@ -175,10 +175,8 @@
   .portfolio-item-header {
     padding-left: 0.5rem;
   }
-  /* .portfolio-item-text {
-    margin-right: rem;
-  } */
 }
+
 @media only screen and (max-width: 400px) {
   .head-text,
   .mkt-value,
@@ -187,8 +185,5 @@
   }
   .positions-symbol {
     margin: 0 !important;
-  }
-  .pos-amount:first-of-type {
-    margin-left: 1.5rem;
   }
 }
