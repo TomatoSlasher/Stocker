@@ -4,10 +4,17 @@
   align-items: center;
   padding: 1rem 1rem;
   background-color: white;
+  z-index: 5;
 }
 .logo-container {
   display: flex;
+  cursor: pointer;
 }
+/* .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 .logo-container path {
   fill: #0062cf;
 }
@@ -58,7 +65,6 @@
 }
 .header-menu-markets {
   font-weight: bold;
-  /* text-align: center; */
   padding: 1rem 0.3rem;
   border-bottom: 1px solid rgb(201, 201, 201);
   cursor: pointer;
@@ -67,9 +73,7 @@
   background-color: rgb(230, 230, 230);
   border-radius: 5px;
 }
-.logo {
-  cursor: pointer;
-}
+
 .search-button {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -125,4 +129,95 @@
   height: 10rem;
   width: 10rem;
   position: absolute;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+@media only screen and (max-width: 1210px) {
+  .header-search-input {
+    width: 20rem;
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .header-search-input {
+    width: 25vw;
+  }
+}
+@media only screen and (max-width: 970px) {
+  .header-search-input {
+    width: 22vw;
+  }
+  .portfolio-btn {
+    margin-left: 0.5rem;
+  }
+}
+@media only screen and (max-width: 925px) {
+  .header-search {
+    position: absolute;
+    background-color: white;
+    top: 3.8rem;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    animation: show 0.5s ease-in-out forwards;
+  }
+  .header-search-input {
+    width: 100%;
+    border-radius: 0px;
+  }
+  .search-button {
+    border-radius: 5px;
+    padding: 0.25rem 0.75rem;
+  }
+  .portfolio-btn {
+    padding: 0.57rem 1.5rem;
+  }
+
+  .search-portfolio-header,
+  .hamburger-btn-container {
+    width: 11rem;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .header-container {
+    padding: 0.5rem 0.5rem;
+  }
+  .portfolio-btn {
+    padding: 0.5rem 1rem;
+  }
+  .search-button {
+    border-radius: 5px;
+    padding: 0rem 0.7rem;
+    padding-top: 0.1rem;
+  }
+
+  .search-portfolio-header,
+  .hamburger-btn-container {
+    width: 9.5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .logo-container {
+    margin-left: 1rem;
+  }
+  .left-head {
+    display: flex;
+    align-items: center;
+  }
+  .search-portfolio-header,
+  .hamburger-btn-container {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .logo-container {
+    margin-left: 0.5rem;
+  }
 }

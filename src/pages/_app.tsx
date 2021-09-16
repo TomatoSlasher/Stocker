@@ -12,7 +12,7 @@ const Header = dynamic(
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
-      {/* <Header /> */}
+      <Header />
 
       <Component {...pageProps} />
       <Footer />

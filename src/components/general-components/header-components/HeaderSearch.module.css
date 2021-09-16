@@ -30,3 +30,8 @@
 .exchange-container:last-child {
   color: black;
 }
+@media only screen and (max-width: 925px) {
+  .search-btn {
+    display: none;
+  }
+}
