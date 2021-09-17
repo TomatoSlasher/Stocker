@@ -3,8 +3,8 @@ import classes from "./StockHeader.module.css";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 const StockHeader: React.FC = () => {
-  const ticker = useSelector((state: { ticker: string }) => {
-    return state.ticker;
+  const ticker = useSelector((state: { ticker: { ticker: string } }) => {
+    return state.ticker.ticker;
   });
 
   const [CompanyLogoURL, setCompanyLogoURL] = useState("");

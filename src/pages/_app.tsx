@@ -3,6 +3,9 @@ import Footer from "../components/general-components/Footer";
 import type { AppProps } from "next/app";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
+import store from "../store/index";
+import { Provider } from "react-redux";
+
 const Header = dynamic(
   () => import("../components/general-components/Header"),
   {
@@ -12,10 +15,12 @@ const Header = dynamic(
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
-      <Header />
+      <Provider store={store}>
+        <Header />
 
-      <Component {...pageProps} />
-      <Footer />
+        <Component {...pageProps} />
+        <Footer />
+      </Provider>
     </Fragment>
   );
 }

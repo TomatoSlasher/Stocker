@@ -1,0 +1,18 @@
+.hamburger-overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(97, 97, 97, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  cursor: auto;
+}
+.hamburger-container {
+  width: 70vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+.close-btn {
+  cursor: pointer;
+}

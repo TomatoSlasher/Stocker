@@ -1,6 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const initialState = { ticker: "AAPL" };
+const initialState = { ticker: "AAPL", menu: true };
 
 const tickerSlice = createSlice({
   name: "ticker",
@@ -12,8 +12,22 @@ const tickerSlice = createSlice({
   },
 });
 
-const store = configureStore({ reducer: tickerSlice.reducer });
+const hamburgerSlice = createSlice({
+  name: "menu",
+  initialState,
+  reducers: {
+    getMenu(state, action: any) {
+      console.log(state);
+      state.menu = action.payload;
+    },
+  },
+});
+
+const store = configureStore({
+  reducer: { ticker: tickerSlice.reducer, hamburger: hamburgerSlice.reducer },
+});
 
 export const tickerActions = tickerSlice.actions;
+export const hamburgerActions = hamburgerSlice.actions;
 
 export default store;

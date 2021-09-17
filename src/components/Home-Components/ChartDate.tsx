@@ -6,10 +6,9 @@ import { useMediaQuery } from "react-responsive";
 import classes from "./ChartDate.module.css";
 import classes2 from "./StockHeader.module.css";
 import { useRef } from "react";
-import { isRejectedWithValue } from "@reduxjs/toolkit";
 const ChartDate: React.FC = () => {
-  const ticker = useSelector((state: { ticker: string }) => {
-    return state.ticker;
+  const ticker = useSelector((state: { ticker: { ticker: string } }) => {
+    return state.ticker.ticker;
   });
   const isTablet = useMediaQuery({ query: "(max-width: 1150px)" });
   const isTablet2 = useMediaQuery({ query: "(max-width: 1050px)" });

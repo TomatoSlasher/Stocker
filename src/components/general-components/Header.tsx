@@ -5,7 +5,10 @@ import HeaderSearch from "./header-components/HeaderSearch";
 import IndexesQuote from "./IndexsQuote";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "react-responsive";
-
+import HamburgerMenu from "./header-components/HamburgerMenu";
+import { useSelector } from "react-redux";
+import { hamburgerActions } from "../../store/index";
+import { useDispatch } from "react-redux";
 const Header: React.FC = () => {
   let items = localStorage.getItem("cashBalance");
   if (items == null) {
@@ -18,8 +21,24 @@ const Header: React.FC = () => {
   const router = useRouter();
   const isTablet = useMediaQuery({ minWidth: 601, maxWidth: 925 });
   const [activeSearch, setActiveSearch] = useState(false);
+  const menuState = useSelector((state: { hamburger: { menu: boolean } }) => {
+    return state.hamburger.menu;
+  });
+
+  const dispatch = useDispatch();
+  const openMenu = () => {
+    dispatch(hamburgerActions.getMenu(true));
+    console.log(menuState);
+  };
+  if (menuState) {
+    const doc: any = document.body;
+    doc.style.overflow = "hidden";
+  }
+  if (!menuState) {
+    const doc: any = document.body;
+    doc.style.overflow = "auto";
+  }
   const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
-  console.log(isMobile, isTablet);
   useEffect(() => {
     setActiveSearch(false);
   }, [router]);
@@ -156,6 +175,7 @@ const Header: React.FC = () => {
         {isTablet && (
           <div className={classes["header-container"]}>
             <div className={classes["hamburger-btn-container"]}>
+              {menuState && <HamburgerMenu />}
               <svg
                 width="32"
                 height="32"
@@ -167,6 +187,7 @@ const Header: React.FC = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
                 className={classes["hamburger-btn"]}
+                onClick={openMenu}
               >
                 <path
                   fill="currentColor"
@@ -222,6 +243,8 @@ const Header: React.FC = () => {
           <div className={classes["header-container"]}>
             <div className={classes["left-head"]}>
               <div className={classes["hamburger-btn-container"]}>
+                {menuState && <HamburgerMenu />}
+
                 <svg
                   width="32"
                   height="32"
@@ -233,6 +256,7 @@ const Header: React.FC = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
                   className={classes["hamburger-btn"]}
+                  onClick={openMenu}
                 >
                   <path
                     fill="currentColor"
