@@ -73,7 +73,7 @@ const ChartDate: React.FC = () => {
       chartRef.current.childNodes[1].remove();
       setIsLoading(true);
     }
-  }, [dateChange, ticker, chartWidth, chartHeight]);
+  }, [dateChange, ticker, chartWidth, chartHeight, graphData]);
   useEffect(() => {
     const fetchDataHandler = async () => {
       const fetchData = await fetch(
@@ -156,7 +156,7 @@ const ChartDate: React.FC = () => {
       }
     }
     setIsLoading(false);
-  }, [dateChange, graphData, chartWidth, chartHeight]);
+  }, [dateChange, graphData, chartWidth, chartHeight, ticker]);
   return (
     <div className={classes["chart-whole"]}>
       {isLoading ? (

@@ -8,11 +8,60 @@
   z-index: 20;
   cursor: auto;
 }
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateX(-20rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .hamburger-container {
   width: 70vw;
   height: 100vh;
   background-color: #f0f0f0;
+  padding: 1rem;
+  animation: show 0.5s ease-in-out forwards;
 }
+
 .close-btn {
   cursor: pointer;
+  float: right;
+}
+.markets {
+  margin-top: 2rem;
+}
+
+.hamburger-container h1 {
+  border-bottom: 1px solid grey;
+}
+.link-container2 h1 {
+  border: none;
+}
+.link-container2 {
+  border-bottom: 1px solid grey;
+}
+.link-items {
+  border-bottom: 1px solid rgb(207, 207, 207);
+  margin: 0.5rem 1rem;
+}
+.link-items h4 {
+  color: #0062cf;
+  cursor: pointer;
+  width: 7rem;
+
+  margin: 1rem 0rem;
+}
+.about-link {
+  color: #0062cf;
+  cursor: pointer;
+  width: 7rem;
+}
+@media only screen and (max-width: 600px) {
+  .hamburger-container {
+    width: 95vw;
+  }
 }

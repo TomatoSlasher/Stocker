@@ -25,6 +25,9 @@ const Header: React.FC = () => {
     return state.hamburger.menu;
   });
 
+  useEffect(() => {
+    dispatch(hamburgerActions.getMenu(false));
+  }, [router]);
   const dispatch = useDispatch();
   const openMenu = () => {
     dispatch(hamburgerActions.getMenu(true));

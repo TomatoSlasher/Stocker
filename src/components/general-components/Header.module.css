@@ -158,7 +158,7 @@
     margin-left: 0.5rem;
   }
 }
-.hamburger-btn-container {
+.hamburger-btn {
   cursor: pointer;
 }
 @media only screen and (max-width: 925px) {

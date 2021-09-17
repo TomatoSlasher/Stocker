@@ -1,6 +1,6 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const initialState = { ticker: "AAPL", menu: true };
+const initialState = { ticker: "AAPL", menu: false };
 
 const tickerSlice = createSlice({
   name: "ticker",
