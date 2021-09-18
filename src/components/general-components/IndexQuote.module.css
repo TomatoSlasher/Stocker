@@ -58,7 +58,10 @@
   text-align: right;
   margin-top: 0.2rem;
 }
-
+.index-ul::-webkit-scrollbar-track {
+  background-color: #c7c7c7;
+  margin: 0rem 0.5rem;
+}
 @media only screen and (max-width: 600px) {
   .index-name2 {
     font-size: 16px !important;
