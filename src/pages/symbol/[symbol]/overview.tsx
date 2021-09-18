@@ -8,11 +8,11 @@ const Financials = (props: any) => {
 
   return (
     <div>
-      <StockOverview
+      {/* <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
         image={props.image}
-      />
+      /> */}
       <OverviewGeneral data={props.symbol} general={props.image} />
     </div>
   );

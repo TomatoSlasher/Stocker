@@ -3,11 +3,11 @@ import FinancialGrowth from "../../../components/Quote-Sections/Quote-Growth/Fin
 const Growth = (props: any) => {
   return (
     <div>
-      <StockOverview
+      {/* <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
         image={props.image}
-      />
+      /> */}
       <FinancialGrowth growth={props.growth} />
     </div>
   );

@@ -11,11 +11,11 @@ const AdvancedChart = dynamic(
 const chart = (props: any) => {
   return (
     <div>
-      <StockOverview
+      {/* <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
         image={props.image}
-      />
+      /> */}
       <AdvancedChart chart={props.chart} />
     </div>
   );
