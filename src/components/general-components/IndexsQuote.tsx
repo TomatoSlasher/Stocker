@@ -3,6 +3,8 @@ import classes from "./IndexQuote.module.css";
 import { createChart } from "lightweight-charts";
 import { useRef } from "react";
 import Link from "next/link";
+import { useMediaQuery } from "react-responsive";
+
 const IndexesQuote: React.FC = () => {
   const twoDecimal = (val: any) => {
     return val.toFixed(2);
@@ -13,6 +15,26 @@ const IndexesQuote: React.FC = () => {
   const DOWRef = useRef<any>(null);
   const RUTRef = useRef<any>(null);
   const NASRef = useRef<any>(null);
+  const [chartWidth, setChartWidth] = useState(180);
+  const [chartHeight, setChartHeight] = useState(100);
+  const isFull = useMediaQuery({ query: "(min-width: 1151px)" });
+
+  const isTablet = useMediaQuery({ query: "(max-width: 1150px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+
+  useEffect(() => {
+    if (isFull) {
+      setChartHeight(100);
+      setChartWidth(180);
+    }
+    if (isTablet) {
+      setChartWidth(150);
+    }
+    if (isMobile) {
+      setChartHeight(80);
+      setChartWidth(150);
+    }
+  }, [isTablet, isFull, isMobile]);
   useEffect(() => {
     const fetchIndex = async () => {
       const fetchGSPCIndex = await fetch(
@@ -56,6 +78,7 @@ const IndexesQuote: React.FC = () => {
         const fetchGSPCIndex = await fetch(
           `https://financialmodelingprep.com/api/v3/historical-price-full/%5E${index}?apikey=${key}`
         );
+
         const GSPCIndexData = await fetchGSPCIndex.json();
         const historicalData = GSPCIndexData.historical.slice(0, 264);
 
@@ -79,8 +102,8 @@ const IndexesQuote: React.FC = () => {
           el.current.childNodes[1].remove();
         }
         const chart: any = createChart(el.current, {
-          width: 180,
-          height: 100,
+          width: chartWidth,
+          height: chartHeight,
         });
         chart.applyOptions({
           timeScale: {
@@ -142,7 +165,7 @@ const IndexesQuote: React.FC = () => {
     fetchIndexHistorical("DJI", DOWRef, "ac54a1b35f7700a8b1bdeb404dc14810");
     fetchIndexHistorical("IXIC", NASRef, "66e243b7036752eb5c9078cdacfe8625");
     fetchIndexHistorical("RUT", RUTRef, "66e243b7036752eb5c9078cdacfe8625");
-  }, [currentIndexData]);
+  }, [currentIndexData, chartHeight, chartWidth]);
   return (
     <div className="indexes-container">
       {currentIndexData.length > 0 && (
@@ -255,7 +278,7 @@ const IndexesQuote: React.FC = () => {
           </li>
           <li className={classes["index-li"]}>
             <div className={classes["index-text-container"]}>
-              <h3 className={classes["index-name2"]}>Russell 2000</h3>
+              <h3 className={`${classes["index-name2"]}`}>Russell 2000</h3>
               <p className={classes["index-price"]}>
                 {NumberFormat.format(twoDecimal(+currentIndexData[3].price))}
               </p>

@@ -1,7 +1,13 @@
-.index-ul {
+.chart-whole {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+}
+.index-ul {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .index-ul li {
   background-color: white;
@@ -26,6 +32,8 @@
 }
 .index-name2 {
   margin-bottom: 0.5rem;
+  font-size: 15px;
+  height: 1.5rem;
 }
 .index-price {
   margin-bottom: 0.5rem;
@@ -49,4 +57,10 @@
   color: rgb(77, 77, 77);
   text-align: right;
   margin-top: 0.2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .index-name2 {
+    font-size: 16px !important;
+  }
 }
