@@ -5,11 +5,11 @@ import FinancialsAll from "../../../components/Quote-Sections/Quote-Financials/F
 const Financials = (props: any) => {
   return (
     <div>
-      {/* <StockOverview
+      <StockOverview
         symbol={props.symbol}
         historicalData={props.historicalData}
         image={props.image}
-      /> */}
+      />
       <FinancialsAll
         incomeStatement={props.incomeStatement}
         balanceSheet={props.balanceSheet}
