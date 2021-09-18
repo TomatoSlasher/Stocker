@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import OverviewDescription from "./Quote-Info/OverviewDescription";
+// import OverviewDescription from "./Quote-Info/OverviewDescription";
 import OverviewHeader from "./Quote-Info/OverviewHeader";
 import classes from "./StockOverview.module.css";
 import dynamic from "next/dynamic";
@@ -42,7 +42,7 @@ const StockOverview: React.FC<any> = (props) => {
             />
           </div>
 
-          <OverviewDescription description={props.symbol.Description} />
+          {/* <OverviewDescription description={props.symbol.Description} /> */}
         </div>
         <div className="overview-chart-container">
           <OverviewChart data={props.historicalData} height={310} />
