@@ -54,7 +54,7 @@ const AdvancedChart: React.FC<{ chart: any }> = (props) => {
       setChartHeight(350);
     }
     if (isMobile2) {
-      setChartWidth(360);
+      setChartWidth(350);
       setChartHeight(350);
     }
   }, [
