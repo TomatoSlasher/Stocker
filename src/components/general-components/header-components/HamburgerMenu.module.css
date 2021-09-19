@@ -30,6 +30,7 @@
 .close-btn {
   cursor: pointer;
   float: right;
+  margin-right: 0.7rem;
 }
 .markets {
   margin-top: 2rem;

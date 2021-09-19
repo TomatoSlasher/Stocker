@@ -85,11 +85,11 @@ const HamburgerMenu = () => {
             </Link>
           </div>
         </div>
-        <div className={classes["link-container2"]}>
+        {/* <div className={classes["link-container2"]}>
           <Link href="/about">
             <h1 className={classes["about-link"]}>About</h1>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

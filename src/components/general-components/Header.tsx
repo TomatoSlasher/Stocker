@@ -157,11 +157,11 @@ const Header: React.FC = () => {
                   </div>
                 )}
               </div>
-              <div className={classes["header-about"]}>
+              {/* <div className={classes["header-about"]}>
                 <Link href="/about">
                   <h3>About</h3>
                 </Link>
-              </div>
+              </div> */}
             </div>
             <div className={classes["search-portfolio-header"]}>
               <HeaderSearch />

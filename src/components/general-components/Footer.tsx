@@ -51,18 +51,17 @@ const Footer = () => {
 
             <div className={classes["footer-links"]}>
               <h2 className={classes["about-link"]}>Indexes</h2>
-              <Link href="/most-active">
+              <Link href="/SP500">
                 <p className={classes["markets-link"]}>S&P 500</p>
               </Link>
-              <Link href="/most-gainers">
+              <Link href="/DOW">
                 <p className={classes["markets-link"]}>Dow Jones Industrial</p>
               </Link>
-              <Link href="/most-losers">
+              <Link href="/NASDAQ">
                 <p className={classes["markets-link"]}>Nasdaq</p>
               </Link>
-              <Link href="/most-losers">
-                <p className={classes["markets-link"]}>Russell 2000</p>
-              </Link>
+
+              <p className={classes["markets-link"]}>Russell 2000</p>
             </div>
           </div>
         </div>
