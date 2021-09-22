@@ -276,11 +276,14 @@
     width: 3.5rem;
   }
   .price-head {
-    width: 3.2rem;
+    width: 0.6rem;
   }
   .comp {
     font-size: 12px !important;
     width: 6.3rem;
+  }
+  .name {
+    width: 6.2rem;
   }
   .price-up,
   .data-price,
@@ -289,5 +292,9 @@
   }
   .data-price {
     width: 2rem;
+  }
+  .change-head {
+    display: block;
+    margin-right: 1.6rem;
   }
 }

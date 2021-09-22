@@ -52,7 +52,9 @@ const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
                       >
                         {data.ticker}
                       </h4>
-                      <p className={classes["symbol2"]}>{data.companyName}</p>
+                      <p className={`${classes["name"]} ${classes["symbol2"]}`}>
+                        {data.companyName}
+                      </p>
                     </div>
 
                     <div className={classes["prices-container"]}>
