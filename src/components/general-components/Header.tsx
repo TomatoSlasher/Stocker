@@ -46,13 +46,7 @@ const Header: React.FC = () => {
     setActiveSearch(false);
   }, [router]);
   useEffect(() => {
-    if (router.pathname === "/most-gainers") {
-      setShowIndex(false);
-    } else if (router.pathname === "/most-active") {
-      setShowIndex(false);
-    } else if (router.pathname === "/most-losers") {
-      setShowIndex(false);
-    } else if (router.pathname === "/portfolio") {
+    if (router.pathname === "/portfolio") {
       setShowIndex(false);
     } else {
       setShowIndex(true);
@@ -314,7 +308,7 @@ const Header: React.FC = () => {
           </div>
         )}
       </header>
-      {/* {showIndex ? <IndexesQuote /> : ""} */}
+      {showIndex ? <IndexesQuote /> : ""}
     </Fragment>
   );
 };
