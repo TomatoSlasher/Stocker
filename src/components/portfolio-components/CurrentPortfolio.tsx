@@ -17,14 +17,17 @@ const CurrentPortfolio = () => {
     localStorage.getItem("allPositions") || "[]"
   );
 
-  const [hasPortfolio, setHasPortfolio] = useState(true);
-
   return (
     <div className={classes["current-portfolio-wrapper"]}>
       <div className={classes["current-portfolio-container"]}>
-        <h1>Positions ({portfolio.length})</h1>
+        {portfolio.length > 0 ? (
+          <h1>Positions ({portfolio.length})</h1>
+        ) : (
+          <h1>Positions</h1>
+        )}
+
         <div className={classes["portfolio-items-container"]}>
-          {hasPortfolio ? (
+          {portfolio.length > 0 ? (
             <div className={classes["portfolio-item-header-container"]}>
               <div className={classes["portfolio-item-header"]}>
                 <p className={classes["logo"]}></p>
@@ -43,7 +46,7 @@ const CurrentPortfolio = () => {
             </div>
           ) : (
             <div className={classes["empty-portfolio"]}>
-              <h1>You have no open positions</h1>
+              <h2>You have no open positions</h2>
             </div>
           )}
         </div>
