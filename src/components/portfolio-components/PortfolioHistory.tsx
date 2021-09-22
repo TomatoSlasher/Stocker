@@ -20,7 +20,7 @@ const PorfolioHistory = () => {
       <div className={classes["portfolio-history"]}>
         <h1>Trading History</h1>
         <div className={classes["portfolio-items-container"]}>
-          {hasPortfolio ? (
+          {portfolioHistory.length > 0 ? (
             <div>
               <div className={classes["portfolio-item-header"]}>
                 <span className={classes["logo"]}></span>
@@ -98,7 +98,7 @@ const PorfolioHistory = () => {
             </div>
           ) : (
             <div className={classes["empty-portfolio"]}>
-              <h1>You have no open positions</h1>
+              <h2>You have no trading history</h2>
             </div>
           )}
         </div>
