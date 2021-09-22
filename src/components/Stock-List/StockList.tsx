@@ -11,7 +11,9 @@ const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
       <div className={classes["list-container"]}>
         <div className={classes["stock-contianer-header"]}>
           <div className={classes["name-container"]}>
-            <h4 className={`${classes["head-text"]} ${classes["symbol"]}`}>
+            <h4
+              className={`${classes["head-text"]} ${classes["most-sym"]} ${classes["symbol"]}`}
+            >
               Symbol
             </h4>
             <h4 className={`${classes["head-text"]} ${classes["comp"]}`}>
@@ -28,7 +30,7 @@ const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
             <h4
               className={`${classes["head-text"]} ${classes["change-head"]} ${classes["change"]}`}
             >
-              Change/Percentege
+              Change
             </h4>
           </div>
         </div>
@@ -69,6 +71,7 @@ const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
                               : classes["price-down"]
                           }
                         >
+                          {+data.changesPercentage > 0 && "+"}
                           {data.changes.toFixed(2)}
                         </p>
                         <p
@@ -78,6 +81,7 @@ const StockList: React.FC<{ stockList: any; name: string }> = (props) => {
                               : classes["price-down"]
                           }
                         >
+                          {+data.changesPercentage > 0 && "+"}
                           {twoDecimal(+data.changesPercentage) + "%"}
                         </p>
                       </div>

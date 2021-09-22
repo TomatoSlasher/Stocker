@@ -20,7 +20,7 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 1rem 2.5rem;
-  padding-left: 1.8rem;
+  padding-left: 1.5rem;
   /* margin: 0rem 1rem; */
   justify-content: space-between;
   align-items: center;
@@ -49,6 +49,9 @@
 }
 .symbol {
   width: 5rem;
+}
+.data-price {
+  width: 4rem;
 }
 
 .name-container {
@@ -85,13 +88,14 @@
 }
 
 .change-head {
-  text-align: center;
-  width: 9rem;
+  /* text-align: center; */
+  width: 8.6rem;
 }
 .index-header {
   padding: 1rem 2rem !important;
   padding-left: 1.5rem !important;
 }
+
 @media only screen and (max-width: 1200px) {
   .ticker {
     color: #0062cf;
@@ -148,24 +152,25 @@
     width: 7rem;
     font-size: 14px;
   }
+
   .list-wrapper {
     padding: 0.5rem;
     margin: 0.5rem 0.5rem;
   }
   .stock-contianer-header {
-    padding-left: 0.6rem;
+    padding-left: 1rem;
   }
+
   .stock-contianer {
     padding: 1rem 0.5rem;
-    margin: 1rem 0rem;
+    margin: 1rem 0.5rem;
   }
+
   .change-head {
     text-align: center;
     width: 8rem;
   }
-  .symbol {
-    width: 4rem;
-  }
+
   .index-header {
     padding: 1rem 0.9rem !important;
     padding-left: 0.6rem !important;
@@ -182,7 +187,7 @@
     margin-left: 0.75rem;
   }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 500px) {
   .symb {
     margin-right: 0.5rem;
   }
@@ -193,7 +198,7 @@
     font-size: 14px;
   }
   .stock-contianer-header {
-    padding-left: 0.2rem;
+    /* padding-left: 0.2rem; */
     padding-right: 0.1rem;
   }
 
@@ -213,9 +218,7 @@
     justify-content: center;
     align-items: center;
   }
-  .price-head {
-    text-align: center;
-  }
+
   .symbol2 {
     width: 6rem;
     font-size: 13px;
@@ -232,6 +235,9 @@
   .index-header {
     padding: 1rem 0.9rem !important;
     padding-left: 0.4rem !important;
+  }
+  .price-head {
+    width: 3.6rem;
   }
 }
 @media only screen and (max-width: 450px) {
@@ -266,4 +272,22 @@
   }
 }
 @media only screen and (max-width: 414px) {
+  .ticker {
+    width: 3.5rem;
+  }
+  .price-head {
+    width: 3.2rem;
+  }
+  .comp {
+    font-size: 12px !important;
+    width: 6.3rem;
+  }
+  .price-up,
+  .data-price,
+  .price-down {
+    font-size: 13px;
+  }
+  .data-price {
+    width: 2rem;
+  }
 }
