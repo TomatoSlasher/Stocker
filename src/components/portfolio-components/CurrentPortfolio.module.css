@@ -38,10 +38,14 @@
 }
 .portfolio-item-text {
   margin: 0rem 3rem;
+
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.positions-header {
+  margin-right: 1.8rem;
 }
 
 .portfolio-item-header {
@@ -90,11 +94,19 @@
 .pos-qty {
   width: 50px;
   margin: 0rem 1rem;
+  margin-right: 0.5rem;
+  font-weight: bold;
 }
 .change-perc {
   margin-left: 0.5rem;
 }
 @media only screen and (max-width: 1320px) {
+  .positions-symbol {
+    color: #0062cf;
+  }
+  .positions-header {
+    margin-right: 3rem;
+  }
   .current-portfolio-wrapper {
     display: flex;
     justify-content: center;
@@ -155,13 +167,19 @@
 @media only screen and (max-width: 450px) {
   .pos-amount {
     margin: 0rem 1rem;
+    margin-right: 0.5rem;
   }
   .pos-qty {
     width: 25px;
     margin: 0rem 0rem;
+    margin-right: 0.5rem;
   }
   .avg-price {
-    margin-right: 2rem !important;
+    margin-right: 0rem !important;
+  }
+  .positions-amount {
+    margin-left: 0rem;
+    width: 3.5rem;
   }
 }
 @media only screen and (max-width: 430px) {
@@ -169,21 +187,56 @@
     height: 3.2rem !important;
     margin: 0.3rem;
   }
-  .avg-price {
-    margin-right: 1rem !important;
-  }
+
   .portfolio-item-header {
     padding-left: 0.5rem;
+  }
+  .positions-avg {
+    margin-left: 0;
+  }
+  .portfolio-item-text {
+    margin-left: 0rem;
+    margin-right: 1.5rem;
+  }
+  .positions-symbol {
+    margin: 0;
+    margin-right: 0.3rem;
+    width: 1.8rem;
+  }
+  .positions-avg {
+    margin: 0rem;
+  }
+  .pos-amount,
+  .pos-qty {
+    font-size: 14px;
+  }
+  .positions-amount {
+    margin: 0;
+  }
+  .positions-header {
+    margin-right: 1rem;
+  }
+  .positions-avg {
+    margin-left: 1.5rem;
+  }
+  .pos-qty {
+    margin: 0;
+    text-align: center;
   }
 }
 
 @media only screen and (max-width: 400px) {
   .head-text,
   .mkt-value,
-  .avg-price {
+  .avg-price,
+  .pos-amount,
+  .pos-qty {
     font-size: 13px;
   }
   .positions-symbol {
     margin: 0 !important;
+  }
+  .positions-header {
+    margin-right: 1.3rem;
   }
 }

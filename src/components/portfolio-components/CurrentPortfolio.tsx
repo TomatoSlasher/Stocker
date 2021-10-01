@@ -31,7 +31,9 @@ const CurrentPortfolio = () => {
             <div className={classes["portfolio-item-header-container"]}>
               <div className={classes["portfolio-item-header"]}>
                 <p className={classes["logo"]}></p>
-                <div className={classes["portfolio-item-text"]}>
+                <div
+                  className={`${classes["portfolio-item-text"]} ${classes["positions-header"]}`}
+                >
                   <p className={classes["head-text"]}>Symbol</p>
                   <p className={classes["head-text"]}>Quantity</p>
                   <p className={classes["avg-price"]}>Avg Price</p>

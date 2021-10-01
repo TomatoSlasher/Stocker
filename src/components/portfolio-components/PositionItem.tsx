@@ -48,15 +48,19 @@ const PositionItem: React.FC<any> = (props: { data: ordersType }) => {
         </Link>
 
         <p className={classes["pos-qty"]}>{props.data.amount}</p>
-        <p className={classes["pos-amount"]}>${avgPrice.toFixed(2)}</p>
-        <div className={classes["pos-amount"]}>
+        <p className={`${classes["pos-amount"]}  ${classes["positions-avg"]}`}>
+          ${avgPrice.toFixed(2)}
+        </p>
+        <div
+          className={`${classes["pos-amount"]}  ${classes["positions-amount"]}`}
+        >
           <p>${positionTotalValue.toFixed(2)}</p>
           <p
-            className={
+            className={`${
               positionDiff >= 0
                 ? classes["position-up"]
                 : classes["position-down"]
-            }
+            }`}
           >
             <span>
               {positionDiff >= 0 ? "+" : ""}
